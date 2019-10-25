@@ -7,6 +7,20 @@
             "email": "Zeliang@email.com",
             "date": "10/23/2019"
         },
+        {
+            "type":"User",
+            "id":"U12314",
+            "name":"Jiabei He",
+            "email":"Jiabei@gmail.com",
+            "data":"10/24/2019"
+        },
+        {
+            "type":"Teacher",
+            "id":"T1341124",
+            "name":"Nyugen",
+            "email":"nyugen@gmail.com",
+            "data":"10/24/2019"
+        }
         
     ]
 }
