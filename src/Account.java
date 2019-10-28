@@ -3,7 +3,7 @@
  * An abstract class
  * @author Zeling Zhuo
  */
-public abstract class Account {
+public class Account {
 	
 	// Account info, attributes
 	protected String id;
@@ -38,6 +38,11 @@ public abstract class Account {
 	}
 	public void setId(String id) {
 		//TODO id format
+		if(id.length() != 7) {
+			System.out.print("Error!! ID has to be 7 numbers");
+			this.id = "";
+			return;
+		}
 		this.id = id;
 	}
 	public String getEmail() {
@@ -66,6 +71,7 @@ public abstract class Account {
 		else if (type.equalsIgnoreCase("AverageUser")) {
 			this.type = "AverageUser";
 		}else {
+			System.out.print("Error! Unknown Account Type!");
 			this.type = "Unknown";
 		}
 	}
@@ -94,7 +100,7 @@ public abstract class Account {
 			this.maxCheckout = 15;
 			break;
 		default:
-			System.out.print("Error! Unknown Type of Account!");
+			System.out.print("Error! Max Checkout Not Seted! Unknown Type of Account!");
 			this.maxCheckout = 0;
 			break;
 		}
@@ -110,7 +116,7 @@ public abstract class Account {
 	/**
 	 * An abstract method, to allowed use to checkout item
 	 */
-	public abstract void checkout();
+	public void checkout();
 	
 	/**
 	 * the method take one input String as parameters and use the String to 
@@ -163,13 +169,16 @@ public abstract class Account {
 	 */
 	public void notifyFines() {
 		//TODO 
+		System.out.printf("Notified User %s by Email: %s", getId(),getEmail());
 	}
 	
 	/**
 	 * the method allowed use to pay fines 
 	 */
-	protected void payFine() {
+	protected void payFine(double pay) {
 		//TODO
+		double fine = this.getBalance();
+		this.setBalance(fine+pay);
 	}
 	
 	/**
