@@ -13,6 +13,23 @@ public abstract class Account {
 	protected int maxCheckout;
 	protected double balance;
 	
+	
+	public Account(String id, String email, String type) {
+		this.setId(id);
+		this.setEmail(email);
+		this.setType(type);
+		this.setMaxCheckout();
+		this.setBalance(0);
+		this.setFaged(false);
+		
+		if(getId() == "" || getEmail() == "" || getType() == "") {
+			System.out.print("Account Not created!!");
+		}else {
+			System.out.print("Account created!!");
+			//TODO add account to database
+		}
+		
+	}
 	// Accesses 
 	
 	//TODO add constraints for setters 
@@ -20,19 +37,37 @@ public abstract class Account {
 		return id;
 	}
 	public void setId(String id) {
+		//TODO id format
 		this.id = id;
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
+		if(email == null || email == "") {
+			System.out.print("No email entered!");
+			this.email = "";
+			return;
+		}
 		this.email = email;
 	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
-		this.type = type;
+		if(type.equalsIgnoreCase("Librarian")) {
+			this.type = "Librarian";
+		}else if (type.equalsIgnoreCase("Teacher")) {
+			this.type = "Teacher";
+		}
+		else if (type.equalsIgnoreCase("Child")) {
+			this.type = "Child";
+		}
+		else if (type.equalsIgnoreCase("AverageUser")) {
+			this.type = "AverageUser";
+		}else {
+			this.type = "Unknown";
+		}
 	}
 	public boolean isFaged() {
 		return isFaged;
@@ -43,14 +78,33 @@ public abstract class Account {
 	public int getMaxCheckout() {
 		return maxCheckout;
 	}
-	public void setMaxCheckout(int maxCheckout) {
-		this.maxCheckout = maxCheckout;
+	public void setMaxCheckout() {
+		String type = this.getType();
+		switch (type) {
+		case "Librarian":
+			this.maxCheckout = 99999;
+			break;
+		case "Teacher":	
+			this.maxCheckout = 25;
+			break;
+		case "Child":
+			this.maxCheckout = 4;
+			break;
+		case "AverageUser":	
+			this.maxCheckout = 15;
+			break;
+		default:
+			System.out.print("Error! Unknown Type of Account!");
+			this.maxCheckout = 0;
+			break;
+		}
+		
 	}
 	
 	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
+	protected void setBalance(double balance) {
 		this.balance = balance;
 	}
 	/**
@@ -114,7 +168,7 @@ public abstract class Account {
 	/**
 	 * the method allowed use to pay fines 
 	 */
-	public void payFine() {
+	protected void payFine() {
 		//TODO
 	}
 	
@@ -122,7 +176,7 @@ public abstract class Account {
 	 * the method send a email to user if the state of item they hold is changed
 	 */
 	public void notifyHold() {
-		//TODO
+		System.out.printf("Notified User %s by Email: %s", getId(),getEmail());
 	}
 	
 	/**
