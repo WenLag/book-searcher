@@ -3,7 +3,7 @@
  * An abstract class
  * @author Zeling Zhuo
  */
-public abstract class Account {
+public class Account {
 	
 	// Account info, attributes
 	protected String id;
@@ -12,9 +12,17 @@ public abstract class Account {
 	protected boolean isFaged;
 	protected int maxCheckout;
 	protected double balance;
+	protected String Name;
 	
+	
+	public Account() {
+		
+	}
 	// Accesses 
 	
+	public String getName() {
+		return Name;
+	}
 	//TODO add constraints for setters 
 	public String getId() {
 		return id;
@@ -56,7 +64,9 @@ public abstract class Account {
 	/**
 	 * An abstract method, to allowed use to checkout item
 	 */
-	public abstract void checkout();
+	public void checkout() {
+		
+	}
 	
 	/**
 	 * the method take one input String as parameters and use the String to 
@@ -66,6 +76,8 @@ public abstract class Account {
 	 * @return a Book Object
 	 */
 	public Book searchItem(String aName) {
+		
+		return null;
 		//TODO make Book class and add search function
 	}
 	
