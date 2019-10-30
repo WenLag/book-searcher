@@ -1,0 +1,32 @@
+{
+    "account": [
+        {
+            "type": "Librarian",
+            "id": "D123123123",
+            "name": "Zeliang zhuo",
+            "email": "Zeliang@email.com",
+            "date": "10/23/2019"
+        },
+        {
+            "type":"AverageUser",
+            "id":"U12314",
+            "name":"Nguyen",
+            "email":"Nguyen@gmail.com",
+            "data":"10/24/2019"
+        },
+        {
+            "type":"Teacher",
+            "id":"T1341124",
+            "name":"Jiabei He",
+            "email":"Jiabei@gmail.com",
+            "data":"10/24/2019"
+        },
+        {
+            "type":"child of AverageUser",
+            "id":"COA13131",
+            "name":"peter"
+        }
+
+        
+    ]
+}
