@@ -9,37 +9,51 @@ public class Account {
 	protected String id;
 	protected String email;
 	protected String type;
-	protected boolean isFaged;
+	protected boolean isFlagged;
 	protected int maxCheckout;
 	protected double balance;
-	protected String Name;
+	protected String passwordString;
 	
 	
-	
-
-	public Account(String id, String email, String type) {
+	public Account(String id, String email, String type, String password) {
 		this.setId(id);
 		this.setEmail(email);
 		this.setType(type);
 		this.setMaxCheckout();
 		this.setBalance(0);
 		this.setFaged(false);
+		this.setPasswordString(password);
 		
-		if(getId() == "" || getEmail() == "" || getType() == "") {
-			System.out.print("Account Not created!!");
+		if(getId().equals("unll") || getEmail().equals("unll") || getType().equals("Unknown") ||
+				getPasswordString().equals("unll")) {
+			System.out.println("Account Not created!!");
 		}else {
-			System.out.print("Account created!!");
+			System.out.println("Account created!!");
 			//TODO add account to database
 		}
+	}
+	
+	/**
+	 * Load data from database
+	 * @param id
+	 * @param email
+	 * @param type
+	 * @param isFaged
+	 * @param maxCheckout
+	 * @param balance
+	 * @param passwordString
+	 */
+	public Account(String id, String email, String type) {
+		this.id = id;
+		this.email = email;
+		this.type = type;
+		this.isFlagged = isFlagged;
+		this.maxCheckout = maxCheckout;
+		this.balance = balance;
+		this.passwordString = passwordString;
+	}
 
-		
-	}
-	
 	// Accesses 
-	
-	public String getName() {
-		return Name;
-	}
 	//TODO add constraints for setters 
 	public String getId() {
 		return id;
@@ -47,7 +61,7 @@ public class Account {
 	public void setId(String id) {
 		//TODO id format
 		if(id.length() != 7) {
-			System.out.print("Error!! ID has to be 7 numbers");
+			System.out.println("Error!! ID has to be 7 numbers");
 			this.id = "";
 			return;
 		}
@@ -58,8 +72,8 @@ public class Account {
 	}
 	public void setEmail(String email) {
 		if(email == null || email == "") {
-			System.out.print("No email entered!");
-			this.email = "";
+			System.out.println("No email entered!");
+			this.email = "unll";
 			return;
 		}
 		this.email = email;
@@ -68,6 +82,7 @@ public class Account {
 		return type;
 	}
 	public void setType(String type) {
+		// Set account type to Librarian, Teacher, Child or AverageUser, if type is not above set to Unknown
 		if(type.equalsIgnoreCase("Librarian")) {
 			this.type = "Librarian";
 		}else if (type.equalsIgnoreCase("Teacher")) {
@@ -79,21 +94,22 @@ public class Account {
 		else if (type.equalsIgnoreCase("AverageUser")) {
 			this.type = "AverageUser";
 		}else {
-			System.out.print("Error! Unknown Account Type!");
+			System.out.println("Error! Unknown Account Type!");
 			this.type = "Unknown";
 		}
 	}
 	public boolean isFaged() {
-		return isFaged;
+		return isFlagged;
 	}
 	public void setFaged(boolean isFaged) {
-		this.isFaged = isFaged;
+		this.isFlagged = isFaged;
 	}
 	public int getMaxCheckout() {
 		return maxCheckout;
 	}
 	public void setMaxCheckout() {
 		String type = this.getType();
+		//Set maxCheckout base on account type
 		switch (type) {
 		case "Librarian":
 			this.maxCheckout = 99999;
@@ -108,7 +124,7 @@ public class Account {
 			this.maxCheckout = 15;
 			break;
 		default:
-			System.out.print("Error! Max Checkout Not Seted! Unknown Type of Account!");
+			System.out.println("Error! Max Checkout Not Seted! Unknown Type of Account!");
 			this.maxCheckout = 0;
 			break;
 		}
@@ -118,16 +134,29 @@ public class Account {
 	public double getBalance() {
 		return balance;
 	}
+	
 	protected void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
+	protected String getPasswordString() {
+		return passwordString;
+	}
+
+	public void setPasswordString(String passwordString) {
+		if(passwordString.length() < 6 || passwordString.length() > 12) {
+			System.out.print("Error! Password has to be 6 to 12 charters!");
+			this.passwordString = "unll";
+		}
+		this.passwordString = passwordString;
+	}
+
 	/**
 	 * An abstract method, to allowed use to checkout item
 	 */
-	public void checkout() {
-		
+	public void checkout(String aName) {
+		//TODO
 	}
-
 	
 	/**
 	 * the method take one input String as parameters and use the String to 
@@ -136,10 +165,9 @@ public class Account {
 	 * @param aName is type of String 
 	 * @return a Book Object
 	 */
-	public Book searchItem(String aName) {
-		
-		return null;
+	public media searchItem(String aName) {
 		//TODO make Book class and add search function
+		return null;
 	}
 	
 	/**
@@ -182,7 +210,7 @@ public class Account {
 	 */
 	public void notifyFines() {
 		//TODO 
-		System.out.printf("Notified User %s by Email: %s", getId(),getEmail());
+		System.out.printf("Notified User %s Account Fines by Email: %s\n", getId(),getEmail());
 	}
 	
 	/**
@@ -198,7 +226,7 @@ public class Account {
 	 * the method send a email to user if the state of item they hold is changed
 	 */
 	public void notifyHold() {
-		System.out.printf("Notified User %s by Email: %s", getId(),getEmail());
+		System.out.printf("Notified User %s Hold Information by Email: %s\n", getId(),getEmail());
 	}
 	
 	/**
@@ -219,7 +247,25 @@ public class Account {
 	/**
 	 * The method allow user to reset password
 	 */
-	public void resetPassword() {
+	public void resetPassword(String oldPassword, String newPassword) {
 		//TODO
+		if(this.getPasswordString().equals(oldPassword) && 6 <= newPassword.length() && newPassword.length() <= 12) {
+			this.setPasswordString(newPassword);
+		}else {
+			System.out.println("The old password dose not match or the new password is not 6 to 12 character!\n"
+					+ "The password is not reseted! If you do not remember your password ask librarian to reset!");
+		}
+	}
+	
+	/**
+	 * reset password by librarians
+	 * @param newPassword a 6 to 12 String 
+	 */
+	protected void resetPassword(String newPassword) {
+		if(newPassword.length() < 6 || newPassword.length() > 12) {
+			System.out.println("Password is not reseted!");
+			return;
+		}
+		this.setPasswordString(newPassword);
 	}
 }
