@@ -7,11 +7,14 @@ public class media {
     protected String Author;
     protected String Date;
     protected String Genre;
+    protected String Publisher;
+    protected int numberOfCopy;
     protected int ISBN;
     protected int Rating;
     protected boolean isCheckout;
+    protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public media(int ISBN,String Title,String Author,String Date, String Genre,int Rating)
+    public media(int ISBN,String Title,String Pulisher, int numberOfCopy,String Author,String Date, String Genre,int Rating)
     {
         this.setISBN(ISBN);
         this.setName(Title);
@@ -19,6 +22,26 @@ public class media {
         this.setData(Date);
         this.setGenre(Genre);
         this.setRating(Rating);
+    }
+
+    public String getPublisher() {
+        return Publisher;
+    }
+
+    public void setPublisher(String Publisher) {
+        this.Publisher = Publisher;
+    }
+
+    public int getNumberOfCopy() {
+        return numberOfCopy;
+    }
+
+    public void setNumberOfCopy(int NumberOfCopy) {
+        if(numberOfCopy>0) {
+            this.numberOfCopy = NumberOfCopy;
+        }
+        else
+            System.out.println("We don't have this book");
     }
 
     public int getISBN() {
@@ -60,20 +83,7 @@ public class media {
     }
 
     public void setGenre(String Genre) {
-        if(Genre.equalsIgnoreCase("DVD"))
-        {
-            this.Genre="DVD";
-        }
-        else if(Genre.equalsIgnoreCase("e-book"))
-        {
-            this.Genre="e-book";
-        }
-        else if(Genre.equalsIgnoreCase("magazine"))
-        {
-            this.Genre="magazine";
-        }
-        else
-            this.Genre="bookItem";
+        this.Genre=Genre;
     }
 
     public int getRating() {
@@ -93,6 +103,13 @@ public class media {
     public void setisCheckout(boolean isCheckout)
     {
         this.isCheckout=isCheckout;
+    }
+    public boolean isNewArrive(){
+        return isNewArrive;
+    }
+    public void setisNewArrive(boolean isNewArrive)
+    {
+        this.isNewArrive=isNewArrive;
     }
 
 

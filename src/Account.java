@@ -1,10 +1,10 @@
 /**
- * Account class 
+ * Account class
  * An abstract class
  * @author Zeling Zhuo
  */
 public class Account {
-	
+
 	// Account info, attributes
 	protected String id;
 	protected String email;
@@ -13,8 +13,8 @@ public class Account {
 	protected int maxCheckout;
 	protected double balance;
 	protected String passwordString;
-	
-	
+
+
 	public Account(String id, String email, String type, String password) {
 		this.setId(id);
 		this.setEmail(email);
@@ -23,7 +23,7 @@ public class Account {
 		this.setBalance(0);
 		this.setFaged(false);
 		this.setPasswordString(password);
-		
+
 		if(getId().equals("unll") || getEmail().equals("unll") || getType().equals("Unknown") ||
 				getPasswordString().equals("unll")) {
 			System.out.println("Account Not created!!");
@@ -32,7 +32,7 @@ public class Account {
 			//TODO add account to database
 		}
 	}
-	
+
 	/**
 	 * Load data from database
 	 * @param id
@@ -43,18 +43,19 @@ public class Account {
 	 * @param balance
 	 * @param passwordString
 	 */
-	public Account(String id, String email, String type) {
+	public Account(String id, String email, String type, boolean isFaged, int maxCheckout, double balance,
+			String passwordString) {
 		this.id = id;
 		this.email = email;
 		this.type = type;
-		this.isFlagged = isFlagged;
+		this.isFaged = isFaged;
 		this.maxCheckout = maxCheckout;
 		this.balance = balance;
 		this.passwordString = passwordString;
 	}
 
-	// Accesses 
-	//TODO add constraints for setters 
+	// Accesses
+	//TODO add constraints for setters
 	public String getId() {
 		return id;
 	}
@@ -114,13 +115,13 @@ public class Account {
 		case "Librarian":
 			this.maxCheckout = 99999;
 			break;
-		case "Teacher":	
+		case "Teacher":
 			this.maxCheckout = 25;
 			break;
 		case "Child":
 			this.maxCheckout = 4;
 			break;
-		case "AverageUser":	
+		case "AverageUser":
 			this.maxCheckout = 15;
 			break;
 		default:
@@ -128,17 +129,17 @@ public class Account {
 			this.maxCheckout = 0;
 			break;
 		}
-		
+
 	}
-	
+
 	public double getBalance() {
 		return balance;
 	}
-	
+
 	protected void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	protected String getPasswordString() {
 		return passwordString;
 	}
@@ -157,36 +158,36 @@ public class Account {
 	public void checkout(String aName) {
 		//TODO
 	}
-	
+
 	/**
-	 * the method take one input String as parameters and use the String to 
+	 * the method take one input String as parameters and use the String to
 	 * search if the item exist in database
 	 * if exist return the item if not return null
-	 * @param aName is type of String 
+	 * @param aName is type of String
 	 * @return a Book Object
 	 */
 	public media searchItem(String aName) {
 		//TODO make Book class and add search function
 		return null;
 	}
-	
+
 	/**
-	 * the method to allowed user checkout items if the user have not meet max checkout, 
+	 * the method to allowed user checkout items if the user have not meet max checkout,
 	 * the item is not already checked out, the item is not on hold and the user is not faged
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(String aName) {
 		//TODO make checkout function
 	}
-	
+
 	/**
-	 * the method to allowed user return items 
+	 * the method to allowed user return items
 	 * @param aName is type of String
 	 */
 	public void returnItem(String aName) {
 		//TODO make returnItem function
 	}
-	
+
 	/**
 	 * the method to allowed user renew items if the item is not on hold
 	 * @param aName is type of String
@@ -194,7 +195,7 @@ public class Account {
 	public void renew(String aName) {
 		//TODO make returnItem function
 	}
-	
+
 	/**
 	 * the method to check if the account is exist in database if exist return true
 	 * else return false
@@ -204,46 +205,46 @@ public class Account {
 		//TODO
 		return false;
 	}
-	
+
 	/**
 	 * the method send info of the account flag by email
 	 */
 	public void notifyFines() {
-		//TODO 
+		//TODO
 		System.out.printf("Notified User %s Account Fines by Email: %s\n", getId(),getEmail());
 	}
-	
+
 	/**
-	 * the method allowed use to pay fines 
+	 * the method allowed use to pay fines
 	 */
 	protected void payFine(double pay) {
 		//TODO
 		double fine = this.getBalance();
 		this.setBalance(fine+pay);
 	}
-	
+
 	/**
 	 * the method send a email to user if the state of item they hold is changed
 	 */
 	public void notifyHold() {
 		System.out.printf("Notified User %s Hold Information by Email: %s\n", getId(),getEmail());
 	}
-	
+
 	/**
-	 * The method put user to the hold list to the item they requiring 
+	 * The method put user to the hold list to the item they requiring
 	 * @param aName type of String
 	 */
 	public void putlist(String aName) {
 		//TODO
 	}
-	
+
 	/**
 	 * The method print out the wait list
 	 */
 	public void displaywaitlist() {
 		//TODO
 	}
-	
+
 	/**
 	 * The method allow user to reset password
 	 */
@@ -256,10 +257,10 @@ public class Account {
 					+ "The password is not reseted! If you do not remember your password ask librarian to reset!");
 		}
 	}
-	
+
 	/**
 	 * reset password by librarians
-	 * @param newPassword a 6 to 12 String 
+	 * @param newPassword a 6 to 12 String
 	 */
 	protected void resetPassword(String newPassword) {
 		if(newPassword.length() < 6 || newPassword.length() > 12) {
@@ -267,5 +268,23 @@ public class Account {
 			return;
 		}
 		this.setPasswordString(newPassword);
+	}
+
+	public String toString() {
+		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
+				"\nIs Account flagged: " + this.isFaged + "\nMax Checkout: " + this.maxCheckout +
+				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
+	}
+
+	public boolean comparPassword(String input) {
+		if(this.getPasswordString().equals(input))
+			return true;
+		return false;
+	}
+
+	public boolean comparID(String input) {
+		if(this.getId().equals(input))
+			return true;
+		return false;
 	}
 }
