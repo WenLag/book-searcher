@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AccountParser {
 	
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
-	public static ArrayList<Account> parseAccount() {
+	public ArrayList<Account> parseAccount(String ID, String Password) {
 		ArrayList<Account> account = new ArrayList<Account>();
 		try {
 			FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
@@ -27,10 +27,16 @@ public class AccountParser {
 				String type = (String)personJSON.get("type");
 				String email = (String)personJSON.get("email");
 				String id = (String)personJSON.get("id");
-				
-				
+				String password = (String)personJSON.get("password");
 				account.add(new Account(id, email, type));
-				System.out.println(name + type + email + id);
+				
+			}
+			for (int i = 0; i < account.size(); i++) {
+				String Id1 = account.get(i).getId();
+				String email = account.get(i).getEmail();
+				if (Id1.equals(ID)) {
+					System.out.println("You are logged in as " + email);
+				}
 			}
 			
 		

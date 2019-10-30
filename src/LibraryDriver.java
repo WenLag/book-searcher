@@ -29,13 +29,15 @@ public class LibraryDriver {
 			 * Login Methods
 			 */
 			System.out.println("Enter ID");
-			String email = input.next();
-			
-			System.out.println("Password");
 			String ID = input.next();
 			
+			System.out.println("Password");
+			String Password = input.next();
+			
 			AccountParser AP = new AccountParser();
-			ArrayList<Account> account = AP.parseAccount();
+			ArrayList<Account> account = AP.parseAccount(ID,Password);
+			
+			
 			
 		}
 		else if (choice.equalsIgnoreCase("register")) {
