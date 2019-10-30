@@ -17,7 +17,6 @@ public class AccountParser {
 		ArrayList<Account> account = new ArrayList<Account>();
 		try {
 			FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
-			JSONParser parser = new JSONParser();
 			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray peopleJSON = (JSONArray)jsonData.get("account");
 
@@ -28,18 +27,17 @@ public class AccountParser {
 				String email = (String)personJSON.get("email");
 				String id = (String)personJSON.get("id");
 				String password = (String)personJSON.get("password");
-				account.add(new Account(id, email, type));
-				
+				long maxCheckout = (long)personJSON.get("maxCheckout");
+				account.add(new Account(id, email, type, maxCheckout, password, name));
 			}
 			for (int i = 0; i < account.size(); i++) {
-				String Id1 = account.get(i).getId();
-				String email = account.get(i).getEmail();
-				if (Id1.equals(ID)) {
-					System.out.println("You are logged in as " + email);
+				boolean Id1 = account.get(i).comparID(ID);
+				String password = account.get(i).getPasswordString();
+				String name = account.get(i).getName();
+				if (Id1) {
+					System.out.println("You are logged in as " + name);
 				}
 			}
-			
-		
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -48,6 +46,14 @@ public class AccountParser {
 
 		
 	}
+	
+	public void AddAccounts() {
+		JSONObject accountdetails = new JSONObject();
+		//accountdetails.put( , )
+		
+	}
+	
+	
 	
 }
 

@@ -8,11 +8,13 @@ public class Account {
 	// Account info, attributes
 	protected String id;
 	protected String email;
+	protected String name;
 	protected String type;
 	protected boolean isFlagged;
-	protected int maxCheckout;
+	protected long maxCheckout;
 	protected double balance;
 	protected String passwordString;
+	
 
 
 	public Account(String id, String email, String type, String password) {
@@ -21,11 +23,11 @@ public class Account {
 		this.setType(type);
 		this.setMaxCheckout();
 		this.setBalance(0);
-		this.setFaged(false);
+		this.setFlagged(false);
 		this.setPasswordString(password);
 
-		if(getId().equals("unll") || getEmail().equals("unll") || getType().equals("Unknown") ||
-				getPasswordString().equals("unll")) {
+		if(getId().equals("null") || getEmail().equals("null") || getType().equals("Unknown") ||
+				getPasswordString().equals("null")) {
 			System.out.println("Account Not created!!");
 		}else {
 			System.out.println("Account created!!");
@@ -43,12 +45,13 @@ public class Account {
 	 * @param balance
 	 * @param passwordString
 	 */
-	public Account(String id, String email, String type, boolean isFaged, int maxCheckout, double balance,
-			String passwordString) {
+	public Account(String id, String email, String type, long maxCheckout,
+			String passwordString, String Name) {
 		this.id = id;
+		this.name = Name;
 		this.email = email;
 		this.type = type;
-		this.isFaged = isFaged;
+		this.isFlagged = isFlagged;
 		this.maxCheckout = maxCheckout;
 		this.balance = balance;
 		this.passwordString = passwordString;
@@ -74,7 +77,7 @@ public class Account {
 	public void setEmail(String email) {
 		if(email == null || email == "") {
 			System.out.println("No email entered!");
-			this.email = "unll";
+			this.email = "null";
 			return;
 		}
 		this.email = email;
@@ -99,13 +102,13 @@ public class Account {
 			this.type = "Unknown";
 		}
 	}
-	public boolean isFaged() {
+	public boolean isFlagged() {
 		return isFlagged;
 	}
-	public void setFaged(boolean isFaged) {
+	public void setFlagged(boolean isFaged) {
 		this.isFlagged = isFaged;
 	}
-	public int getMaxCheckout() {
+	public long getMaxCheckout() {
 		return maxCheckout;
 	}
 	public void setMaxCheckout() {
@@ -147,7 +150,7 @@ public class Account {
 	public void setPasswordString(String passwordString) {
 		if(passwordString.length() < 6 || passwordString.length() > 12) {
 			System.out.print("Error! Password has to be 6 to 12 charters!");
-			this.passwordString = "unll";
+			this.passwordString = "null";
 		}
 		this.passwordString = passwordString;
 	}
@@ -272,7 +275,7 @@ public class Account {
 
 	public String toString() {
 		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
-				"\nIs Account flagged: " + this.isFaged + "\nMax Checkout: " + this.maxCheckout +
+				"\nIs Account flagged: " + this.isFlagged + "\nMax Checkout: " + this.maxCheckout +
 				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
 	}
 
@@ -286,5 +289,9 @@ public class Account {
 		if(this.getId().equals(input))
 			return true;
 		return false;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

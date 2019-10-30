@@ -3,38 +3,42 @@
         {
             "name": "Zeliang zhuo",
             "type": "Librarian",
-            "id": "D123123123",
+            "id": "Mayefield",
             "password": "Man",
             "email": "Zeliang@email.com",
             "date": "10/23/2019",
             "isFlagged": "False",
-            "Balance":  "0"
+            "maxCheckout":  999,
+            "Balance": 0.0
 
         },
         {
             "name": "Nguyen",
             "type": "AverageUser",
-            "id": "U12314",
+            "id": "Day",
             "password": "Man",
             "email": "Nguyen@gmail.com",
             "date": "10/24/2019",
             "isFlagged": "False",
-            "Balance": "0"
+            "maxCheckout": 15,
+            "Balance": 0.0
         },
         {
             "name": "Jiabei He",
             "type": "Teacher",
-            "id": "T1341124",
+            "id": "One",
             "password": "Man",
             "email": "Jiabei@gmail.com",
             "date": "10/24/2019",
             "isFlagged": "False",
-            "Balance": "0"
+            "maxCheckout": 25,
+            "Balance": 0.0
         },
         {
             "name": "peter",
             "type": "Child",
-            "id": "COA13131"
+            "id": "COA13131",
+            "maxCheckout": 4
 
         }
         

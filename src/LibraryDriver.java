@@ -23,7 +23,7 @@ public class LibraryDriver {
 		String choice = input.next();
 		
 		if (choice.equalsIgnoreCase("login")) {
-			System.out.println("\nyou have decided to Login!");
+			System.out.println("\nyou have decided to Login!\n");
 			
 			/**
 			 * Login Methods
@@ -38,18 +38,27 @@ public class LibraryDriver {
 			ArrayList<Account> account = AP.parseAccount(ID,Password);
 			
 			
-			
 		}
 		else if (choice.equalsIgnoreCase("register")) {
-			System.out.println("\nyou have decided to Register!");
+			System.out.println("\nyou have decided to Register!\n");
 			/**
 			 * Register Methods
 			 */
+			System.out.println("Please enter your name");
+			String name = input.next();
+			System.out.println("Please type in your desired ID");
+			String ID = input.next();
+			System.out.println("Please type your desired password.\n");
+			String password = input.next();
+			System.out.println("Please type in your email\n");
+			String email = input.next();	
 		}
+		
 		else if (choice.equalsIgnoreCase("guest login")) {
 			System.out.println("\nyou have decided to Guest Login!");
 			/**
-			 * Guest Login Methods
+			 * Guest Login Methods 
+			 * allow guest user to search books
 			 */
 		} 
 		else{
