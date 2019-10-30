@@ -146,8 +146,9 @@ public class Account {
 	 * @param aName is type of String 
 	 * @return a Book Object
 	 */
-	public Book searchItem(String aName) {
+	public media searchItem(String aName) {
 		//TODO make Book class and add search function
+		return null;
 	}
 	
 	/**
