@@ -269,4 +269,22 @@ public class Account {
 		}
 		this.setPasswordString(newPassword);
 	}
+	
+	public String toString() {
+		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type + 
+				"\nIs Account flagged: " + this.isFaged + "\nMax Checkout: " + this.maxCheckout + 
+				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
+	}
+	
+	public boolean comparPassword(String input) {
+		if(this.getPasswordString().equals(input))
+			return true;
+		return false;
+	}
+	
+	public boolean comparID(String input) {
+		if(this.getId().equals(input))
+			return true;
+		return false;
+	}
 }
