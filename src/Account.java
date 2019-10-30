@@ -15,7 +15,7 @@ public class Account {
 	protected String Name;
 	
 	
-	public Account() {
+	
 
 	public Account(String id, String email, String type) {
 		this.setId(id);
@@ -34,6 +34,7 @@ public class Account {
 
 		
 	}
+	
 	// Accesses 
 	
 	public String getName() {
@@ -126,8 +127,6 @@ public class Account {
 	public void checkout() {
 		
 	}
-
-	public void checkout();
 
 	
 	/**

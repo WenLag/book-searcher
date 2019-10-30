@@ -12,14 +12,14 @@
             "type": "AverageUser",
             "id": "U12314",
             "email": "Nguyen@gmail.com",
-            "data": "10/24/2019"
+            "date": "10/24/2019"
         },
         {
             "name": "Jiabei He",
             "type": "Teacher",
             "id": "T1341124",
             "email": "Jiabei@gmail.com",
-            "data": "10/24/2019"
+            "date": "10/24/2019"
         },
         {
             "name": "peter",

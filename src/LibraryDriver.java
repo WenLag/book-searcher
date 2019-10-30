@@ -24,9 +24,18 @@ public class LibraryDriver {
 		
 		if (choice.equalsIgnoreCase("login")) {
 			System.out.println("\nyou have decided to Login!");
+			
 			/**
 			 * Login Methods
 			 */
+			System.out.println("Enter ID");
+			String email = input.next();
+			
+			System.out.println("Password");
+			String ID = input.next();
+			
+			AccountParser AP = new AccountParser();
+			ArrayList<Account> account = AP.parseAccount();
 			
 		}
 		else if (choice.equalsIgnoreCase("register")) {
@@ -45,23 +54,8 @@ public class LibraryDriver {
 			System.out.println("invalid input");
 			System.exit(0);
 		}
-		
-	JSONObject obj = new JSONObject();
-        
-		JSONParser parser = new JSONParser();
-	
-		try (Reader reader = new FileReader("accountDatabase.json")) {
-
-            JSONObject jsonObject = (JSONObject) parser.parse(reader);
-            
-            System.out.println("\n"+jsonObject);
-            
-		}  catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-      }
+		}
  
 
-	}
 }
+
