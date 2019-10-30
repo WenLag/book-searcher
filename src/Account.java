@@ -31,9 +31,29 @@ public class Account {
 			System.out.println("Account created!!");
 			//TODO add account to database
 		}
-		
 	}
 	
+	/**
+	 * Load data from database
+	 * @param id
+	 * @param email
+	 * @param type
+	 * @param isFaged
+	 * @param maxCheckout
+	 * @param balance
+	 * @param passwordString
+	 */
+	public Account(String id, String email, String type, boolean isFaged, int maxCheckout, double balance,
+			String passwordString) {
+		this.id = id;
+		this.email = email;
+		this.type = type;
+		this.isFaged = isFaged;
+		this.maxCheckout = maxCheckout;
+		this.balance = balance;
+		this.passwordString = passwordString;
+	}
+
 	// Accesses 
 	//TODO add constraints for setters 
 	public String getId() {
