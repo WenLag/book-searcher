@@ -3,7 +3,7 @@
  * An abstract class
  * @author Zeling Zhuo
  */
-public abstract class Account {
+public class Account {
 
 	// Account info, attributes
 	protected String id;
@@ -14,37 +14,47 @@ public abstract class Account {
 	protected long maxCheckout;
 	protected double balance;
 	protected String passwordString;
-	protected int age;
 	
 
 
-	public Account(String id, String email, String password, int age) {
+	public Account(String id, String email, String type, String password) {
 		this.setId(id);
 		this.setEmail(email);
+		this.setType(type);
+		this.setMaxCheckout();
 		this.setBalance(0);
 		this.setFlagged(false);
 		this.setPasswordString(password);
-		this.setAge(age);
-		this.setType();
-		// check account info and add account to database if input is valid
-		checkInput();
+
+		if(getId().equals("null") || getEmail().equals("null") || getType().equals("Unknown") ||
+				getPasswordString().equals("null")) {
+			System.out.println("Account Not created!!");
+		}else {
+			System.out.println("Account created!!");
+			//TODO add account to database
+		}
 	}
 
 	/**
 	 * Load data from database
+	 * @param id
+	 * @param email
+	 * @param type
+	 * @param isFaged
+	 * @param maxCheckout
+	 * @param balance
+	 * @param passwordString
 	 */
-	public Account(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, int age) {
-		super();
+	public Account(String id, String email, String type, long maxCheckout,
+			String passwordString, String Name) {
 		this.id = id;
+		this.name = Name;
 		this.email = email;
-		this.name = name;
 		this.type = type;
 		this.isFlagged = isFlagged;
 		this.maxCheckout = maxCheckout;
 		this.balance = balance;
 		this.passwordString = passwordString;
-		this.age = age;
 	}
 
 	// Accesses
@@ -75,15 +85,6 @@ public abstract class Account {
 	public String getType() {
 		return type;
 	}
-	
-	public void setType() {
-		if(this.getAge() < 18)
-			this.setType("Child");
-		else {
-			this.setType("AverageUser");
-		}
-	}
-	
 	public void setType(String type) {
 		// Set account type to Librarian, Teacher, Child or AverageUser, if type is not above set to Unknown
 		if(type.equalsIgnoreCase("Librarian")) {
@@ -110,9 +111,29 @@ public abstract class Account {
 	public long getMaxCheckout() {
 		return maxCheckout;
 	}
-	
-	
-	protected abstract void setMaxCheckout();
+	public void setMaxCheckout() {
+		String type = this.getType();
+		//Set maxCheckout base on account type
+		switch (type) {
+		case "Librarian":
+			this.maxCheckout = 99999;
+			break;
+		case "Teacher":
+			this.maxCheckout = 25;
+			break;
+		case "Child":
+			this.maxCheckout = 4;
+			break;
+		case "AverageUser":
+			this.maxCheckout = 15;
+			break;
+		default:
+			System.out.println("Error! Max Checkout Not Seted! Unknown Type of Account!");
+			this.maxCheckout = 0;
+			break;
+		}
+
+	}
 
 	public double getBalance() {
 		return balance;
@@ -132,22 +153,6 @@ public abstract class Account {
 			this.passwordString = "null";
 		}
 		this.passwordString = passwordString;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		if(age >= 0 && age <= 100)
-			this.age = age;
-		else {
-			System.out.printf("Input %d is not a valid age!", age);
-		}
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**
@@ -272,20 +277,6 @@ public abstract class Account {
 		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
 				"\nIs Account flagged: " + this.isFlagged + "\nMax Checkout: " + this.maxCheckout +
 				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
-	}
-	
-	protected void checkInput(){
-		if(getId().equals("null") || getEmail().equals("null") || getType().equals("Unknown") ||
-				getPasswordString().equals("null")) {
-			System.out.println("Account Not created!!");
-		}else {
-			System.out.println("Account created!!");
-			addToDatabase();
-		}
-	}
-	
-	protected void addToDatabase() {
-		//TODO add Account to database
 	}
 
 	public boolean comparPassword(String input) {
