@@ -1,42 +1,30 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Media {
+public class media {
 
     protected String Title;
     protected String Author;
-    protected String Year;
+    protected String Date;
     protected String Genre;
     protected String Publisher;
-    protected int Id;
     protected int numberOfCopy;
     protected int ISBN;
     protected int Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(int Id,String Title,String Year, String Genre,int ISBN,String Pulisher,String Author,int numberOfCopy,boolean isNewArrive)
+    public media(int ISBN,String Title,String Pulisher, int numberOfCopy,String Author,String Date, String Genre,int Rating)
     {
-    	this.setId(Id);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);
-        this.setYear(Year);
+        this.setData(Date);
         this.setGenre(Genre);
-        this.setisNewArrive(isNewArrive);
+        this.setRating(Rating);
     }
-    
 
-    public int getId() {
-		return Id;
-	}
-
-	public void setId(int id) {
-		Id = id;
-	}
-
-
-	public String getPublisher() {
+    public String getPublisher() {
         return Publisher;
     }
 
@@ -60,8 +48,9 @@ public class Media {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {    
-        this.ISBN=ISBN;
+    public void setISBN(int ISBN) {
+        //TODO
+        this.ISBN = ISBN;
     }
 
     public String getName() {
@@ -80,13 +69,13 @@ public class Media {
         this.Author = Author;
     }
 
-    public String getYear() {
-        return Year;
+    public String getDate() {
+        return Date;
     }
 
-    public void setYear(String Year) {
-
-        this.Year = Year;
+    public void setData(String Data) {
+        //mm/dd/yyyy
+        this.Date = Data;
     }
 
     public String getGenre() {
@@ -105,6 +94,7 @@ public class Media {
         if(Rating!=0&&Rating<=5) {
             this.Rating = Rating;
         }
+
     }
     public boolean isCheckout(){
         return isCheckout;

@@ -11,8 +11,9 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.ArrayList;
 public class AccountParser {
-	
+	LoadAccountDatabase load = new LoadAccountDatabase();
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
+	UserInterface UI = new UserInterface();
 	public ArrayList<Account> parseAccount(String ID, String Password) {
 		ArrayList<Account> account = new ArrayList<Account>();
 		try {
@@ -28,15 +29,26 @@ public class AccountParser {
 				String id = (String)personJSON.get("id");
 				String password = (String)personJSON.get("password");
 				long maxCheckout = (long)personJSON.get("maxCheckout");
-				account.add(new Account(id, email, type, maxCheckout, password, name));
+				boolean isFlagged = (boolean)personJSON.get("isFlagged");
+				double balance = (double)personJSON.get("Balance");
+				int age = (int)personJSON.get("age");
+				
+				account.add(load.Load(id, email, name, type, isFlagged, maxCheckout, balance, password, age));
 			}
+			
 			for (int i = 0; i < account.size(); i++) {
-				boolean Id1 = account.get(i).comparID(ID);
-				String password = account.get(i).getPasswordString();
+				String iD = account.get(i).getId();
+				String passwordMatch = account.get(i).getPasswordString();
 				String name = account.get(i).getName();
-				if (Id1) {
-					System.out.println("You are logged in as " + name);
+				if (Password.equals(passwordMatch) && iD.equals(ID)) {
+					System.out.println("\nYou are logged in as " + name);
+				} 
+				else {
+					System.out.println("Not registered. Please consider Registering.");
+					break;
 				}
+				
+				
 			}
 		}
 		catch (Exception e) {

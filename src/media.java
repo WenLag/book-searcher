@@ -5,26 +5,38 @@ public class Media {
 
     protected String Title;
     protected String Author;
-    protected String Date;
+    protected String Year;
     protected String Genre;
     protected String Publisher;
+    protected int Id;
     protected int numberOfCopy;
     protected int ISBN;
     protected int Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(int ISBN,String Title,String Pulisher, int numberOfCopy,String Author,String Date, String Genre,int Rating)
+    public Media(int Id,String Title,String Year, String Genre,int ISBN,String Pulisher,String Author,int numberOfCopy,boolean isNewArrive)
     {
+    	this.setId(Id);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);
-        this.setData(Date);
+        this.setYear(Year);
         this.setGenre(Genre);
-        this.setRating(Rating);
+        this.setisNewArrive(isNewArrive);
     }
+    
 
-    public String getPublisher() {
+    public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+
+	public String getPublisher() {
         return Publisher;
     }
 
@@ -48,9 +60,8 @@ public class Media {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
-        //TODO
-        this.ISBN = ISBN;
+    public void setISBN(int ISBN) {    
+        this.ISBN=ISBN;
     }
 
     public String getName() {
@@ -69,13 +80,13 @@ public class Media {
         this.Author = Author;
     }
 
-    public String getDate() {
-        return Date;
+    public String getYear() {
+        return Year;
     }
 
-    public void setData(String Data) {
-        //mm/dd/yyyy
-        this.Date = Data;
+    public void setYear(String Year) {
+
+        this.Year = Year;
     }
 
     public String getGenre() {
@@ -94,7 +105,6 @@ public class Media {
         if(Rating!=0&&Rating<=5) {
             this.Rating = Rating;
         }
-
     }
     public boolean isCheckout(){
         return isCheckout;

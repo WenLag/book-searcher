@@ -17,8 +17,22 @@ public class MediaParser {
         try
         {
             FileReader reader=new FileReader(Media_File_Name);
-        
-        }
+            JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
+			JSONArray mediaJSON = (JSONArray)jsonData.get("books.json");
+			for(int i=0; i < mediaJSON.size(); i++) {
+				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
+				int id = (int)booksJSON.get("id");
+				String title = (String)booksJSON.get("title");
+				String year= (String)booksJSON.get("year");
+				String genre=(String)booksJSON.get("genre");
+				int Isbn= (int)booksJSON.get("ISBN");
+				String publisher = (String)booksJSON.get("publisher");
+				String author=(String)booksJSON.get("author");
+				int numOfcopies=(int)booksJSON.get("numCopies");
+				boolean isNewArrival=(boolean)booksJSON.get("newArrival");
+				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
+			} 
+        } 
         catch (Exception e)
         {
             e.printStackTrace();

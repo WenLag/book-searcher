@@ -164,7 +164,7 @@ public abstract class Account {
 	 * @param aName is type of String
 	 * @return a Book Object
 	 */
-	public media searchItem(String aName) {
+	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
 		return null;
 	}

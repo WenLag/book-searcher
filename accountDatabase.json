@@ -7,40 +7,44 @@
             "password": "Man",
             "email": "Zeliang@email.com",
             "date": "10/23/2019",
-            "isFlagged": "False",
-            "maxCheckout":  999,
+            "isFlagged": False,
+          "maxCheckout": 999,
+          "Age" :  30,
             "Balance": 0.0
 
         },
-        {
-            "name": "Nguyen",
-            "type": "AverageUser",
-            "id": "Day",
-            "password": "Man",
-            "email": "Nguyen@gmail.com",
-            "date": "10/24/2019",
-            "isFlagged": "False",
-            "maxCheckout": 15,
-            "Balance": 0.0
-        },
-        {
-            "name": "Jiabei He",
-            "type": "Teacher",
-            "id": "One",
-            "password": "Man",
-            "email": "Jiabei@gmail.com",
-            "date": "10/24/2019",
-            "isFlagged": "False",
-            "maxCheckout": 25,
-            "Balance": 0.0
-        },
-        {
-            "name": "peter",
-            "type": "Child",
-            "id": "COA13131",
-            "maxCheckout": 4
+      {
+        "name": "Nguyen",
+        "type": "AverageUser",
+        "id": "Day",
+        "password": "Man",
+        "email": "Nguyen@gmail.com",
+        "date": "10/24/2019",
+        "isFlagged": False,
+        "maxCheckout": 15,
+        "Age": 25,
+        "Balance": 0.0
+      },
+      {
+        "name": "Jiabei He",
+        "type": "Teacher",
+        "id": "One",
+        "password": "Man",
+        "email": "Jiabei@gmail.com",
+        "date": "10/24/2019",
+        "isFlagged": False,
+        "maxCheckout": 25,
+        "Age": 40,
+        "Balance": 0.0
+      },
+      {
+        "name": "peter",
+        "type": "Child",
+        "id": "COA13131",
+        "Age": 10,
+        "maxCheckout": 4
 
-        }
+      }
         
     ]
 }
