@@ -31,7 +31,7 @@ public class MediaParser {
 				int numOfcopies=(int)booksJSON.get("numCopies");
 				boolean isNewArrival=(boolean)booksJSON.get("newArrival");
 				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
-			}
+			} 
         }
         catch (Exception e)
         {
