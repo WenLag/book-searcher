@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Media {
+public class media {
 
     protected String Title;
     protected String Author;
@@ -14,7 +14,7 @@ public class Media {
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(int ISBN,String Title,String Pulisher, int numberOfCopy,String Author,String Date, String Genre,int Rating)
+    public media(int ISBN,String Title,String Pulisher, int numberOfCopy,String Author,String Date, String Genre,int Rating)
     {
         this.setISBN(ISBN);
         this.setName(Title);
@@ -49,16 +49,8 @@ public class Media {
     }
 
     public void setISBN(int ISBN) {
-    	int count=0;
-    	while(ISBN>0)
-    	{
-    		ISBN/=10;
-    		count++;
-    	}
-        if(count==13)
-        {
-        	this.ISBN=ISBN;
-        }
+        //TODO
+        this.ISBN = ISBN;
     }
 
     public String getName() {
@@ -82,7 +74,7 @@ public class Media {
     }
 
     public void setData(String Data) {
-
+        //mm/dd/yyyy
         this.Date = Data;
     }
 
@@ -102,6 +94,7 @@ public class Media {
         if(Rating!=0&&Rating<=5) {
             this.Rating = Rating;
         }
+
     }
     public boolean isCheckout(){
         return isCheckout;
