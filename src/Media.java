@@ -15,19 +15,32 @@ public class Media {
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(int Id,String Title,String Year, String Genre,int ISBN,String Pulisher,String Author,int numberOfCopy,boolean isNewArrive)
+    public Media(int Id,String Title,String Year, String Genre,int ISBN,String Pulisher,String Author,int numberOfCopy,int Rating,boolean isNewArrive)
     {
     	this.setId(Id);
         this.setISBN(ISBN);
-        this.setName(Title);
+        this.setTitle(Title);
         this.setAuthor(Author);
+        this.setPublisher(Pulisher);
         this.setYear(Year);
         this.setGenre(Genre);
+        this.setRating(Rating);
+        this.setNumberOfCopy(numberOfCopy);
         this.setisNewArrive(isNewArrive);
     }
     
 
-    public int getId() {
+    public String getTitle() {
+		return Title;
+	}
+
+
+	public void setTitle(String title) {
+		Title = title;
+	}
+
+
+	public int getId() {
 		return Id;
 	}
 
@@ -64,14 +77,7 @@ public class Media {
         this.ISBN=ISBN;
     }
 
-    public String getName() {
-        return Title;
-    }
-
-    public void setName(String Title) {
-        this.Title = Title;
-    }
-
+  
     public String getAuthor() {
         return Author;
     }

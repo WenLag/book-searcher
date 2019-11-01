@@ -29,10 +29,11 @@ public class MediaParser {
 				String publisher = (String)booksJSON.get("publisher");
 				String author=(String)booksJSON.get("author");
 				int numOfcopies=(int)booksJSON.get("numCopies");
+				int rating=(int)booksJSON.get("rating");
 				boolean isNewArrival=(boolean)booksJSON.get("newArrival");
-				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
+				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,rating,isNewArrival));
 			} 
-        } 
+        }    
         catch (Exception e)
         {
             e.printStackTrace();

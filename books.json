@@ -8,6 +8,7 @@
     "publisher":"Random House",
     "author":"Dr. Seuss",
     "numCopies":3,
+    "rating":2,
     "newArrival":false
   },{
     "id":2,
@@ -18,6 +19,7 @@
     "publisher":"Workman",
     "author":"Sandra Boynton",
     "numCopies":2,
+    "rating":3,
     "newArrival":true
   },{
     "id":3,
@@ -28,6 +30,7 @@
     "publisher":"CreateSpace",
     "author":"Jane Austin",
     "numCopies":1,
+    "rating":4,
     "newArrival":false
   },{
     "id":4,
@@ -38,6 +41,7 @@
     "publisher":"Scribner",
     "author":"Margaret Mitchell",
     "numCopies":2,
+    "rating":5,
     "newArrival":false
   }
 ]}
