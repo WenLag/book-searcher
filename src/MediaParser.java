@@ -32,7 +32,7 @@ public class MediaParser {
 				boolean isNewArrival=(boolean)booksJSON.get("newArrival");
 				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
 			} 
-        }
+        } 
         catch (Exception e)
         {
             e.printStackTrace();
