@@ -14,11 +14,11 @@ public abstract class Account {
 	protected long maxCheckout;
 	protected double balance;
 	protected String passwordString;
-	protected int age;
+	protected long age;
 	
 
 
-	public Account(String id, String email, String password, int age) {
+	public Account(String id, String email, String password, long age) {
 		this.setId(id);
 		this.setEmail(email);
 		this.setBalance(0);
@@ -34,7 +34,7 @@ public abstract class Account {
 	 * Load data from database
 	 */
 	public Account(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, int age) {
+			double balance, String passwordString, long age) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -134,15 +134,15 @@ public abstract class Account {
 		this.passwordString = passwordString;
 	}
 
-	public int getAge() {
+	public long getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
-		if(age >= 0 && age <= 100)
-			this.age = age;
+	public void setAge(long age2) {
+		if(age2 >= 0 && age2 <= 100)
+			this.age = age2;
 		else {
-			System.out.printf("Input %d is not a valid age!", age);
+			System.out.printf("Input %d is not a valid age!", age2);
 		}
 	}
 

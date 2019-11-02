@@ -7,7 +7,7 @@ public class Librarian extends Account{
 	}
 	
 	public Librarian(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, int age) {
+			double balance, String passwordString, long age) {
 		super(id, email, name, type, isFlagged, maxCheckout,
 				balance, passwordString, age);
 	}

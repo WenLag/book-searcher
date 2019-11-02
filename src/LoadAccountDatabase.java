@@ -15,7 +15,7 @@ public class LoadAccountDatabase {
 	 * @return An Account 
 	 */
 	public Account Load(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, int age) {
+			double balance, String passwordString, long age) {
 		Account account = new Librarian(id, email, name, type, isFlagged, maxCheckout, balance, passwordString, age);
 		switch (type) {
 		case "Librarian":

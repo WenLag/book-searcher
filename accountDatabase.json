@@ -1,47 +1,41 @@
 {"account": [
       {
-        "Age": 30,
+        "age": 30,
         "Balance": 0.0,
         "date": "10/23/2019",
         "email": "Zeliang@email.com",
         "id": "Mayefield",
-        "isFlagged": "False",
+        "isFlagged": false,
         "maxCheckout": 999,
         "name": "Zeliang zhuo",
         "password": "Man",
         "type": "Librarian"
       },
       {
-        "Age": 25,
+        "age": 25,
         "Balance": 0.0,
         "date": "10/24/2019",
         "email": "Nguyen@gmail.com",
         "id": "Day",
-        "isFlagged": "False",
+        "isFlagged": false,
         "maxCheckout": 15,
         "name": "Nguyen",
         "password": "Man",
         "type": "AverageUser"
       },
       {
-        "Age": 40,
+        "age": 40,
         "Balance": 0.0,
         "date": "10/24/2019",
         "email": "Jiabei@gmail.com",
         "id": "One",
-        "isFlagged": "False",
+        "isFlagged": false,
         "maxCheckout": 25,
         "name": "Jiabei He",
         "password": "Man",
         "type": "Teacher"
-      },
-      {
-        "Age": 10,
-        "id": "COA13131",
-        "maxCheckout": 4,
-        "name": "peter",
-        "type": "Child"
       }
+  
         
     ]
 }

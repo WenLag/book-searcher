@@ -64,8 +64,7 @@ public class Media {
         this.ISBN=ISBN;
     }
 
-<<<<<<< HEAD
-=======
+
     public String getName() {
         return Title;
     }
@@ -73,7 +72,7 @@ public class Media {
     public void setName(String Title) {
         this.Title = Title;
     }
->>>>>>> parent of c71a550... jiabei-5
+
 
     public String getAuthor() {
         return Author;
