@@ -11,7 +11,7 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.ArrayList;
 public class AccountParser {
-	LoadAccountDatabase load = new LoadAccountDatabase();
+	//LoadAccountDatabase load = new LoadAccountDatabase();
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
 	UserInterface UI = new UserInterface();
 	public ArrayList<Account> parseAccount(String ID, String Password) {
