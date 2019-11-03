@@ -13,10 +13,11 @@ import java.util.ArrayList;
 public class AccountParser {
 	//LoadAccountDatabase load = new LoadAccountDatabase();
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
-	boolean found;
+	
 	UserInterface UI = new UserInterface();
 	LoadAccountDatabase Lad = new LoadAccountDatabase();
-	public ArrayList<Account> parseAccount(String ID, String Password) {
+	public ArrayList<Account> parseAccount() {
+		
 		ArrayList<Account> account = new ArrayList<Account>();
 		try {
 			FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
@@ -38,27 +39,13 @@ public class AccountParser {
 				account.add(Lad.Load(id, email, name, type, isFlagged, maxCheckout, balance, password, age));
 			}
 			
-			for (int i = 0; i < account.size(); i++) {
-				String iD = account.get(i).getId();
-				String passwordMatch = account.get(i).getPasswordString();
-				String name = account.get(i).getName();
-				if (Password.equals(passwordMatch) && iD.equals(ID)) {
-					System.out.println("\nYou are logged in as " + name);
-					found = true;
-				} 
-				if(i == account.size() && found == false) {
-					System.out.println (ID + "\n" + iD);
-					System.out.println("Not registered. Please consider Registering.");
-					break;
-				}
 				
 				
-			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return account;
 
 		
 	}

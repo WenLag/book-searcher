@@ -23,8 +23,7 @@ public class LibraryDriver {
 		String choice = input.next();
 		
 		if (choice.equalsIgnoreCase("login")) {
-			UI.Login();
-						
+			UI.Login();			
 		}
 		else if (choice.equalsIgnoreCase("register")) {
 			UI.Register();
