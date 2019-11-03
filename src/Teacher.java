@@ -7,6 +7,9 @@ public class Teacher extends Account{
 		this.setMaxCheckout();
 	}
 	
+	/**
+	 * Load data from database
+	 */
 	public Teacher(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
 			double balance, String passwordString, long age) {
 		super(id, email, name, type, isFlagged, maxCheckout,

@@ -6,6 +6,9 @@ public class Librarian extends Account{
 		this.setMaxCheckout();
 	}
 	
+	/**
+	 * Load data from database
+	 */
 	public Librarian(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
 			double balance, String passwordString, long age) {
 		

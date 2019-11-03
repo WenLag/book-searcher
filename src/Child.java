@@ -7,6 +7,9 @@ public class Child extends AverageUser{
 		this.setMaxCheckout();
 	}
 	
+	/**
+	 * Load data from database
+	 */
 	public Child(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
 			double balance, String passwordString, long age) {
 		super(id, email, name, type, isFlagged, maxCheckout,

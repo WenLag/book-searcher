@@ -15,6 +15,7 @@ public abstract class Account {
 	protected double balance;
 	protected String passwordString;
 	protected long age;
+	protected int checkouted;
 	
 
 
@@ -26,6 +27,7 @@ public abstract class Account {
 		this.setPasswordString(password);
 		this.setAge(age);
 		this.setType();
+		this.checkouted = 0;
 		// check account info and add account to database if input is valid
 		checkInput();
 	}
@@ -55,7 +57,7 @@ public abstract class Account {
 	public void setId(String id) {
 		//TODO id format
 		if(id.length() != 7) {
-			System.out.println("Error!! ID has to be 7 numbers");
+			System.out.println("Error!! ID has to be 7 chars");
 			this.id = "";
 			return;
 		}
@@ -111,7 +113,6 @@ public abstract class Account {
 		return maxCheckout;
 	}
 	
-	
 	protected abstract void setMaxCheckout();
 
 	public double getBalance() {
@@ -142,19 +143,12 @@ public abstract class Account {
 		if(age2 >= 0 && age2 <= 100)
 			this.age = age2;
 		else {
-			System.out.printf("Input %d is not a valid age!", age2);
+			System.out.printf("Input %d is not a valid age!\n", age2);
 		}
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * An abstract method, to allowed use to checkout item
-	 */
-	public void checkout(String aName) {
-		//TODO
 	}
 
 	/**
@@ -166,7 +160,8 @@ public abstract class Account {
 	 */
 	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
-		return null;
+		Media media = MediaParser.search(String aName);
+		return media;
 	}
 
 	/**
@@ -176,6 +171,15 @@ public abstract class Account {
 	 */
 	public void checkoutItem(String aName) {
 		//TODO make checkout function
+		if(!this.isAbleCheckout())
+			return;
+		Media media = searchItem(aName);
+		if(media.isCheckout()) {
+			//TODO add to list
+		}else {
+			media.setisCheckout(true);
+			this.checkouted++;
+		}
 	}
 
 	/**
@@ -184,6 +188,9 @@ public abstract class Account {
 	 */
 	public void returnItem(String aName) {
 		//TODO make returnItem function
+		Media media = searchItem(aName);
+		media.setisCheckout(false);
+		this.checkouted--;	
 	}
 
 	/**
@@ -219,6 +226,16 @@ public abstract class Account {
 		//TODO
 		double fine = this.getBalance();
 		this.setBalance(fine+pay);
+	}
+	
+	/**
+	 * check if account able to checkout if yes return true else return false
+	 * @return boolean type
+	 */
+	private boolean isAbleCheckout() {
+		if(this.getBalance() < 0 && this.isFlagged() == true && this.checkouted < this.getMaxCheckout())
+			return false;
+		return true;
 	}
 
 	/**
