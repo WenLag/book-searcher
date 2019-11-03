@@ -8,30 +8,31 @@ public class Media {
     protected String Year;
     protected String Genre;
     protected String Publisher;
-    protected int Id;
-    protected int numberOfCopy;
-    protected int ISBN;
+    protected long Id;
+    protected long numberOfCopy;
+    protected String ISBN;
     protected int Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(int Id,String Title,String Year, String Genre,int ISBN,String Pulisher,String Author,int numberOfCopy,boolean isNewArrive)
+    public Media(long Id,String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive)
     {
     	this.setId(Id);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);
+        this.setNumberOfCopy(numberOfCopy);
         this.setYear(Year);
         this.setGenre(Genre);
         this.setisNewArrive(isNewArrive);
     }
 
 
-    public int getId() {
+    public long getId() {
 		return Id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		Id = id;
 	}
 
@@ -44,23 +45,20 @@ public class Media {
         this.Publisher = Publisher;
     }
 
-    public int getNumberOfCopy() {
-        return numberOfCopy;
+    public long getNumberOfCopy() {
+        return this.numberOfCopy;
     }
 
-    public void setNumberOfCopy(int NumberOfCopy) {
-        if(numberOfCopy>0) {
-            this.numberOfCopy = NumberOfCopy;
-        }
-        else
-            System.out.println("We don't have this book");
+    public void setNumberOfCopy(long NumberOfCopy) {
+        this.numberOfCopy = NumberOfCopy;
+            
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN=ISBN;
     }
 

@@ -14,7 +14,7 @@ public class AccountParser {
 	//LoadAccountDatabase load = new LoadAccountDatabase();
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
 	
-	UserInterface UI = new UserInterface();
+	
 	LoadAccountDatabase Lad = new LoadAccountDatabase();
 	public ArrayList<Account> parseAccount() {
 		
@@ -50,11 +50,7 @@ public class AccountParser {
 		
 	}
 	
-	public void AddAccounts() {
-		JSONObject accountdetails = new JSONObject();
-		//accountdetails.put( , )
-		
-	}
+	
 	
 	
 	

@@ -4,11 +4,11 @@
         "Balance": 0.0,
         "date": "10/23/2019",
         "email": "Zeliang@email.com",
-        "id": "Mayefield",
+        "id": "dave",
         "isFlagged": false,
         "maxCheckout": 999,
         "name": "Zeliang zhuo",
-        "password": "Man",
+        "password": "man",
         "type": "Librarian"
       },
       {

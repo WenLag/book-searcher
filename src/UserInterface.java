@@ -2,35 +2,80 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
+	AccountParser AP = new AccountParser();
+	MediaParser MP = new MediaParser();
 	Scanner input = new Scanner(System. in);
+	public void front() {
+		Scanner input = new Scanner(System. in);
+		System.out.println("\nPlease type in the following actions you desire\n"
+							+"\nLogin, Register, Guest Login, Exit" + "\n");
+		
+		String choice = input.next();
+		
+		if (choice.equalsIgnoreCase("login")) {
+			Login();			
+		}
+		else if (choice.equalsIgnoreCase("register")) {
+			Register();
+		}
+		else if (choice.equalsIgnoreCase("guest login")) {
+			
+		} 
+		else if (choice.equalsIgnoreCase("exit")) {
+			System.exit(0);
+		} 	
+		else{
+			System.out.println("invalid input");
+			front();
+		}
+	}
 	public void Login() {
-			System.out.println("Enter ID");
-			String ID = input.next();
-			
-			System.out.println("Password");
-			String Password = input.next();
-			
-			AccountParser AP = new AccountParser();
-			
-			ArrayList<Account> loggedInAccount = AP.parseAccount(); 
-			for (int i = 0; i < loggedInAccount.size(); i++) {
-				String iD = loggedInAccount.get(i).getId();
-				String passwordMatch = loggedInAccount.get(i).getPasswordString();
-				String name = loggedInAccount.get(i).getName();
-				String type = loggedInAccount.get(i).getType();
-				if (passwordMatch.equals(Password) && iD.equals(ID)) {
-					System.out.println("Your're logged in as " + name + " as an " + type);
-					if (type.equals("AverageUser")) {
-						System.out.println("Would you like to...\nCheckout an Item\nPay Fines");
+		String decision;
+		System.out.println("Enter ID");
+		String ID = input.next();
+		System.out.println("Password");
+		String Password = input.next();
+		ArrayList<Account> loggedInAccount = AP.parseAccount(); 
+		for (int i = 0; i < loggedInAccount.size(); i++) {
+			String iD = loggedInAccount.get(i).getId();
+			String passwordMatch = loggedInAccount.get(i).getPasswordString();
+			String name = loggedInAccount.get(i).getName();
+			String type = loggedInAccount.get(i).getType();
+			if (passwordMatch.equals(Password) && iD.equals(ID)) {
+				System.out.println("Your're logged in as " + name + " as an " + type);
+				
+				if (type.equals("AverageUser")) {
+					System.out.println("Would you like to...\nCheckout\nPay Fines");
+					decision = input.next();
+					if (decision.equalsIgnoreCase("Checkout")) {
+						System.out.println("Enter the item title");
+						input.nextLine();
+						String title = input.nextLine();
+						ArrayList<Media> item = MP.parserMedia();
+						
+						for (int j = 0; j < item.size(); j++) {
+							if(item.get(j).getName().equalsIgnoreCase(title)) {
+								System.out.println("there are " + item.get(j).getNumberOfCopy() + " copies available.");
+							}
+						}
+						
 					}
-					String decision = input.next();
-					
+					if (decision.equalsIgnoreCase("Pay Fines")) {
+						
+					}
+				}
+				if (type.equals("Librarian")) {
+					System.out.println("Would you like to...\nCheckout\nPay Fines");
+						
+				}
 					break;
 				} 
-				else if (i == loggedInAccount.size()-1){
-					System.out.println("Wrong ID or Password");
-					break;
-				}
+				
+			if (i == loggedInAccount.size()-1){
+				System.out.println("Wrong ID or Password");
+				Login();
+			}
+			
 				
 				
 			}

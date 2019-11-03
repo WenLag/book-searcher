@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "The Cat in the Hat",
-      "year": 1957,
+      "year": "1957",
       "genre": "Children",
       "ISBN": "039480001X",
       "publisher": "Random House",
@@ -14,7 +14,7 @@
     {
       "id": 2,
       "title": "Pajama Time",
-      "year": 2000,
+      "year": "2000",
       "genre": "Children",
       "ISBN": "9780761119753",
       "publisher": "Workman",
@@ -25,7 +25,7 @@
     {
       "id": 3,
       "title": "Pride and Prejudice",
-      "year": 1813,
+      "year": "1813",
       "genre": "Women's Fiction",
       "ISBN": "1503290565",
       "publisher": "CreateSpace",
@@ -36,7 +36,7 @@
     {
       "id": 4,
       "title": "Gone With the Wind",
-      "year": 1936,
+      "year": "1936",
       "genre": "Historical Fiction",
       "ISBN": "1451635621",
       "publisher": "Scribner",
@@ -45,9 +45,9 @@
       "newArrival": false
     },
     {
-      "id": 4,
+      "id": 5,
       "title": "To Kill A Mockingbird",
-      "year": 1960,
+      "year": "1960",
       "genre": "Historical Fiction",
       "ISBN": "1451635621",
       "publisher": "Scribner",
@@ -56,9 +56,9 @@
       "newArrival": false
     },
     {
-      "id": 4,
+      "id": 6,
       "title": "Hitchhiker's guide to the galaxy",
-      "year": 1979,
+      "year": "1979",
       "genre": "Historical Fiction",
       "ISBN": "1451635621",
       "publisher": "Scribner",

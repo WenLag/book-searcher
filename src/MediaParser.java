@@ -11,26 +11,27 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.ArrayList;
 public class MediaParser {
-    private static final String Media_File_Name="books.json";
-    public ArrayList<Media> parserMedia(int ISBN,String Title){
-        ArrayList<Media> media=new ArrayList<Media>();
+    private static final String MEDIA_FILE_NAME="books.json";
+    public ArrayList<Media> parserMedia(){
+        ArrayList<Media> media = new ArrayList<Media>();
         try
         {
-            FileReader reader=new FileReader(Media_File_Name);
+            FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
-			JSONArray mediaJSON = (JSONArray)jsonData.get("books.json");
+			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
 			for(int i=0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
-				int id = (int)booksJSON.get("id");
+				long id = (long)booksJSON.get("id");
 				String title = (String)booksJSON.get("title");
 				String year= (String)booksJSON.get("year");
 				String genre=(String)booksJSON.get("genre");
-				int Isbn= (int)booksJSON.get("ISBN");
+				String Isbn= (String)booksJSON.get("ISBN");
 				String publisher = (String)booksJSON.get("publisher");
 				String author=(String)booksJSON.get("author");
-				int numOfcopies=(int)booksJSON.get("numCopies");
-				boolean isNewArrival=(boolean)booksJSON.get("newArrival");
+				long numOfcopies=(long)booksJSON.get("numCopies");
+				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
 				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
+				
 			}
         }
 
@@ -38,6 +39,6 @@ public class MediaParser {
         {
             e.printStackTrace();
         }
-        return null;
+        return media;
     }
 }
