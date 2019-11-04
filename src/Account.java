@@ -162,7 +162,8 @@ public abstract class Account {
 	 */
 	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
-		Media media = MediaParser.search(aName);
+		MediaParser mp = new MediaParser();
+		Media media = mp.search(aName);
 		return media;
 	}
 
@@ -255,7 +256,8 @@ public abstract class Account {
 	 */
 	public void putlist(String aName) {
 		//TODO
-		Media media = MediaParser.search(aName);
+		MediaParser mp = new MediaParser();
+		Media media = mp.search(aName);
 		if(media == null)
 			return;
 		media.addHoldList(this.getId());

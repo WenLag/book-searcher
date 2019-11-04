@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="books.json";
-    public ArrayList<Media> parserMedia(String wantedTitle){
+    public ArrayList<Media> parserMedia(){
         ArrayList<Media> media = new ArrayList<Media>();
         try
         {
@@ -39,34 +39,23 @@ public class MediaParser implements MediaInterface {
         {
             e.printStackTrace();
         }
-        
-        for (int j = 0; j < media.size(); j++) {
-			if (media.get(j).getName().equalsIgnoreCase(wantedTitle)) {
-				System.out.println("Title: " + wantedTitle + "\nNumber of copies Available: " + media.get(j).getNumberOfCopy());
-				
-				
-			}
-		}
-
-        
-        
+      
         return media;
     }
 	@Override
 	public Media search(String aMediaName) {
-		MediaParser Mp= new MediaParser();
-		Scanner input= new Scanner(System.in);
-		System.out.println("Input the tilte you want to search");
-		String title= input.next();
-		ArrayList<Media> searchbook=Mp.parserMedia(title);
-		for(int i=0;i<searchbook.size();i++)
+		Media media = null;
+		MediaParser Mp = new MediaParser();
+		ArrayList<Media> searchbook= Mp.parserMedia();
+		for(int i=0;i < searchbook.size();i++)
 		{
 			String title1 = searchbook.get(i).getName();
-			if(title1.equals(title)) {
-				System.out.println(title1);
+			media = searchbook.get(i);
+			if (title1.equalsIgnoreCase(aMediaName)) {
+				System.out.println("Title: "+ title1 + "\nNumber of copies: " + searchbook.get(i).getNumberOfCopy());
 				}
 		}
-		return null;
+		return media;
 		
 	}
 	@Override
