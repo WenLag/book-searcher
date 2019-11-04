@@ -3,7 +3,7 @@ import java.util.List;
 /**
  * Account class
  * An abstract class
- * @author Zeling Zhuo
+ * @author ZelingZhuo
  */
 public abstract class Account {
 
