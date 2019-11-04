@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 public class MediaParser {
     private static final String MEDIA_FILE_NAME="books.json";
-    public ArrayList<Media> parserMedia(){
+    public ArrayList<Media> parserMedia(String wantedTitle){
         ArrayList<Media> media = new ArrayList<Media>();
         try
         {
@@ -34,11 +34,22 @@ public class MediaParser {
 				
 			}
         }
+    
+
 
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        
+        for (int j = 0; j < media.size(); j++) {
+			if (media.get(j).getName().equalsIgnoreCase(wantedTitle)) {
+				System.out.println("Title: " + wantedTitle + "\nNumber of copies Available: " + media.get(j).getNumberOfCopy());
+				
+				
+			}
+		}
+        
         return media;
     }
 }

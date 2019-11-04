@@ -25,6 +25,7 @@ public class Media {
         this.setYear(Year);
         this.setGenre(Genre);
         this.setisNewArrive(isNewArrive);
+        
     }
 
 
@@ -107,7 +108,12 @@ public class Media {
         }
     }
     public boolean isCheckout(){
-        return isCheckout;
+    	if (this.numberOfCopy == 0) {
+        	this.isCheckout = true;
+        } else {
+        	this.isCheckout = false;
+        }
+        return this.isCheckout;
     }
 
     public void setisCheckout(boolean isCheckout)

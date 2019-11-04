@@ -162,7 +162,7 @@ public abstract class Account {
 	 */
 	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
-		Media media = MediaParser.search(String aName);
+		Media media = MediaParser.search(aName);
 		return media;
 	}
 

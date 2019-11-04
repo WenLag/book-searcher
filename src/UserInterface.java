@@ -30,7 +30,6 @@ public class UserInterface {
 		}
 	}
 	public void Login() {
-		String decision;
 		System.out.println("Enter ID");
 		String ID = input.next();
 		System.out.println("Password");
@@ -43,26 +42,8 @@ public class UserInterface {
 			String type = loggedInAccount.get(i).getType();
 			if (passwordMatch.equals(Password) && iD.equals(ID)) {
 				System.out.println("Your're logged in as " + name + " as an " + type);
-				
 				if (type.equals("AverageUser")) {
-					System.out.println("Would you like to...\nCheckout\nPay Fines");
-					decision = input.next();
-					if (decision.equalsIgnoreCase("Checkout")) {
-						System.out.println("Enter the item title");
-						input.nextLine();
-						String title = input.nextLine();
-						ArrayList<Media> item = MP.parserMedia();
-						
-						for (int j = 0; j < item.size(); j++) {
-							if(item.get(j).getName().equalsIgnoreCase(title)) {
-								System.out.println("there are " + item.get(j).getNumberOfCopy() + " copies available.");
-							}
-						}
-						
-					}
-					if (decision.equalsIgnoreCase("Pay Fines")) {
-						
-					}
+					averageUserUI();
 				}
 				if (type.equals("Librarian")) {
 					System.out.println("Would you like to...\nCheckout\nPay Fines");
@@ -85,22 +66,42 @@ public class UserInterface {
 			/**
 			 * Register Methods
 			 */
-			System.out.println("Please enter your name");
-			String name = input.next();
-			System.out.println("Please type in your desired ID");
-			String ID = input.next();
-			System.out.println("Please type your desired password.\n");
-			String password = input.next();
-			System.out.println("Please type in your email\n");
-			String email = input.next();	
-		}
+		System.out.println("Please enter your name");
+		String name = input.next();
+		System.out.println("Please type in your desired ID");
+		String ID = input.next();
+		System.out.println("Please type your desired password.\n");
+		String password = input.next();
+		System.out.println("Please type in your email\n");
+		String email = input.next();	
+	}
 	
 	public void GuestLogin() {
 		
 	}
 	
+	public void averageUserUI() {
+		String decision;
+		System.out.println("Would you like to...\nSearch\nPay Fines");
+		decision = input.next();
+		if (decision.equalsIgnoreCase("Search")) {
+			System.out.println("Enter the item title");
+			input.nextLine();
+			String title = input.nextLine();
+			ArrayList<Media> item = MP.parserMedia(title);					
+		}
 		
-		
-
+		if (decision.equalsIgnoreCase("Pay Fines")) {
+		}
+	
 	}
+	
+		
+	public void librarianUI() {
+		
+	}
+
+}
+
+	
 
