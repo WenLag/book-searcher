@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Account class
  * An abstract class
@@ -16,7 +18,7 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	
+	protected List<Media> wantList;  
 
 
 	public Account(String id, String email, String password, long age) {
@@ -189,6 +191,8 @@ public abstract class Account {
 	public void returnItem(String aName) {
 		//TODO make returnItem function
 		Media media = searchItem(aName);
+		if(media == null)
+			return;
 		media.setisCheckout(false);
 		this.checkouted--;	
 	}
@@ -251,6 +255,10 @@ public abstract class Account {
 	 */
 	public void putlist(String aName) {
 		//TODO
+		Media media = MediaParser.search(aName);
+		if(media == null)
+			return;
+		media.addHoldList(this.getId());
 	}
 
 	/**
@@ -291,6 +299,10 @@ public abstract class Account {
 				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
 	}
 	
+	/**
+	 * check if input is valid if is valid then add the new account to database
+	 * else do not add account
+	 */
 	protected void checkInput(){
 		if(getId().equals("null") || getEmail().equals("null") || getType().equals("Unknown") ||
 				getPasswordString().equals("null")) {
@@ -301,6 +313,9 @@ public abstract class Account {
 		}
 	}
 	
+	/**
+	 * Add an account to database
+	 */
 	protected void addToDatabase() {
 		//TODO add Account to database
 	}
