@@ -6,12 +6,13 @@ public interface MediaInterface {
 	 * @param aMediaName type of String 
 	 * @return type of Media
 	 */
-	public Media search(String aMediaName);
 	
+	public Media search(String aMediaName);
 	/**
 	 * Add a Media to database
 	 * @param aMedia type of Media
 	 */
+	
 	public void addMediaDatabase(Media aMedia);
 	
 	/**
@@ -20,5 +21,6 @@ public interface MediaInterface {
 	 * @param aMedia type of Media
 	 * @return type of Media
 	 */
+	
 	public Media removeMediaDatabase(Media aMedia);
 }
