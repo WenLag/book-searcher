@@ -89,6 +89,7 @@ public class MediaParser implements MediaInterface {
 		int numbCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
 		boolean newArrivel=input.nextBoolean();
+		//TODO
 		
 		
 	}
