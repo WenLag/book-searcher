@@ -33,7 +33,7 @@ public class Librarian extends Account{
 		//TODO
 	}
 	
-	protected void accessAcount() {
+	protected void accessAcount(Account account) {
 		//TODO
 	}
 	

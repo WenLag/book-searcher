@@ -1,4 +1,7 @@
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.xml.crypto.Data;
 
 /**
  * Account class
@@ -18,7 +21,8 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	protected List<Media> wantList;  
+	protected ArrayList<Media> waitList;  
+	protected ArrayList<String> checkoutList;
 
 
 	public Account(String id, String email, String password, long age) {
@@ -30,6 +34,7 @@ public abstract class Account {
 		this.setAge(age);
 		this.setType();
 		this.checkouted = 0;
+		waitList = new ArrayList<Media>();
 		// check account info and add account to database if input is valid
 		checkInput();
 	}
@@ -65,9 +70,11 @@ public abstract class Account {
 		}
 		this.id = id;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		if(email == null || email == "") {
 			System.out.println("No email entered!");
@@ -76,6 +83,7 @@ public abstract class Account {
 		}
 		this.email = email;
 	}
+	
 	public String getType() {
 		return type;
 	}
@@ -162,26 +170,26 @@ public abstract class Account {
 	 */
 	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
-		Media media = MediaParser.search(String aName);
+		Media media = MediaParser.search(aName);
 		return media;
 	}
 
 	/**
 	 * the method to allowed user checkout items if the user have not meet max checkout,
-	 * the item is not already checked out, the item is not on hold and the user is not faged
+	 * and the user is not flaged
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(String aName) {
 		//TODO make checkout function
-		if(!this.isAbleCheckout())
+		if(!this.isAbleCheckout()) {
+			System.out.println("This account can not checkout items!");
 			return;
-		Media media = searchItem(aName);
-		if(media.isCheckout()) {
-			//TODO add to list
-		}else {
-			media.setisCheckout(true);
-			this.checkouted++;
 		}
+		Media media = searchItem(aName);
+		media.setisCheckout(true);
+		checkoutList.add(aName);
+		checkoutList.add(date());
+		this.checkouted++;
 	}
 
 	/**
@@ -194,6 +202,8 @@ public abstract class Account {
 		if(media == null)
 			return;
 		media.setisCheckout(false);
+		checkoutList.remove(checkoutList.indexOf(aName)+1);
+		checkoutList.remove(aName);
 		this.checkouted--;	
 	}
 
@@ -258,7 +268,12 @@ public abstract class Account {
 		Media media = MediaParser.search(aName);
 		if(media == null)
 			return;
+		if(waitList.size() <= this.getMaxCheckout()) {
 		media.addHoldList(this.getId());
+		waitList.add(media);
+		}else {
+			System.out.println("You can not hold any more items");
+		}
 	}
 
 	/**
@@ -266,6 +281,9 @@ public abstract class Account {
 	 */
 	public void displaywaitlist() {
 		//TODO
+		for(int i = 0; i < waitList.size(); i++) {
+			System.out.println(waitList);
+		}
 	}
 
 	/**
@@ -293,6 +311,9 @@ public abstract class Account {
 		this.setPasswordString(newPassword);
 	}
 
+	/**
+	 * Override ToString
+	 */
 	public String toString() {
 		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
 				"\nIs Account flagged: " + this.isFlagged + "\nMax Checkout: " + this.maxCheckout +
@@ -311,6 +332,13 @@ public abstract class Account {
 			System.out.println("Account created!!");
 			addToDatabase();
 		}
+	}
+	
+	protected String date() {
+		Date date = new Date();   
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+        String dateNowStr = sdf.format(date);  		
+		return dateNowStr;
 	}
 	
 	/**
