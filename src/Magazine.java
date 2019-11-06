@@ -7,7 +7,7 @@ public class Magazine extends Media {
 	}
 	public void setMaxrent(long Maxrent)
 	{
-		Maxrent = 14;
+		this.Maxrent = 14;
 	}
 	
 }

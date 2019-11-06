@@ -7,7 +7,7 @@ public class BookItem extends Media {
 	}
 	public void setMaxrent(long Maxrent)
 	{
-		Maxrent = 30;
+		this.Maxrent = 30;
 	}
 	
 }

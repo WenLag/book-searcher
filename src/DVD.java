@@ -16,7 +16,7 @@ public class DVD extends Media{
 	
 	public void setMaxrent(long Maxrent)
 	{
-		Maxrent = 7;
+		this.Maxrent = 7;
 	}
 	
 	
