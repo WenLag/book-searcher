@@ -90,12 +90,27 @@ public class UserInterface {
 		String password = input.next();
 		System.out.println("Please type in your email\n");
 		String email = input.next();	
-		JSONObject jo = new JSONObject();
+		JSONObject obj = new JSONObject();
+	
 	    
 		ArrayList<Account> accounts = AP.parseAccount();
-		JSONObject item0 = new JSONObject();
+		
 		JSONArray arr = new JSONArray();
+		JSONObject item1 = new JSONObject();
+		item1.put("age", age);
+		item1.put("Balance", 0.0);
+		item1.put("date", date.toString());
+	    item1.put("email", email);
+	    item1.put("id", ID);
+	    item1.put("isFlagged", false);
+	    item1.put("maxCheckout", 15);
+	    item1.put("name", name);
+	    item1.put("password", password);
+	    item1.put("type", "AverageUser");
+	    arr.add(item1);
+		
 		for (int i = 0; i < accounts.size(); i++) {
+			JSONObject item0 = new JSONObject();
 			item0.put("age",accounts.get(i).getAge());
 			item0.put("Balance",accounts.get(i).getBalance());
 			item0.put("email", accounts.get(i).getEmail());
@@ -105,21 +120,15 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			arr.add(item0);
-		  }
+			obj.put("account",arr);
+		}
 		
-	    JSONObject item1 = new JSONObject();
-	    item1.put("age", age);
-	    item1.put("Balance", 0.0);
-	    item1.put("date", date.toString());
-	    item1.put("email", email);
-	    item1.put("id", ID);
-	    item1.put("isFlagged", false);
-	    item1.put("maxCheckout", 15);
-	    item1.put("name", name);
-	    item1.put("password", password);
-	    item1.put("type", "AverageUser");
-	    arr.add(item1);
-	    jo.put("account", arr);
+		
+		
+		 
+		
+	  
+	   
 		
 		
  
@@ -127,7 +136,7 @@ public class UserInterface {
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
 			
-			  file.write(jo.toString());
+			  file.write(obj.toString());
 			
 			System.out.println("Successfully Copied JSON Object to File...");
 			
