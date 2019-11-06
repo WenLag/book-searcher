@@ -60,7 +60,7 @@ public class MediaParser implements MediaInterface {
 		
 	}
 	@Override
-	public void addMediaDatabase(Media aMeida) {
+	public void addMediaDatabase() {
 		MediaParser Mp= new MediaParser();
 		Scanner input= new Scanner(System.in);
 		System.out.println("Input the id you want to add into database");
@@ -79,8 +79,19 @@ public class MediaParser implements MediaInterface {
 		int numbCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
 		boolean newArrivel=input.nextBoolean();
-		//TODO
 		
+		JSONObject Media = new JSONObject();
+		JSONObject obj = new JSONObject();
+		Media.put("id", ID);
+		Media.put("titla", title);
+		Media.put("genre",genre);
+		Media.put("ISBN",ISBN);
+		Media.put("publisher",publisher);
+		Media.put("author",author);
+		Media.put("numCopies",numbCopies);
+		Media.put("newArrival",newArrivel);
+		obj.put("Media",Media);
+			
 		
 	}
 	@Override
