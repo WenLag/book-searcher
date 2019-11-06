@@ -22,7 +22,7 @@ public interface MediaInterface {
 	 * @return type of Media
 	 */
 	
-	public Media removeMediaDatabase(Media aMedia);
+	public void removeMediaDatabase();
 	
 	
 }

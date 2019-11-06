@@ -94,8 +94,22 @@ public class MediaParser implements MediaInterface {
 		
 	}
 	@Override
-	public Media removeMediaDatabase(Media aMedia) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeMediaDatabase() {
+		Media media = null;
+		MediaParser Mp= new MediaParser();
+		Scanner input = new Scanner(System.in);
+		System.out.println("Input title of book you wann to delect");
+		String title =input.nextLine();
+		ArrayList<Media> searchbook= Mp.parserMedia();
+		for(int i=0;i < searchbook.size();i++)
+		{
+			String title1 = searchbook.get(i).getName();
+			media= searchbook.get(i);
+			if(title1.equalsIgnoreCase(title))
+			{
+
+			}
+		}
+		
 	}
 }
