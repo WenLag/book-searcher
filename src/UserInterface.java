@@ -152,17 +152,13 @@ public class UserInterface {
 		System.out.println("Would you like to...\nSearch\nView Fines\nView Waitlist\nCheckout");
 		decision = input.next();
 		if (decision.equalsIgnoreCase("Search")) {
-			System.out.println("Enter the item title or IBSN you'd like to search for");
-			input.nextLine();
-			String title = input.nextLine();
-			MP.search(title);					
+			searchUI();				
 		}
 		else if (decision.equalsIgnoreCase("checkout")) {
 			System.out.println("Enter the item title or IBSN that you'd like to checkout");
 			input.nextLine();
 			String title = input.nextLine();
 			MP.search(title);	
-			
 		}
 		
 		else if (decision.equalsIgnoreCase("Pay Fines")) {
@@ -178,15 +174,15 @@ public class UserInterface {
 		
 	public void librarianUI() {
 		
-		System.out.println("Would you like to...\nSearch\nAdd Media\nRemove Media\nAccess Accounts\nAdd/Remove Account");
-		decision = input.next();
-		if (decision.equalsIgnoreCase("Search")) {
-			System.out.println("Enter the item title");
-			input.nextLine();
-			String title = input.nextLine();
-			MP.search(title);					
+		System.out.println("Would you like to...\n1:Search\n2:Add Media\n3:Remove Media\n4:Access Accounts\n6:Add/Remove Account");
+		int choice = input.nextInt();
+		if (choice == 1) {
+			searchUI();						
 		}
-		if (decision.equalsIgnoreCase("Pay Fines")) {
+		if (choice == 2) {
+			MP.addMediaDatabase();
+		}
+		if (choice ==3) {
 			
 		}
 	}
@@ -195,11 +191,15 @@ public class UserInterface {
 		System.out.println("Would you like to...\nSearch\nView Waitlist");
 		decision = input.next();
 		if (decision.equalsIgnoreCase("Search")) {
-			System.out.println("Enter the item title");
-			input.nextLine();
-			String title = input.nextLine();
-			MP.search(title);				
+			searchUI();					
 		}
+	}
+	
+	public void searchUI() {
+		System.out.println("Enter the item title or IBSN you'd like to search for");
+		input.nextLine();
+		String title = input.nextLine();
+		MP.search(title);	
 	}
 
 }
