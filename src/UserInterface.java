@@ -15,6 +15,7 @@ public class UserInterface {
 	MediaParser MP = new MediaParser();
 	ArrayList<Media> item;
 	String decision;
+	ArrayList<Account> loggedInAccount = AP.parseAccount(); 
 	Scanner input = new Scanner(System. in);
 	public void front() throws IOException, ParseException {
 		Scanner input = new Scanner(System. in);
@@ -45,7 +46,7 @@ public class UserInterface {
 		String ID = input.next();
 		System.out.println("Password");
 		String Password = input.next();
-		ArrayList<Account> loggedInAccount = AP.parseAccount(); 
+		
 		for (int i = 0; i < loggedInAccount.size(); i++) {
 			String iD = loggedInAccount.get(i).getId();
 			String passwordMatch = loggedInAccount.get(i).getPasswordString();
@@ -155,10 +156,8 @@ public class UserInterface {
 			searchUI();				
 		}
 		else if (decision.equalsIgnoreCase("checkout")) {
-			System.out.println("Enter the item title or IBSN that you'd like to checkout");
-			input.nextLine();
-			String title = input.nextLine();
-			MP.search(title);	
+			
+				
 		}
 		
 		else if (decision.equalsIgnoreCase("Pay Fines")) {
@@ -174,16 +173,16 @@ public class UserInterface {
 		
 	public void librarianUI() throws IOException {
 		
-		System.out.println("Would you like to...\n1:Search\n2:Add Media\n3:Remove Media\n4:Access Accounts\n6:Add/Remove Account");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add/Remove Account");
 		int choice = input.nextInt();
 		if (choice == 1) {
 			searchUI();						
 		}
 		if (choice == 2) {
-			MP.addMediaDatabase();
+			
 		}
 		if (choice ==3) {
-			
+			MP.addMediaDatabase();
 		}
 	}
 	
@@ -200,6 +199,14 @@ public class UserInterface {
 		input.nextLine();
 		String title = input.nextLine();
 		MP.search(title);	
+	}
+	
+	public void checkoutUI() {
+		System.out.println("Enter the item title or IBSN that you'd like to checkout");
+		input.nextLine();
+		String title = input.nextLine();
+		
+		
 	}
 
 }
