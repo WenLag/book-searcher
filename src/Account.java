@@ -208,7 +208,11 @@ public abstract class Account {
 		Media media = searchItem(aName);
 		if(media == null)
 			return;
-		media.setisCheckout(false);
+		int index = this.checkoutList.indexOf(aName);
+		int temp = comparDate(this.date(),this.checkoutList.get(index+1));
+		if(temp > 0)
+			this.setBalance(this.getBalance() + temp * 0.5);
+		media.setNumberOfCopy(media.getNumberOfCopy()+1);
 		checkoutList.remove(checkoutList.indexOf(aName)+1);
 		checkoutList.remove(aName);
 		this.checkouted--;	
@@ -355,7 +359,40 @@ public abstract class Account {
 	protected void addToDatabase() {
 		//TODO add Account to database
 	}
+	
+	/**
+	 * find how many days 
+	 * @param aDate
+	 * @param bDate
+	 * @return
+	 */
+	protected int comparDate(String aDate, String bDate) {
+		String delimeter = "-";
+		String[] adate; // in yyyy-mm-dd
+		String[] bdate; // in yyyy-mm-dd
+		int counter = 0;
+		int[] temp = new int[3];
+		
+		adate = aDate.split(delimeter);
+		bdate = bDate.split(delimeter);
+		
+		temp[0] = Integer.parseInt(adate[0]) - Integer.parseInt(bdate[0]);
+		temp[1] = Integer.parseInt(adate[1]) - Integer.parseInt(bdate[1]);
+		if(temp[1] < 0){
+			temp[0] -= 0;
+			temp[1] *= -1;
+		}
+		temp[2] = Integer.parseInt(adate[2]) - Integer.parseInt(bdate[2]);
+		if(temp[2] < 0){
+			temp[1] -= 0;
+			temp[2] *= -1;
+		}
+		counter = temp[0] * 365 + temp[1] * 30 + temp[2];
+		return counter;
+	}
 
+	
+	
 	public boolean comparPassword(String input) {
 		if(this.getPasswordString().equals(input))
 			return true;
