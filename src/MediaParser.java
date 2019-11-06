@@ -73,6 +73,8 @@ public class MediaParser implements MediaInterface {
 		Scanner input= new Scanner(System.in);
 		System.out.println("Input the tilte ");
 		String title=input.nextLine();
+		System.out.println("inout the year");
+		String year=input.nextLine();
 		System.out.println("Input the genre ");
 		String genre=input.nextLine();
 		System.out.println("Input the ISBN ");
@@ -100,6 +102,7 @@ public class MediaParser implements MediaInterface {
 		JSONArray arr = new JSONArray();
 		JSONObject Media1 = new JSONObject();
 		Media1.put("title",title);
+		Media1.put("year",year);
 		Media1.put("genre",genre);
 		Media1.put("ISBN",ISBN);
 		Media1.put("publisher",publisher);
@@ -111,6 +114,7 @@ public class MediaParser implements MediaInterface {
 		for (int i = 0; i < media.size(); i++) {
 			JSONObject Media = new JSONObject();
 			Media.put("title",media.get(i).getName());
+			Media.put("year",media.get(i).getYear());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());
 			Media.put("publisher",media.get(i).getPublisher());
