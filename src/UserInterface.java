@@ -122,9 +122,6 @@ public class UserInterface {
 			arr.add(item0);
 			obj.put("account",arr);
 		}
-		
-		
-		
 		 
 		
 	  
@@ -157,17 +154,30 @@ public class UserInterface {
 	
 	public void averageUserUI() {
 		
-		System.out.println("Would you like to...\nSearch\nView Fines\nView Waitlist\n");
+		System.out.println("Would you like to...\nSearch\nView Fines\nView Waitlist\nCheckout");
 		decision = input.next();
 		if (decision.equalsIgnoreCase("Search")) {
-			System.out.println("Enter the item title");
+			System.out.println("Enter the item title or IBSN you'd like to search for");
 			input.nextLine();
 			String title = input.nextLine();
 			MP.search(title);					
 		}
-		if (decision.equalsIgnoreCase("Pay Fines")) {
+		else if (decision.equalsIgnoreCase("checkout")) {
+			System.out.println("Enter the item title or IBSN that you'd like to checkout");
+			input.nextLine();
+			String title = input.nextLine();
+			MP.search(title);	
 			
 		}
+		
+		else if (decision.equalsIgnoreCase("Pay Fines")) {
+			
+		} 
+		else {
+			System.out.println("invalid input");
+			averageUserUI();
+		}
+		
 		
 	}
 		
@@ -187,7 +197,6 @@ public class UserInterface {
 	}
 	
 	public void childUI() {
-		
 		System.out.println("Would you like to...\nSearch\nView Waitlist");
 		decision = input.next();
 		if (decision.equalsIgnoreCase("Search")) {

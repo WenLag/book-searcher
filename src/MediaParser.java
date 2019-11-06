@@ -45,6 +45,7 @@ public class MediaParser implements MediaInterface {
 	@Override
 	public Media search(String aMediaName) {
 		Media media = null;
+		boolean found = false;
 		MediaParser Mp = new MediaParser();
 		ArrayList<Media> searchbook= Mp.parserMedia();
 		for(int i=0;i < searchbook.size();i++)
@@ -53,7 +54,13 @@ public class MediaParser implements MediaInterface {
 			media = searchbook.get(i);
 			if (title1.equalsIgnoreCase(aMediaName)) {
 				System.out.println("Title: "+ title1 + "\nNumber of copies: " + searchbook.get(i).getNumberOfCopy());
-				}
+				found = true;
+			}
+			if (i == searchbook.size()-1 && found == false) {
+				System.out.println("No book of this title");
+			}
+				
+				
 		}
 		return media;
 		

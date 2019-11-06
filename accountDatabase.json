@@ -5,7 +5,7 @@
       "Balance": 0.0,
       "date": "10/23/2019",
       "email": "Zeliang@email.com",
-      "id": "dave",
+      "id": "ice",
       "isFlagged": false,
       "maxCheckout": 999,
       "name": "Zeliang zhuo",
@@ -17,11 +17,11 @@
       "Balance": 0.0,
       "date": "10/24/2019",
       "email": "Nguyen@gmail.com",
-      "id": "Day",
+      "id": "dead",
       "isFlagged": false,
       "maxCheckout": 15,
       "name": "Nguyen",
-      "password": "Man",
+      "password": "pool",
       "type": "AverageUser"
     },
     {
@@ -29,11 +29,11 @@
       "Balance": 0.0,
       "date": "10/24/2019",
       "email": "Jiabei@gmail.com",
-      "id": "One",
+      "id": "xavier",
       "isFlagged": false,
       "maxCheckout": 25,
       "name": "Jiabei He",
-      "password": "Man",
+      "password": "password",
       "type": "Teacher"
     }
 
