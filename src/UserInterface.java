@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
@@ -71,6 +72,7 @@ public class UserInterface {
 			}
 		}
 	
+	@SuppressWarnings("unchecked")
 	public void Register() throws IOException, ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 		Date date = new Date();  
@@ -88,17 +90,46 @@ public class UserInterface {
 		String password = input.next();
 		System.out.println("Please type in your email\n");
 		String email = input.next();	
-		JSONObject account = new JSONObject();
-		JSONObject obj = new JSONObject();
-		account.put("age", age);
-		account.put("Balance", 0);
-		obj.put("account",account);
+		JSONObject jo = new JSONObject();
+	    
+		ArrayList<Account> accounts = AP.parseAccount();
+		JSONObject item0 = new JSONObject();
+		for (int i = 0; i < accounts.size(); i++) {
+			item0.put("age",accounts.get(i).getAge());
+			item0.put("Balance",accounts.get(i).getBalance());
+			item0.put("email", "k");
+			item0.put("id", accounts.get(i).getId());
+			item0.put("isFlagged",false);
+			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+			item0.put("name", accounts.get(i).getName());
+			item0.put("type", accounts.get(i).getType());
+			jo.put("account",item0);
+			 System.out.println(jo);
+		  }
+		
+	    JSONObject item1 = new JSONObject();
+	    item1.put("age", age);
+	    item1.put("Balance", 0);
+	    item1.put("date", date.toString());
+	    item1.put("email", email);
+	    item1.put("id", ID);
+	    item1.put("isFlagged", false);
+	    item1.put("maxCheckout", 15);
+	    item1.put("name", name);
+	    item1.put("password", password);
+	    item1.put("type", "AverageUser");
+	    jo.put("account", item1);
+	    System.out.println(jo);
+		
+		
 		
  
  
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-			file.write(obj.toJSONString());
+			
+			  file.write(jo.toString());
+			
 			System.out.println("Successfully Copied JSON Object to File...");
 			
 		}
