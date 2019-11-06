@@ -187,11 +187,17 @@ public abstract class Account {
 			return;
 		}
 		Media media = searchItem(aName);
-		media.setisCheckout(true);
-		checkoutList.add(aName);
-		checkoutList.add(date());
-		this.checkouted++;
-	}
+		if(media.getNumberOfCopy() >= 0)
+		{
+			//media.setisCheckout(true);
+			media.setNumberOfCopy(media.getNumberOfCopy()-1);
+			checkoutList.add(aName);
+			checkoutList.add(date());
+			this.checkouted++;	
+		}else {
+			System.out.println("This item is out of copies!");
+		} 
+	} 
 
 	/**
 	 * the method to allowed user return items
