@@ -1,7 +1,6 @@
 {
   "books": [
     {
-      "id": 1,
       "title": "The Cat in the Hat",
       "year": "1957",
       "genre": "Children",
@@ -13,7 +12,6 @@
       "Maxrent":14
     },
     {
-      "id": 2,
       "title": "Pajama Time",
       "year": "2000",
       "genre": "Children",
@@ -25,7 +23,6 @@
       "Maxrent":14
     },
     {
-      "id": 3,
       "title": "Pride and Prejudice",
       "year": "1813",
       "genre": "Women's Fiction",
@@ -36,8 +33,6 @@
       "newArrival": false,
       "Maxrent":14
     },
-    {
-      "id": 4,
       "title": "Gone With the Wind",
       "year": "1936",
       "genre": "Historical Fiction",
@@ -49,7 +44,6 @@
       "Maxrent":14
     },
     {
-      "id": 5,
       "title": "To Kill A Mockingbird",
       "year": "1960",
       "genre": "Historical Fiction",
@@ -61,7 +55,6 @@
       "Maxrent":14
     },
     {
-      "id": 6,
       "title": "Hitchhiker's guide to the galaxy",
       "year": "1979",
       "genre": "Historical Fiction",
