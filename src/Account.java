@@ -380,12 +380,12 @@ public abstract class Account {
 		temp[1] = Integer.parseInt(adate[1]) - Integer.parseInt(bdate[1]);
 		if(temp[1] < 0){
 			temp[0] -= 0;
-			temp[1] *= -1;
+			temp[1] += 30;
 		}
 		temp[2] = Integer.parseInt(adate[2]) - Integer.parseInt(bdate[2]);
 		if(temp[2] < 0){
 			temp[1] -= 0;
-			temp[2] *= -1;
+			temp[2] += 30;
 		}
 		counter = temp[0] * 365 + temp[1] * 30 + temp[2];
 		return counter;
