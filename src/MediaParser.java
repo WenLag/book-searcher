@@ -22,7 +22,6 @@ public class MediaParser implements MediaInterface {
 			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
 			for(int i=0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
-				long id = (long)booksJSON.get("id");
 				String title = (String)booksJSON.get("title");
 				String year= (String)booksJSON.get("year");
 				String genre=(String)booksJSON.get("genre");
@@ -32,7 +31,7 @@ public class MediaParser implements MediaInterface {
 				long numOfcopies=(long)booksJSON.get("numCopies");
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
 				long Maxrent=(long)booksJSON.get("Maxrent");
-				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
+				media.add(new Media(title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
 				
 			}
         }
@@ -71,8 +70,6 @@ public class MediaParser implements MediaInterface {
 	public void addMediaDatabase() { 
 		MediaParser Mp=new MediaParser();
 		Scanner input= new Scanner(System.in);
-		System.out.println("Input the id you want to add into database");
-		String ID= input.nextLine();
 		System.out.println("Input the tilte ");
 		String title=input.nextLine();
 		System.out.println("Input the genre ");
@@ -94,7 +91,6 @@ public class MediaParser implements MediaInterface {
 		JSONObject Media = new JSONObject();
 		JSONArray arr = new JSONArray();
 		JSONObject Media1 = new JSONObject();
-		Media1.put("id", ID);
 		Media1.put("title",title);
 		Media1.put("genre",genre);
 		Media1.put("ISBN",ISBN);
@@ -105,7 +101,6 @@ public class MediaParser implements MediaInterface {
 		Media1.put("Maxrent",Maxrent);
 	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
-			Media.put("id",media.get(i).getId());
 			Media.put("title",media.get(i).getName());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());

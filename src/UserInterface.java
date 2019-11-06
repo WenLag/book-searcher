@@ -124,12 +124,7 @@ public class UserInterface {
 		}
 		 
 		
-	  
-	   
-		
-		
- 
- 
+	 
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
 			
