@@ -40,7 +40,7 @@ public class UserInterface {
 			front();
 		}
 	}
-	public void Login() {
+	public void Login() throws IOException {
 		System.out.println("Enter ID");
 		String ID = input.next();
 		System.out.println("Password");
@@ -172,7 +172,7 @@ public class UserInterface {
 		
 	}
 		
-	public void librarianUI() {
+	public void librarianUI() throws IOException {
 		
 		System.out.println("Would you like to...\n1:Search\n2:Add Media\n3:Remove Media\n4:Access Accounts\n6:Add/Remove Account");
 		int choice = input.nextInt();

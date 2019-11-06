@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public interface MediaInterface {
 	/**
@@ -11,9 +12,10 @@ public interface MediaInterface {
 	/**
 	 * Add a Media to database
 	 * @param aMedia type of Media
+	 * @throws IOException 
 	 */
 	
-	public void addMediaDatabase();
+	public void addMediaDatabase() throws IOException;
 	
 	/**
 	 * If the media exist in database remove and return it

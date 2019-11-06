@@ -67,8 +67,9 @@ public class MediaParser implements MediaInterface {
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addMediaDatabase() { 
+	public void addMediaDatabase() throws IOException { 
 		MediaParser Mp=new MediaParser();
+		boolean newArrival;
 		Scanner input= new Scanner(System.in);
 		System.out.println("Input the tilte ");
 		String title=input.nextLine();
@@ -83,12 +84,19 @@ public class MediaParser implements MediaInterface {
 		System.out.println("Input the numbCopies ");
 		int numbCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
-		boolean newArrivel=input.nextBoolean();
+		
+		String ans =input.nextLine();
+		input.nextLine();
+		if (ans.equalsIgnoreCase("yes")) {
+		newArrival = true;
+		} else {
+			newArrival = false;
+		}
 		System.out.println("maxrent day");
 		long Maxrent=input.nextLong();
-		input.nextLine();
+		
 		ArrayList<Media> media = Mp.parserMedia();
-		JSONObject Media = new JSONObject();
+		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
 		JSONObject Media1 = new JSONObject();
 		Media1.put("title",title);
@@ -97,10 +105,11 @@ public class MediaParser implements MediaInterface {
 		Media1.put("publisher",publisher);
 		Media1.put("author", author);
 		Media1.put("numbCopies",numbCopies);
-		Media1.put("newArrival", newArrivel);
+		Media1.put("newArrival", newArrival);
 		Media1.put("Maxrent",Maxrent);
 	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
+			JSONObject Media = new JSONObject();
 			Media.put("title",media.get(i).getName());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());
@@ -110,7 +119,16 @@ public class MediaParser implements MediaInterface {
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			arr.add(Media);
+			obj.put("books",arr);
 		  }
+		
+		try (FileWriter file = new FileWriter("books.json")) {
+			
+			  file.write(obj.toString());
+			
+			System.out.println("Successfully Copied JSON Object to File...");
+			
+		}
 			
 		
 	}
