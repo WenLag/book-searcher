@@ -66,6 +66,7 @@ public class MediaParser implements MediaInterface {
 		return media;
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addMediaDatabase() { 
 		MediaParser Mp=new MediaParser();
