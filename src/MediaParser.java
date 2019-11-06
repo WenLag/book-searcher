@@ -85,6 +85,17 @@ public class MediaParser implements MediaInterface {
 		ArrayList<Media> media = Mp.parserMedia();
 		JSONObject Media = new JSONObject();
 		JSONArray arr = new JSONArray();
+		JSONObject Media1 = new JSONObject();
+		Media1.put("id", ID);
+		Media1.put("title",title);
+		Media1.put("genre",genre);
+		Media1.put("ISBN",ISBN);
+		Media1.put("publisher",publisher);
+		Media1.put("author", author);
+		Media1.put("numbCopies",numbCopies);
+		Media1.put("newArrival", newArrivel);
+		Media1.put("Maxrent",Maxrent);
+	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
 			Media.put("id",media.get(i).getId());
 			Media.put("title",media.get(i).getName());
