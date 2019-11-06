@@ -9,7 +9,8 @@
       "publisher": "Random House",
       "author": "Dr. Seuss",
       "numCopies": 0,
-      "newArrival": false
+      "newArrival": false,
+      "Maxrent":14
     },
     {
       "id": 2,
@@ -20,7 +21,8 @@
       "publisher": "Workman",
       "author": "Sandra Boynton",
       "numCopies": 2,
-      "newArrival": true
+      "newArrival": true,
+      "Maxrent":14
     },
     {
       "id": 3,
@@ -31,7 +33,8 @@
       "publisher": "CreateSpace",
       "author": "Jane Austin",
       "numCopies": 1,
-      "newArrival": false
+      "newArrival": false,
+      "Maxrent":14
     },
     {
       "id": 4,
@@ -42,7 +45,8 @@
       "publisher": "Scribner",
       "author": "Margaret Mitchell",
       "numCopies": 2,
-      "newArrival": false
+      "newArrival": false,
+      "Maxrent":14
     },
     {
       "id": 5,
@@ -53,7 +57,8 @@
       "publisher": "Scribner",
       "author": "Margaret Mitchell",
       "numCopies": 2,
-      "newArrival": false
+      "newArrival": false,
+      "Maxrent":14
     },
     {
       "id": 6,
@@ -64,7 +69,8 @@
       "publisher": "Scribner",
       "author": "Margaret Mitchell",
       "numCopies": 2,
-      "newArrival": false
+      "newArrival": false,
+      "Maxrent":14
     }
   ]
 }
