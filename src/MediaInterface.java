@@ -13,7 +13,7 @@ public interface MediaInterface {
 	 * @param aMedia type of Media
 	 */
 	
-	public void addMediaDatabase(Media aMedia);
+	public void addMediaDatabase();
 	
 	/**
 	 * If the media exist in database remove and return it
@@ -23,4 +23,6 @@ public interface MediaInterface {
 	 */
 	
 	public Media removeMediaDatabase(Media aMedia);
+	
+	
 }

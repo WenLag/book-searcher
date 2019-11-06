@@ -11,11 +11,13 @@ public class Media {
     protected long Id;
     protected long numberOfCopy;
     protected String ISBN;
-    protected int Rating;
+    protected long Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
+    protected long Maxrent;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(long Id,String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive)
+    public Media(long Id,String Title,String Year, String Genre,String ISBN,String Pulisher,
+    		String Author,long numberOfCopy,boolean isNewArrive,long Maxrent)
     {
     	this.setId(Id);
         this.setISBN(ISBN);
@@ -25,6 +27,7 @@ public class Media {
         this.setYear(Year);
         this.setGenre(Genre);
         this.setisNewArrive(isNewArrive);
+        this.setMaxrent(Maxrent);
         
     }
 
@@ -98,11 +101,11 @@ public class Media {
         this.Genre=Genre;
     }
 
-    public int getRating() {
+    public long getRating() {
         return Rating;
     }
 
-    public void setRating(int Rating) {
+    public void setRating(long Rating) {
         if(Rating!=0&&Rating<=5) {
             this.Rating = Rating;
         }
@@ -127,6 +130,22 @@ public class Media {
     {
         this.isNewArrive=isNewArrive;
     }
-
-
+    
+    public void addHoldList(String aId)
+    {
+    	Queue<String> Holdlist = new LinkedList<>();
+    	Holdlist.add(aId);
+    }
+    public long getMaxrent()
+    {
+    	return Maxrent;
+    }
+	public void setMaxrent(long Maxrent)
+	{
+		if(Maxrent>0)
+		{
+			this.Maxrent=Maxrent;
+		}
+	}
+	
 }
