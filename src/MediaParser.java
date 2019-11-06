@@ -81,7 +81,7 @@ public class MediaParser implements MediaInterface {
 		boolean newArrivel=input.nextBoolean();
 		System.out.println("maxrent day");
 		long Maxrent=input.nextLong();
-		
+		input.nextLine();
 		ArrayList<Media> media = Mp.parserMedia();
 		JSONObject Media = new JSONObject();
 		JSONArray arr = new JSONArray();
