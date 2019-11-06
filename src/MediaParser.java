@@ -114,6 +114,7 @@ public class MediaParser implements MediaInterface {
 			media= searchbook.get(i);
 			if(title1.equalsIgnoreCase(title))
 			{
+				searchbook.remove(title);
 			}
 		}
 		
