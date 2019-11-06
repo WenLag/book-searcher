@@ -31,7 +31,8 @@ public class MediaParser implements MediaInterface {
 				String author=(String)booksJSON.get("author");
 				long numOfcopies=(long)booksJSON.get("numCopies");
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
-				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
+				long Maxrent=(long)booksJSON.get("Maxrent");
+				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
 				
 			}
         }
@@ -59,8 +60,8 @@ public class MediaParser implements MediaInterface {
 		
 	}
 	@Override
-	public void addMediaDatabase() {
-		MediaParser Mp= new MediaParser();
+	public void addMediaDatabase() { 
+		MediaParser Mp=new MediaParser();
 		Scanner input= new Scanner(System.in);
 		System.out.println("Input the id you want to add into database");
 		String ID= input.nextLine();
@@ -78,18 +79,24 @@ public class MediaParser implements MediaInterface {
 		int numbCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
 		boolean newArrivel=input.nextBoolean();
+		System.out.println("maxrent day");
+		long Maxrent=input.nextLong();
 		
+		ArrayList<Media> media = Mp.parserMedia();
 		JSONObject Media = new JSONObject();
-		JSONObject obj = new JSONObject();
-		Media.put("id", ID);
-		Media.put("titla", title);
-		Media.put("genre",genre);
-		Media.put("ISBN",ISBN);
-		Media.put("publisher",publisher);
-		Media.put("author",author);
-		Media.put("numCopies",numbCopies);
-		Media.put("newArrival",newArrivel);
-		obj.put("Media",Media);
+		JSONArray arr = new JSONArray();
+		for (int i = 0; i < media.size(); i++) {
+			Media.put("id",media.get(i).getId());
+			Media.put("title",media.get(i).getName());
+			Media.put("genre", media.get(i).getGenre());
+			Media.put("ISBN", media.get(i).getISBN());
+			Media.put("publisher",media.get(i).getPublisher());
+			Media.put("author",media.get(i).getAuthor());
+			Media.put("numbCopies",media.get(i).getNumberOfCopy());
+			Media.put("newArrival",media.get(i).isNewArrive());
+			Media.put("Maxrent",media.get(i).getMaxrent());
+			arr.add(Media);
+		  }
 			
 		
 	}
@@ -107,7 +114,6 @@ public class MediaParser implements MediaInterface {
 			media= searchbook.get(i);
 			if(title1.equalsIgnoreCase(title))
 			{
-
 			}
 		}
 		
