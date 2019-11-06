@@ -31,8 +31,7 @@ public class MediaParser implements MediaInterface {
 				String author=(String)booksJSON.get("author");
 				long numOfcopies=(long)booksJSON.get("numCopies");
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
-				long Maxrent =(long)booksJSON.get("Maxrent");
-				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
+				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival));
 				
 			}
         }
