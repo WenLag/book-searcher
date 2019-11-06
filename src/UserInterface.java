@@ -94,22 +94,22 @@ public class UserInterface {
 	    
 		ArrayList<Account> accounts = AP.parseAccount();
 		JSONObject item0 = new JSONObject();
+		JSONArray arr = new JSONArray();
 		for (int i = 0; i < accounts.size(); i++) {
 			item0.put("age",accounts.get(i).getAge());
 			item0.put("Balance",accounts.get(i).getBalance());
-			item0.put("email", "k");
+			item0.put("email", accounts.get(i).getEmail());
 			item0.put("id", accounts.get(i).getId());
-			item0.put("isFlagged",false);
+			item0.put("isFlagged",accounts.get(i).isFlagged());
 			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
-			jo.put("account",item0);
-			 System.out.println(jo);
+			arr.add(item0);
 		  }
 		
 	    JSONObject item1 = new JSONObject();
 	    item1.put("age", age);
-	    item1.put("Balance", 0);
+	    item1.put("Balance", 0.0);
 	    item1.put("date", date.toString());
 	    item1.put("email", email);
 	    item1.put("id", ID);
@@ -118,9 +118,8 @@ public class UserInterface {
 	    item1.put("name", name);
 	    item1.put("password", password);
 	    item1.put("type", "AverageUser");
-	    jo.put("account", item1);
-	    System.out.println(jo);
-		
+	    arr.add(item1);
+	    jo.put("account", arr);
 		
 		
  
