@@ -3,13 +3,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.crypto.Data;
 
+import org.json.simple.JSONObject;
+
 /**
  * Account class
  * An abstract class
  * @author Zeling Zhuo
  */
 public abstract class Account {
-
+	
 	// Account info, attributes
 	protected String id;
 	protected String email;
@@ -177,24 +179,29 @@ public abstract class Account {
 
 	/**
 	 * the method to allowed user checkout items if the user have not meet max checkout,
-	 * and the user is not flaged
+	 * and the user is not flagged
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(String aName) {
 		//TODO make checkout function
+		
+		Media media = searchItem(aName);
+		
+		if (media == null) {
+			System.out.println("No books' with that title or IBSN");
+		}
 		if(!this.isAbleCheckout()) {
 			System.out.println("This account can not checkout items!");
 			return;
 		}
-		Media media = searchItem(aName);
-		if(media.getNumberOfCopy() >= 0)
+		
+		else if(media.getNumberOfCopy() > 0)
 		{
-			//media.setisCheckout(true);
-			media.setNumberOfCopy(media.getNumberOfCopy()-1);
+			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
 			checkoutList.add(aName);
 			checkoutList.add(date());
 			this.checkouted++;	
-		}else {
+		} else {
 			System.out.println("This item is out of copies!");
 		} 
 	} 
@@ -371,4 +378,5 @@ public abstract class Account {
 	public String getName() {
 		return name;
 	}
+	
 }

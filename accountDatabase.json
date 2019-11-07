@@ -1,42 +1,48 @@
 {
   "account": [
     {
-      "age": 30,
+      "password": "xavier",
+      "maxCheckout": 15,
+      "name": "deadpool",
+      "id": "deadpool",
+      "type": "AverageUser",
       "Balance": 0.0,
-      "date": "10/23/2019",
-      "email": "Zeliang@email.com",
-      "id": "ice",
-      "isFlagged": false,
+      "age": 32,
+      "email": "dp@email.sc.edu",
+      "isFlagged": false
+    },
+    {
       "maxCheckout": 999,
       "name": "Zeliang zhuo",
+      "id": "ice",
+      "type": "Librarian",
+      "Balance": 0.0,
       "password": "man",
-      "type": "Librarian"
+      "age": 30,
+      "email": "Zeliang@email.com",
+      "isFlagged": false
     },
     {
-      "age": 25,
-      "Balance": 0.0,
-      "date": "10/24/2019",
-      "email": "Nguyen@gmail.com",
-      "id": "dead",
-      "isFlagged": false,
       "maxCheckout": 15,
       "name": "Nguyen",
-      "password": "pool",
-      "type": "AverageUser"
+      "id": "dead",
+      "type": "AverageUser",
+      "Balance": 0.0,
+      "password": "xavier",
+      "age": 25,
+      "email": "Nguyen@gmail.com",
+      "isFlagged": false
     },
     {
-      "age": 40,
-      "Balance": 0.0,
-      "date": "10/24/2019",
-      "email": "Jiabei@gmail.com",
-      "id": "xavier",
-      "isFlagged": false,
       "maxCheckout": 25,
       "name": "Jiabei He",
-      "password": "password",
-      "type": "Teacher"
+      "id": "xavier",
+      "type": "Teacher",
+      "password": "xavier",
+      "Balance": 0.0,
+      "age": 40,
+      "email": "Jiabei@gmail.com",
+      "isFlagged": false
     }
-
-
   ]
 }
