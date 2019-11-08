@@ -171,7 +171,7 @@ public class UserInterface {
 		
 	public void librarianUI() throws IOException {
 		
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add/Remove Account");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account");
 		int choice = input.nextInt();
 		if (choice == 1) {
 			searchUI();						
@@ -181,6 +181,12 @@ public class UserInterface {
 		}
 		if (choice ==3) {
 			MP.addMediaDatabase();
+		}
+		if (choice == 5) {
+			
+		}
+		if (choice == 6) {
+			MainAccount.addToDatabase();
 		}
 	}
 	

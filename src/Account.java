@@ -23,8 +23,8 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	protected ArrayList<Media> waitList;  
-	protected ArrayList<String> checkoutList;
+	protected ArrayList<Media> waitList = new ArrayList<Media>();  
+	protected ArrayList<String> checkoutList = new ArrayList<String>();
 
 
 	public Account(String id, String email, String password, long age) {
@@ -198,6 +198,7 @@ public abstract class Account {
 		else if(media.getNumberOfCopy() > 0)
 		{
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
+			
 			checkoutList.add(aName);
 			checkoutList.add(date());
 			this.checkouted++;	
