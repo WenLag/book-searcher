@@ -3,13 +3,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.crypto.Data;
 
+import org.json.simple.JSONObject;
+
 /**
  * Account class
  * An abstract class
  * @author Zeling Zhuo
  */
 public abstract class Account {
-
+	
 	// Account info, attributes
 	protected String id;
 	protected String email;
@@ -21,8 +23,8 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	protected ArrayList<Media> waitList;  
-	protected ArrayList<String> checkoutList;
+	protected ArrayList<Media> waitList = new ArrayList<Media>();  
+	protected ArrayList<String> checkoutList = new ArrayList<String>();
 
 
 	public Account(String id, String email, String password, long age) {
@@ -54,6 +56,11 @@ public abstract class Account {
 		this.balance = balance;
 		this.passwordString = passwordString;
 		this.age = age;
+	}
+	
+	public Account(Account account) {
+		// TODO Auto-generated constructor stub
+		this.copy(account);
 	}
 
 	// Accesses
@@ -123,6 +130,15 @@ public abstract class Account {
 		return maxCheckout;
 	}
 	
+	
+	public int getCheckouted() {
+		return checkouted;
+	}
+
+	public void setCheckouted(int checkouted) {
+		this.checkouted = checkouted;
+	}
+
 	protected abstract void setMaxCheckout();
 
 	public double getBalance() {
@@ -143,6 +159,23 @@ public abstract class Account {
 			this.passwordString = "null";
 		}
 		this.passwordString = passwordString;
+	}
+	
+
+	public ArrayList<Media> getWaitList() {
+		return waitList;
+	}
+
+	public void setWaitList(ArrayList<Media> waitList) {
+		this.waitList = waitList;
+	}
+
+	public ArrayList<String> getCheckoutList() {
+		return checkoutList;
+	}
+
+	public void setCheckoutList(ArrayList<String> checkoutList) {
+		this.checkoutList = checkoutList;
 	}
 
 	public long getAge() {
@@ -177,24 +210,30 @@ public abstract class Account {
 
 	/**
 	 * the method to allowed user checkout items if the user have not meet max checkout,
-	 * and the user is not flaged
+	 * and the user is not flagged
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(String aName) {
 		//TODO make checkout function
+		
+		Media media = searchItem(aName);
+		
+		if (media == null) {
+			System.out.println("No books' with that title or IBSN");
+		}
 		if(!this.isAbleCheckout()) {
 			System.out.println("This account can not checkout items!");
 			return;
 		}
-		Media media = searchItem(aName);
-		if(media.getNumberOfCopy() >= 0)
+		
+		else if(media.getNumberOfCopy() > 0)
 		{
-			//media.setisCheckout(true);
-			media.setNumberOfCopy(media.getNumberOfCopy()-1);
+			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
+			
 			checkoutList.add(aName);
 			checkoutList.add(date());
 			this.checkouted++;	
-		}else {
+		} else {
 			System.out.println("This item is out of copies!");
 		} 
 	} 
@@ -208,7 +247,11 @@ public abstract class Account {
 		Media media = searchItem(aName);
 		if(media == null)
 			return;
-		media.setisCheckout(false);
+		int index = this.checkoutList.indexOf(aName);
+		int temp = comparDate(this.date(),this.checkoutList.get(index+1));
+		if(temp > 0)
+			this.setBalance(this.getBalance() + temp * 0.5);
+		media.setNumberOfCopy(media.getNumberOfCopy()+1);
 		checkoutList.remove(checkoutList.indexOf(aName)+1);
 		checkoutList.remove(aName);
 		this.checkouted--;	
@@ -342,6 +385,10 @@ public abstract class Account {
 		}
 	}
 	
+	/**
+	 * get date
+	 * @return type of String in format YYYY-MM-DD
+	 */
 	protected String date() {
 		Date date = new Date();   
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
@@ -355,7 +402,55 @@ public abstract class Account {
 	protected void addToDatabase() {
 		//TODO add Account to database
 	}
+	
+	/**
+	 * find how many days 
+	 * @param aDate
+	 * @param bDate
+	 * @return
+	 */
+	protected int comparDate(String aDate, String bDate) {
+		String delimeter = "-";
+		String[] adate; // in yyyy-mm-dd
+		String[] bdate; // in yyyy-mm-dd
+		int counter = 0;
+		int[] temp = new int[3];
+		
+		adate = aDate.split(delimeter);
+		bdate = bDate.split(delimeter);
+		
+		temp[0] = Integer.parseInt(adate[0]) - Integer.parseInt(bdate[0]);
+		temp[1] = Integer.parseInt(adate[1]) - Integer.parseInt(bdate[1]);
+		if(temp[1] < 0){
+			temp[0] -= 0;
+			temp[1] += 30;
+		}
+		temp[2] = Integer.parseInt(adate[2]) - Integer.parseInt(bdate[2]);
+		if(temp[2] < 0){
+			temp[1] -= 0;
+			temp[2] += 30;
+		}
+		counter = temp[0] * 365 + temp[1] * 30 + temp[2];
+		return counter;
+	}
 
+	protected void copy(Account account) {
+		this.setId(account.getId());
+		this.setEmail(account.getEmail());
+		this.setName(account.getName());
+		this.setType(account.getType());
+		this.setFlagged(account.isFlagged());
+		this.setMaxCheckout();
+		this.setBalance(account.getBalance());
+		this.setPasswordString(account.getPasswordString());
+		this.setAge(account.getAge());
+		this.setCheckouted(account.getCheckouted());
+		this.setWaitList(account.getWaitList());
+		this.setCheckoutList(account.getCheckoutList());
+		
+		
+	}
+	
 	public boolean comparPassword(String input) {
 		if(this.getPasswordString().equals(input))
 			return true;
@@ -371,4 +466,5 @@ public abstract class Account {
 	public String getName() {
 		return name;
 	}
+	
 }

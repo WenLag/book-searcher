@@ -20,7 +20,7 @@ public class MediaParser implements MediaInterface {
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
-			for(int i=0; i < mediaJSON.size(); i++) {
+			for(int i = 0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
 				String title = (String)booksJSON.get("title");
 				String year= (String)booksJSON.get("year");
@@ -39,29 +39,30 @@ public class MediaParser implements MediaInterface {
         {
             e.printStackTrace();
         }
-      
+        
         return media;
     }
 	@Override
 	public Media search(String aMediaName) {
 		Media media = null;
 		boolean found = false;
-		MediaParser Mp = new MediaParser();
-		ArrayList<Media> searchbook= Mp.parserMedia();
+		
+		ArrayList<Media> searchbook = parserMedia();
+		
 		for(int i=0;i < searchbook.size();i++)
 		{
 			String title1 = searchbook.get(i).getName();
-			media = searchbook.get(i);
-			if (title1.equalsIgnoreCase(aMediaName)) {
+			
+			if (aMediaName.equalsIgnoreCase(title1)) {
 				System.out.println("Title: "+ title1 + "\nNumber of copies: " + searchbook.get(i).getNumberOfCopy());
 				found = true;
+				media = searchbook.get(i);
 			}
 			if (i == searchbook.size()-1 && found == false) {
-				System.out.println("No book of this title");
+				return null;
 			}
-				
-				
 		}
+		
 		return media;
 		
 	}
@@ -70,10 +71,11 @@ public class MediaParser implements MediaInterface {
 	public void addMediaDatabase() throws IOException { 
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;
+		@SuppressWarnings("resource")
 		Scanner input= new Scanner(System.in);
 		System.out.println("Input the tilte ");
 		String title=input.nextLine();
-		System.out.println("inout the year");
+		System.out.println("input the year");
 		String year=input.nextLine();
 		System.out.println("Input the genre ");
 		String genre=input.nextLine();
@@ -83,8 +85,8 @@ public class MediaParser implements MediaInterface {
 		String publisher=input.nextLine();
 		System.out.println("Input the author ");
 		String author=input.nextLine();
-		System.out.println("Input the numbCopies ");
-		int numbCopies=input.nextInt();
+		System.out.println("Input the numCopies ");
+		int numCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
 		
 		String ans =input.nextLine();
@@ -107,7 +109,7 @@ public class MediaParser implements MediaInterface {
 		Media1.put("ISBN",ISBN);
 		Media1.put("publisher",publisher);
 		Media1.put("author", author);
-		Media1.put("numbCopies",numbCopies);
+		Media1.put("numCopies",numCopies);
 		Media1.put("newArrival", newArrival);
 		Media1.put("Maxrent",Maxrent);
 	    arr.add(Media1);
@@ -119,7 +121,7 @@ public class MediaParser implements MediaInterface {
 			Media.put("ISBN", media.get(i).getISBN());
 			Media.put("publisher",media.get(i).getPublisher());
 			Media.put("author",media.get(i).getAuthor());
-			Media.put("numbCopies",media.get(i).getNumberOfCopy());
+			Media.put("numCopies",media.get(i).getNumberOfCopy());
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			arr.add(Media);

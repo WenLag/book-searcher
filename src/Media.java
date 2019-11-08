@@ -17,7 +17,7 @@ public class Media {
     protected Queue<String> holdlist =new LinkedList<String>();
     public Media(String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
     {
-
+    	this.setPublisher(Pulisher);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);

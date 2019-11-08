@@ -7,6 +7,11 @@ public class Child extends AverageUser{
 		this.setMaxCheckout();
 	}
 	
+	public Child(Account account) {
+		// TODO Auto-generated constructor stub
+		super(account);
+	}
+	
 	/**
 	 * Load data from database
 	 */
@@ -18,5 +23,15 @@ public class Child extends AverageUser{
 
 	protected void setMaxCheckout() {
 		this.maxCheckout = 15;
+	}
+	
+	public Account ungreadAccount() {
+		if(this.getAge() >= 18) {
+			System.out.println("Account type ungread to averageUser!");
+			AverageUser averageUser = new AverageUser(this);
+			return averageUser;
+		}
+		System.out.println("Account type not ungread!");
+		return this;
 	}
 }
