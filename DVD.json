@@ -1,0 +1,15 @@
+{
+    "DVD": [
+    {
+        "title": "The Cat in the Hat",
+        "year": "1957",
+        "genre": "Children",
+        "ISBN": "039480001X",
+        "director": "Jx",
+        "author": "Dr. Seuss",
+        "numCopies": 0,
+        "newArrival": false,
+        "Maxrent":7
+    }
+    ]
+}

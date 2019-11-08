@@ -13,11 +13,12 @@ public class DVD extends Media{
 				+"publisher:"+this.Publisher+"author:"+this.Author+"number of copy:"+this.numberOfCopy
 				+"is new arrvial:"+this.isNewArrive();
 	}
-	
 	public void setMaxrent(long Maxrent)
 	{
 		this.Maxrent = 7;
 	}
-	
-	
+	public long getMaxrent()
+	{
+		return this.Maxrent;
+	}
 }

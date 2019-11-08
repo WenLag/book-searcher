@@ -5,9 +5,20 @@ public class BookItem extends Media {
 		super(Title,Year,Genre,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent);
 			
 	}
+	public String toString()
+	{
+		
+		return "title:"+this.Title+"year:"+this.Year+"genre:"+this.Genre+"ISBN:"+this.ISBN
+				+"publisher:"+this.Publisher+"author:"+this.Author+"number of copy:"+this.numberOfCopy
+				+"is new arrvial:"+this.isNewArrive();
+	}
 	public void setMaxrent(long Maxrent)
 	{
 		this.Maxrent = 30;
+	}
+	public long getMaxrent()
+	{
+		return this.Maxrent;
 	}
 	
 }
