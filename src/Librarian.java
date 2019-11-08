@@ -45,14 +45,313 @@ public class Librarian extends Account{
 	
 	protected void removeItem() {
 		//TODO
+		MediaParser mp = new MediaParser();
+		mp.removeMediaDatabase();
 	}
 	
-	protected void updateItem() {
+	protected void updateItem(String title) {
 		//TODO
+		MediaParser mp = new MediaParser();
+		Scanner key = new Scanner(System. in);
+		boolean quit = false;
+		String inputString;
+		Media media = mp.search(title);
+		if(media == null) {
+			System.out.println(title + " is not find!");
+			return;
+		}
+		while (!quit) {
+			System.out.println(media.toString());
+			System.out.println("*************************************"
+					+ "*************************************");
+			System.out.println("Enter 1 to update author"
+					+ "\nEnter 2 to update gener"
+					+ "\nEnter 3 to update holdlist"
+					+ "\nEnter 4 to update ISBN"
+					+ "\nEnter 5 to update is Checkout"
+					+ "\nEnter 6 to update is New Arrive"
+					+ "\nEnter 7 to update maxrent"
+					+ "\nEnter 8 to update number of copies"
+					+ "\nEnter 9 to update publisher"
+					+ "\nEnter 10 to update reting"
+					+ "\nEnter 11 to update title"
+					+ "\nEnter 12 to update year"
+					+ "\nExter 0 to quit");
+			inputString = key.next();
+			inputString = key.nextLine();
+			switch (inputString) {
+			case "1":
+				System.out.println("Enter a Author:");
+				inputString = key.nextLine();
+				media.setAuthor(inputString);
+				break;
+
+			case "2":
+				System.out.println("Enter a Genre:");
+				inputString = key.nextLine();
+				media.setGenre(inputString);
+				break;
+				
+			case "3":
+				System.out.println("Enter a User add to list:");
+				inputString = key.nextLine();
+				media.holdlist.add(inputString);
+				break;	
+				
+			case "4":
+				System.out.println("Enter a ISBN:");
+				inputString = key.nextLine();
+				media.setISBN(inputString);
+				break;	
+				
+			case "5":
+				System.out.println("Enter 1 set to true 0 to false:");
+				inputString = key.nextLine();
+				if(inputString.equals("1")) {
+					media.setisCheckout(true);
+				}else if(inputString.equals("2")) {
+					media.setisCheckout(false);
+				}else {
+					System.out.println("Invalid input");
+				}
+				break;
+				
+			case "6":
+				System.out.println("Enter 1 set to true 0 to false:");
+				inputString = key.nextLine();
+				if(inputString.equals("1")) {
+					media.setisNewArrive(true);
+				}else if(inputString.equals("2")) {
+					media.setisNewArrive(false);
+				}else {
+					System.out.println("Invalid input");
+				}
+				break;
+				
+			case "7":
+				System.out.println("Enter a Maxrent:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					media.setMaxrent(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;	
+				
+			case "8":
+				System.out.println("Enter a number of copies:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					media.setNumberOfCopy(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;	
+				
+			case "9":
+				System.out.println("Enter a publisher:");
+				inputString = key.nextLine();
+				media.setPublisher(inputString);
+				break;	
+				
+			case "10":
+				System.out.println("Enter a number of rating:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					media.setRating(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;
+				
+			case "11":
+				System.out.println("Enter a title:");
+				inputString = key.nextLine();
+				media.setName(inputString);
+				break;
+				
+			case "12":
+				System.out.println("Enter a year:");
+				inputString = key.nextLine();
+				media.setYear(inputString);
+				break;	
+				
+			case "0":
+				quit = true;
+				break;
+				
+			default:
+				System.out.println("Invalid input");
+				break;
+			}
+		}
 	}
 	
 	protected void accessAcount(Account account) {
 		//TODO
+		AccountParser ap = new AccountParser();
+		Scanner key = new Scanner(System. in);
+		MediaParser mp = new MediaParser();
+		boolean quit = false;
+		String inputString;
+		while (!quit) {
+			System.out.println(account.toString());
+			System.out.println("Enter 1 to update age"
+					+ "\nEnter 2 to update belance"
+					+ "\\nEnter 3 to update checkouted"
+					+ "\\nEnter 4 to update checkouted list"
+					+ "\\nEnter 5 to update email"
+					+ "\\nEnter 6 to update id"
+					+ "\\nEnter 7 to update is flagged"
+					+ "\\nEnter 8 to update max checkout"
+					+ "\\nEnter 9 to update name"
+					+ "\\nEnter 10 to update password string"
+					+ "\\nEnter 11 to update type"
+					+ "\\nEnter 12 to update wait list"
+					+ "\\nEnter 0 to quit");
+			inputString = key.next();
+			inputString = key.nextLine();
+			switch (inputString) {
+			case "1":
+				System.out.println("Enter a age:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					account.setAge(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;
+
+			case "2":
+				System.out.println("Enter a balance:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					account.setAge(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;	
+				
+			case "3":
+				System.out.println("Enter a checkouted number:");
+				inputString = key.nextLine();
+				try {
+					int temp = Integer.parseInt(inputString);
+					account.setCheckouted(temp);
+				}  catch(NumberFormatException e){
+					System.out.println("Invalid input");
+				}
+				break;
+				
+			case "4":
+				System.out.println("Enter 1 to add, 2 to remove:");
+				inputString = key.nextLine();
+				if(inputString.equals("1")) {
+					System.out.println("Enter a title:");
+					inputString = key.nextLine();
+					account.getCheckoutList().add(inputString);
+					account.getCheckoutList().add(account.date());
+				}else if (inputString.equals("2")) {
+					System.out.println("Enter a title:");
+					inputString = key.nextLine();
+					int temp = account.getCheckoutList().indexOf(inputString);
+					if(temp >= 0) {
+						account.getCheckoutList().remove(temp+1);
+						account.getCheckoutList().remove(temp);
+					}
+					else
+						System.out.println("Item not find!");
+				}
+				break;
+				
+			case "5":
+				System.out.println("Enter a email:");
+				inputString = key.nextLine();
+				account.setEmail(inputString);
+				break;	
+				
+			case "6":
+				System.out.println("Enter a ID:");
+				inputString = key.nextLine();
+				account.setId(inputString);
+				break;
+				
+			case "7":
+				System.out.println("Enter 1 set to true 0 to false:");
+				inputString = key.nextLine();
+				if(inputString.equals("1")) {
+					account.setFlagged(true);
+				}else if(inputString.equals("2")) {
+					account.setFlagged(false);
+				}else {
+					System.out.println("Invalid input");
+				}
+				break;	
+				
+			case "8":
+				account.setMaxCheckout();
+				break;	
+				
+			case "9":
+				System.out.println("Enter a Name:");
+				inputString = key.nextLine();
+				account.setName(inputString);
+				break;
+				
+			case "10":
+				System.out.println("Enter a password:");
+				inputString = key.nextLine();
+				account.resetPassword(inputString);
+				break;
+				
+			case "11":
+				System.out.println("Enter a type:");
+				inputString = key.nextLine();
+				account.setType(inputString);
+				break;
+				
+			case "12":
+				System.out.println("Enter 1 to add, 2 to remove:");
+				inputString = key.nextLine();
+				if(inputString.equals("1")) {
+					System.out.println("Enter a title:");
+					inputString = key.nextLine();
+					Media media = mp.search(inputString);
+					if(media != null) {
+						account.getWaitList().add(media);
+						media.holdlist.add(account.getId());
+					}
+					else
+						System.out.println("Item not find!");
+				}else if (inputString.equals("2")) {
+					System.out.println("Enter a title:");
+					inputString = key.nextLine();
+					Media media = mp.search(inputString);
+					if(media != null) {
+						account.getWaitList().remove(media);
+						media.holdlist.remove(account.getId());
+					}
+					else
+						System.out.println("Item not find!");
+				}
+				break;
+				
+			case "0":
+				quit = true;
+				break;
+				
+			default:
+				break;
+			}
+			
+			
+			
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
