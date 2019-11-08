@@ -1,4 +1,4 @@
-
+ 
 public class Child extends AverageUser{
 
 	public Child(String id, String email, String password, int age) {
