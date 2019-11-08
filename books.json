@@ -9,7 +9,7 @@
       "author": "Dr. Seuss",
       "numCopies": 0,
       "newArrival": false,
-      "Maxrent":14
+      "Maxrent":30
     },
     {
       "title": "Pajama Time",
@@ -20,7 +20,7 @@
       "author": "Sandra Boynton",
       "numCopies": 2,
       "newArrival": true,
-      "Maxrent":14
+      "Maxrent":30
     },
     {
       "title": "Pride and Prejudice",
@@ -31,7 +31,7 @@
       "author": "Jane Austin",
       "numCopies": 1,
       "newArrival": false,
-      "Maxrent": 14
+      "Maxrent": 30
     }, 
     {
       "title": "Gone With the Wind",
@@ -42,7 +42,7 @@
       "author": "Margaret Mitchell",
       "numCopies": 2,
       "newArrival": false,
-      "Maxrent":14
+      "Maxrent":30
     },
     {
       "title": "To Kill A Mockingbird",
@@ -53,7 +53,7 @@
       "author": "Margaret Mitchell",
       "numCopies": 2,
       "newArrival": false,
-      "Maxrent":14
+      "Maxrent":30
     },
     {
       "title": "Hitchhiker's guide to the galaxy",
@@ -64,7 +64,8 @@
       "author": "Margaret Mitchell",
       "numCopies": 2,
       "newArrival": false,
-      "Maxrent":14
+      "Maxrent":30
     }
   ]
+  
 }
