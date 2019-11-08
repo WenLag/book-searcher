@@ -8,7 +8,6 @@ public class Media {
     protected String Year;
     protected String Genre;
     protected String Publisher;
-    protected long Id;
     protected long numberOfCopy;
     protected String ISBN;
     protected long Rating;
@@ -16,9 +15,9 @@ public class Media {
     protected boolean isNewArrive;
     protected long Maxrent;
     protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(long Id,String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
+    public Media(String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
     {
-    	this.setId(Id);
+    	this.setPublisher(Pulisher);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);
@@ -29,16 +28,6 @@ public class Media {
         this.setMaxrent(Maxrent);
         
     }
-
-
-    public long getId() {
-		return Id;
-	}
-
-	public void setId(long id) {
-		Id = id;
-	}
-
 
 	public String getPublisher() {
         return Publisher;

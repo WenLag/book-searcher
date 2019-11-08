@@ -20,9 +20,8 @@ public class MediaParser implements MediaInterface {
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
-			for(int i=0; i < mediaJSON.size(); i++) {
+			for(int i = 0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
-				long id = (long)booksJSON.get("id");
 				String title = (String)booksJSON.get("title");
 				String year= (String)booksJSON.get("year");
 				String genre=(String)booksJSON.get("genre");
@@ -32,7 +31,7 @@ public class MediaParser implements MediaInterface {
 				long numOfcopies=(long)booksJSON.get("numCopies");
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
 				long Maxrent=(long)booksJSON.get("Maxrent");
-				media.add(new Media(id,title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
+				media.add(new Media(title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
 				
 			}
         }
@@ -40,40 +39,44 @@ public class MediaParser implements MediaInterface {
         {
             e.printStackTrace();
         }
-      
+        
         return media;
     }
 	@Override
 	public Media search(String aMediaName) {
 		Media media = null;
 		boolean found = false;
-		MediaParser Mp = new MediaParser();
-		ArrayList<Media> searchbook= Mp.parserMedia();
+		
+		ArrayList<Media> searchbook = parserMedia();
+		
 		for(int i=0;i < searchbook.size();i++)
 		{
 			String title1 = searchbook.get(i).getName();
-			media = searchbook.get(i);
-			if (title1.equalsIgnoreCase(aMediaName)) {
+			
+			if (aMediaName.equalsIgnoreCase(title1)) {
 				System.out.println("Title: "+ title1 + "\nNumber of copies: " + searchbook.get(i).getNumberOfCopy());
 				found = true;
+				media = searchbook.get(i);
 			}
 			if (i == searchbook.size()-1 && found == false) {
-				System.out.println("No book of this title");
+				return null;
 			}
-				
-				
 		}
+		
 		return media;
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
-	public void addMediaDatabase() { 
+	public void addMediaDatabase() throws IOException { 
 		MediaParser Mp=new MediaParser();
+		boolean newArrival;
+		@SuppressWarnings("resource")
 		Scanner input= new Scanner(System.in);
-		System.out.println("Input the id you want to add into database");
-		String ID= input.nextLine();
 		System.out.println("Input the tilte ");
 		String title=input.nextLine();
+		System.out.println("input the year");
+		String year=input.nextLine();
 		System.out.println("Input the genre ");
 		String genre=input.nextLine();
 		System.out.println("Input the ISBN ");
@@ -82,39 +85,56 @@ public class MediaParser implements MediaInterface {
 		String publisher=input.nextLine();
 		System.out.println("Input the author ");
 		String author=input.nextLine();
-		System.out.println("Input the numbCopies ");
-		int numbCopies=input.nextInt();
+		System.out.println("Input the numCopies ");
+		int numCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
-		boolean newArrivel=input.nextBoolean();
+		
+		String ans =input.nextLine();
+		input.nextLine();
+		if (ans.equalsIgnoreCase("yes")) {
+		newArrival = true;
+		} else {
+			newArrival = false;
+		}
 		System.out.println("maxrent day");
 		long Maxrent=input.nextLong();
-		input.nextLine();
+		
 		ArrayList<Media> media = Mp.parserMedia();
-		JSONObject Media = new JSONObject();
+		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
 		JSONObject Media1 = new JSONObject();
-		Media1.put("id", ID);
 		Media1.put("title",title);
+		Media1.put("year",year);
 		Media1.put("genre",genre);
 		Media1.put("ISBN",ISBN);
 		Media1.put("publisher",publisher);
 		Media1.put("author", author);
-		Media1.put("numbCopies",numbCopies);
-		Media1.put("newArrival", newArrivel);
+		Media1.put("numCopies",numCopies);
+		Media1.put("newArrival", newArrival);
 		Media1.put("Maxrent",Maxrent);
 	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
-			Media.put("id",media.get(i).getId());
+			JSONObject Media = new JSONObject();
 			Media.put("title",media.get(i).getName());
+			Media.put("year",media.get(i).getYear());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());
 			Media.put("publisher",media.get(i).getPublisher());
 			Media.put("author",media.get(i).getAuthor());
-			Media.put("numbCopies",media.get(i).getNumberOfCopy());
+			Media.put("numCopies",media.get(i).getNumberOfCopy());
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			arr.add(Media);
+			obj.put("books",arr);
 		  }
+		
+		try (FileWriter file = new FileWriter("books.json")) {
+			
+			  file.write(obj.toString());
+			
+			System.out.println("Successfully Copied JSON Object to File...");
+			
+		}
 			
 		
 	}
