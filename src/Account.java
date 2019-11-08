@@ -21,8 +21,8 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	protected ArrayList<Media> waitList;  
-	protected ArrayList<String> checkoutList;
+	protected ArrayList<Media> waitList = new ArrayList<Media>();  
+	protected ArrayList<String> checkoutList = new ArrayList<String>();
 
 
 	public Account(String id, String email, String password, long age) {
@@ -54,6 +54,11 @@ public abstract class Account {
 		this.balance = balance;
 		this.passwordString = passwordString;
 		this.age = age;
+	}
+	
+	public Account(Account account) {
+		// TODO Auto-generated constructor stub
+		this.copy(account);
 	}
 
 	// Accesses
@@ -123,6 +128,15 @@ public abstract class Account {
 		return maxCheckout;
 	}
 	
+	
+	public int getCheckouted() {
+		return checkouted;
+	}
+
+	public void setCheckouted(int checkouted) {
+		this.checkouted = checkouted;
+	}
+
 	protected abstract void setMaxCheckout();
 
 	public double getBalance() {
@@ -143,6 +157,23 @@ public abstract class Account {
 			this.passwordString = "null";
 		}
 		this.passwordString = passwordString;
+	}
+	
+
+	public ArrayList<Media> getWaitList() {
+		return waitList;
+	}
+
+	public void setWaitList(ArrayList<Media> waitList) {
+		this.waitList = waitList;
+	}
+
+	public ArrayList<String> getCheckoutList() {
+		return checkoutList;
+	}
+
+	public void setCheckoutList(ArrayList<String> checkoutList) {
+		this.checkoutList = checkoutList;
 	}
 
 	public long getAge() {
@@ -346,6 +377,10 @@ public abstract class Account {
 		}
 	}
 	
+	/**
+	 * get date
+	 * @return type of String in format YYYY-MM-DD
+	 */
 	protected String date() {
 		Date date = new Date();   
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
@@ -391,7 +426,22 @@ public abstract class Account {
 		return counter;
 	}
 
-	
+	protected void copy(Account account) {
+		this.setId(account.getId());
+		this.setEmail(account.getEmail());
+		this.setName(account.getName());
+		this.setType(account.getType());
+		this.setFlagged(account.isFlagged());
+		this.setMaxCheckout();
+		this.setBalance(account.getBalance());
+		this.setPasswordString(account.getPasswordString());
+		this.setAge(account.getAge());
+		this.setCheckouted(account.getCheckouted());
+		this.setWaitList(account.getWaitList());
+		this.setCheckoutList(account.getCheckoutList());
+		
+		
+	}
 	
 	public boolean comparPassword(String input) {
 		if(this.getPasswordString().equals(input))

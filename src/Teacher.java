@@ -7,6 +7,11 @@ public class Teacher extends Account{
 		this.setMaxCheckout();
 	}
 	
+	public Teacher(Account account) {
+		// TODO Auto-generated constructor stub
+		super(account);
+	}
+	
 	/**
 	 * Load data from database
 	 */

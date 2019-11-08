@@ -6,6 +6,11 @@ public class Librarian extends Account{
 		this.setMaxCheckout();
 	}
 	
+	public Librarian(Account account) {
+		// TODO Auto-generated constructor stub
+		super(account);
+	}
+	
 	/**
 	 * Load data from database
 	 */

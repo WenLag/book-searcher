@@ -1,10 +1,18 @@
 
 public class AverageUser extends Account{
 
+	private final String TEACHER = "AABBCC";
+	private final String LIBRARAN = "AABBDD";
+	
 	public AverageUser(String id, String email, String password, int age) {
 		super(id, email, password, age);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
+	}
+	
+	public AverageUser(Account account) {
+		// TODO Auto-generated constructor stub
+		super(account);
 	}
 	
 	/**
@@ -18,6 +26,31 @@ public class AverageUser extends Account{
 	
 	protected void setMaxCheckout() {
 		this.maxCheckout = 25;
+	}
+	
+	public Account ungreadAccount() {
+		if(this.getAge() < 18) {
+			System.out.println("Account type ungread to Child!");
+			Child child = new Child(this);
+			return child;
+		}
+		System.out.println("Account type not ungread!");
+		return this;
+	}
+	
+	public Account ungreadAccount(String aCode) {
+		if(aCode.equals(TEACHER)) {
+			System.out.println("Account type ungread to teacher!");
+			Teacher teacher = new Teacher(this);
+			return teacher;
+		}
+		if(aCode.equals(LIBRARAN)) {
+			System.out.println("Account type ungread to librarian!");
+			Librarian librarian = new Librarian(this);
+			return librarian;
+		}
+		System.out.println("Account type not ungread!");
+		return this;
 	}
 
 }
