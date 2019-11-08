@@ -249,7 +249,34 @@ public class UserInterface {
 		
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	public void updateDB() throws IOException {
+		JSONArray arr = new JSONArray();
+		JSONObject obj = new JSONObject();
+		ArrayList<Media> media = MP.parserMedia();
+		for (int i = 0; i < media.size(); i++) {
+			JSONObject Media = new JSONObject();
+			Media.put("title",media.get(i).getName());
+			Media.put("year",media.get(i).getYear());
+			Media.put("genre", media.get(i).getGenre());
+			Media.put("ISBN", media.get(i).getISBN());
+			Media.put("publisher",media.get(i).getPublisher());
+			Media.put("author",media.get(i).getAuthor());
+			Media.put("numCopies",media.get(i).getNumberOfCopy());
+			Media.put("newArrival",media.get(i).isNewArrive());
+			Media.put("Maxrent",media.get(i).getMaxrent());
+			arr.add(Media);
+			obj.put("books",arr);
+		  }
+		
+		try (FileWriter file = new FileWriter("books.json")) {
+			
+			  file.write(obj.toString());
+			  file.close();
+			System.out.println("Successfully Copied JSON Object to File...");
+			
+		}
+	}
 	
 
 }
