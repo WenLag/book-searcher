@@ -447,7 +447,7 @@ public abstract class Account {
 		this.setCheckouted(account.getCheckouted());
 		this.setWaitList(account.getWaitList());
 		this.setCheckoutList(account.getCheckoutList());
-		 
+		
 		
 	}
 	

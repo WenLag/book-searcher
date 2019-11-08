@@ -11,7 +11,7 @@ public class Teacher extends Account{
 		// TODO Auto-generated constructor stub
 		super(account);
 	}
-	 
+	
 	/**
 	 * Load data from database
 	 */

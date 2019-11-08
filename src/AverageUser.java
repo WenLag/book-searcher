@@ -36,7 +36,7 @@ public class AverageUser extends Account{
 		}
 		System.out.println("Account type not ungread!");
 		return this;
-	} 
+	}
 	
 	public Account ungreadAccount(String aCode) {
 		if(aCode.equals(TEACHER)) {
