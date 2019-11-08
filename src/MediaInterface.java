@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 
 public interface MediaInterface {
 	/**
@@ -8,7 +9,7 @@ public interface MediaInterface {
 	 * @return type of Media
 	 */
 	
-	public Media search(String aMediaName);
+	public Media search(ArrayList<Media> aMedias, String aMediaName);
 	/**
 	 * Add a Media to database
 	 * @param aMedia type of Media

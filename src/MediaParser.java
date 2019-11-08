@@ -7,17 +7,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.io.Reader;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="books.json";
+    ArrayList<Media> medias = parserMedia();
     public ArrayList<Media> parserMedia(){
         ArrayList<Media> media = new ArrayList<Media>();
         try
         {
-        	System.out.println("working");
+        	//System.out.println("working");
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
@@ -44,11 +46,11 @@ public class MediaParser implements MediaInterface {
         return media;
     }
 	@Override
-	public Media search(String aMediaName) {
+	public Media search(ArrayList<Media> aMedias, String aMediaName) {
 		Media media = null;
 		boolean found = false;
 		
-		ArrayList<Media> searchbook = parserMedia();
+		ArrayList<Media> searchbook = aMedias;
 		
 		for(int i=0;i < searchbook.size();i++)
 		{
@@ -132,8 +134,8 @@ public class MediaParser implements MediaInterface {
 		try (FileWriter file = new FileWriter("books.json")) {
 			
 			  file.write(obj.toString());
-			
-			System.out.println("Successfully Copied JSON Object to File...");
+			  file.close();
+			  System.out.println("Successfully Copied JSON Object to File...");
 			
 		}
 			
@@ -158,6 +160,9 @@ public class MediaParser implements MediaInterface {
 		}
 	}
 	
+	public ArrayList<Media> getList(){
+		return medias;
+	}
 
 	
 }

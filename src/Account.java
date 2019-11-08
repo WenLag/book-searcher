@@ -202,22 +202,22 @@ public abstract class Account {
 	 * @param aName is type of String
 	 * @return a Book Object
 	 */
-	public Media searchItem(String aName) {
-		//TODO make Book class and add search function
-		
-		Media media = MP.search(aName);
-		return media;
-	}
+//	public Media searchItem(String aName) {
+//		//TODO make Book class and add search function
+//		
+//		Media media = MP.search(aName);
+//		return media;
+//	}
 
 	/**
 	 * the method to allowed user checkout items if the user have not meet max checkout,
 	 * and the user is not flagged
 	 * @param aName is type of String
 	 */
-	public void checkoutItem(String aName) {
+	public void checkoutItem(Media media) {
 		//TODO make checkout function
 		
-		Media media = searchItem(aName);
+		//Media media = searchItem(aName);
 		
 		if (media == null) {
 			System.out.println("No books' with that title or IBSN");
@@ -233,33 +233,33 @@ public abstract class Account {
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
 			System.out.println(media.getNumberOfCopy());
 			
-			checkoutList.add(aName);
+			checkoutList.add(media.getName());
 			checkoutList.add(date());
 			this.checkouted++;	
 		} else if (media.getNumberOfCopy() == 0){
 			System.out.println("This item is out of copies!");
 			System.out.println("Would you like to be added to the waitlist?\n1:Yes\n2:No");
 			//int ans = input.nextInt();
-			
 		} 
+		return;
 	} 
 
 	/**
 	 * the method to allowed user return items
 	 * @param aName is type of String
 	 */
-	public void returnItem(String aName) {
+	public void returnItem(Media media) {
 		//TODO make returnItem function
-		Media media = searchItem(aName);
+		//Media media = searchItem(aName);
 		if(media == null)
 			return;
-		int index = this.checkoutList.indexOf(aName);
+		int index = this.checkoutList.indexOf(media.getName());
 		int temp = comparDate(this.date(),this.checkoutList.get(index+1));
 		if(temp > 0)
 			this.setBalance(this.getBalance() + temp * 0.5);
 		media.setNumberOfCopy(media.getNumberOfCopy()+1);
-		checkoutList.remove(checkoutList.indexOf(aName)+1);
-		checkoutList.remove(aName);
+		checkoutList.remove(checkoutList.indexOf(media.getName())+1);
+		checkoutList.remove(media.getName());
 		this.checkouted--;	
 	}
 
@@ -319,10 +319,10 @@ public abstract class Account {
 	 * The method put user to the hold list to the item they requiring
 	 * @param aName type of String
 	 */
-	public void putlist(String aName) {
+	public void putlist(Media media) {
 		//TODO
-		MediaParser mParser = new MediaParser();
-		Media media = mParser.search(aName);
+		//MediaParser mParser = new MediaParser();
+		//Media media =// MP.search(media);
 		if(media == null)
 			return;
 		if(waitList.size() <= this.getMaxCheckout()) {

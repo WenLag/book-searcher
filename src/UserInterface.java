@@ -12,6 +12,7 @@ public class UserInterface {
 	AccountParser AP = new AccountParser();
 	MediaParser MP = new MediaParser();
 	ArrayList<Media> item;
+	//ArrayList<Media> medias = MP.getList();
 	int decision;
 	ArrayList<Account> loggedInAccount = AP.parseAccount();
 	Account MainAccount;
@@ -142,7 +143,7 @@ public class UserInterface {
 			System.out.println("Enter the item title");
 			input.nextLine();
 			String title = input.nextLine();
-			MP.search(title);		
+			MP.search(MP.getList(),title);		
 		}
 	}
 	
@@ -216,14 +217,21 @@ public class UserInterface {
 		System.out.println("Enter the item title or IBSN you'd like to search for");
 		input.nextLine();
 		String title = input.nextLine();
-		MP.search(title);	
+		MP.search(MP.getList(),title);	
 	}
 	
 	public void checkoutUI() {
 		System.out.println("Enter the item title or IBSN that you'd like to checkout");
 		input.nextLine();
 		String title = input.nextLine();
-		MainAccount.checkoutItem(title);
+		Media temp = MP.search(MP.getList(),title);
+		MainAccount.checkoutItem(temp);
+		try {
+			updateDB();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
 		int ans = input.nextInt();
@@ -248,12 +256,12 @@ public class UserInterface {
 		}
 		
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public void updateDB() throws IOException {
 		JSONArray arr = new JSONArray();
 		JSONObject obj = new JSONObject();
-		ArrayList<Media> media = MP.parserMedia();
+		ArrayList<Media> media = MP.getList();
 		for (int i = 0; i < media.size(); i++) {
 			JSONObject Media = new JSONObject();
 			Media.put("title",media.get(i).getName());
@@ -273,8 +281,7 @@ public class UserInterface {
 			
 			  file.write(obj.toString());
 			  file.close();
-			System.out.println("Successfully Copied JSON Object to File...");
-			
+			  System.out.println("Successfully Copied JSON Object to File...");
 		}
 	}
 	

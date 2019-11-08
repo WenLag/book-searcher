@@ -49,15 +49,15 @@ public class Librarian extends Account{
 		mp.removeMediaDatabase();
 	}
 	
-	protected void updateItem(String title) {
+	protected void updateItem(Media media) {
 		//TODO
 		MediaParser mp = new MediaParser();
 		Scanner key = new Scanner(System. in);
 		boolean quit = false;
 		String inputString;
-		Media media = mp.search(title);
+		//Media media = mp.search(title);
 		if(media == null) {
-			System.out.println(title + " is not find!");
+			System.out.println(media.getName() + " is not find!");
 			return;
 		}
 		while (!quit) {
@@ -190,7 +190,7 @@ public class Librarian extends Account{
 		}
 	}
 	
-	protected void accessAcount(Account account) {
+	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
 		//TODO
 		AccountParser ap = new AccountParser();
 		Scanner key = new Scanner(System. in);
@@ -321,7 +321,7 @@ public class Librarian extends Account{
 				if(inputString.equals("1")) {
 					System.out.println("Enter a title:");
 					inputString = key.nextLine();
-					Media media = mp.search(inputString);
+					Media media = mp.search(aMedias,inputString);
 					if(media != null) {
 						account.getWaitList().add(media);
 						media.holdlist.add(account.getId());
@@ -331,7 +331,7 @@ public class Librarian extends Account{
 				}else if (inputString.equals("2")) {
 					System.out.println("Enter a title:");
 					inputString = key.nextLine();
-					Media media = mp.search(inputString);
+					Media media = mp.search(aMedias, inputString);
 					if(media != null) {
 						account.getWaitList().remove(media);
 						media.holdlist.remove(account.getId());
@@ -348,9 +348,6 @@ public class Librarian extends Account{
 			default:
 				break;
 			}
-			
-			
-			
 		}
 	}
 	
