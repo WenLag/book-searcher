@@ -1,0 +1,16 @@
+{
+  "books": [
+    {
+      "ISBN": "1234123",
+      "numCopies": 1,
+      "year": "1959",
+      "author": "9",
+      "newArrival": false,
+      "genre": "science",
+      "publisher": "12393",
+      "Maxrent": 14,
+      "title": "marsbars"
+    }
+  ]
+
+}

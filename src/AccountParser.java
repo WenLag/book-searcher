@@ -14,7 +14,7 @@ public class AccountParser {
 	//LoadAccountDatabase load = new LoadAccountDatabase();
 	private static final String ACCOUNT_FILE_NAME = "AccountDatabase.json";
 	
-	
+	MediaParser MP = new MediaParser();
 	LoadAccountDatabase Lad = new LoadAccountDatabase();
 	public ArrayList<Account> parseAccount() {
 		
@@ -49,6 +49,8 @@ public class AccountParser {
 
 		
 	}
+	
+	
 	
 	
 	

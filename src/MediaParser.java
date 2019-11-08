@@ -17,6 +17,7 @@ public class MediaParser implements MediaInterface {
         ArrayList<Media> media = new ArrayList<Media>();
         try
         {
+        	System.out.println("working");
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
@@ -143,7 +144,7 @@ public class MediaParser implements MediaInterface {
 		Media media = null;
 		MediaParser Mp= new MediaParser();
 		Scanner input = new Scanner(System.in);
-		System.out.println("Input title of book you wann to delect");
+		System.out.println("Input title of book you wann to delete");
 		String title =input.nextLine();
 		ArrayList<Media> searchbook= Mp.parserMedia();
 		for(int i=0;i < searchbook.size();i++)

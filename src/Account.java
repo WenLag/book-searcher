@@ -11,7 +11,8 @@ import org.json.simple.JSONObject;
  * @author Zeling Zhuo
  */
 public abstract class Account {
-	
+	MediaParser MP = new MediaParser();
+	AccountParser AP = new AccountParser();
 	// Account info, attributes
 	protected String id;
 	protected String email;
@@ -203,8 +204,8 @@ public abstract class Account {
 	 */
 	public Media searchItem(String aName) {
 		//TODO make Book class and add search function
-		MediaParser mp = new MediaParser(); 
-		Media media = mp.search(aName);
+		
+		Media media = MP.search(aName);
 		return media;
 	}
 
@@ -228,13 +229,18 @@ public abstract class Account {
 		
 		else if(media.getNumberOfCopy() > 0)
 		{
+			System.out.println(media.getNumberOfCopy());
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
+			System.out.println(media.getNumberOfCopy());
 			
 			checkoutList.add(aName);
 			checkoutList.add(date());
 			this.checkouted++;	
-		} else {
+		} else if (media.getNumberOfCopy() == 0){
 			System.out.println("This item is out of copies!");
+			System.out.println("Would you like to be added to the waitlist?\n1:Yes\n2:No");
+			//int ans = input.nextInt();
+			
 		} 
 	} 
 

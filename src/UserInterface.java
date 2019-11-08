@@ -12,7 +12,7 @@ public class UserInterface {
 	AccountParser AP = new AccountParser();
 	MediaParser MP = new MediaParser();
 	ArrayList<Media> item;
-	String decision;
+	int decision;
 	ArrayList<Account> loggedInAccount = AP.parseAccount();
 	Account MainAccount;
 	Scanner input = new Scanner(System. in);
@@ -21,7 +21,7 @@ public class UserInterface {
 		System.out.println("\nPlease type in the following number corresponding to the action");
 		System.out.println("__________________________________");
 		System.out.println("\n1:Login\n2:Register\n3:Guest Login\n4:Exit");
-		System.out.println("__________________________________\n");				
+		System.out.println("__________________________________");				
 		int choice = input.nextInt();
 		
 		if (choice == 1) {
@@ -136,10 +136,9 @@ public class UserInterface {
 	}
 	
 	public void GuestLogin() {
-		String decision;
-		System.out.println("Would you like to...\nSearch");
-		decision = input.next();
-		if (decision.equalsIgnoreCase("Search")) {
+		System.out.println("Would you like to...\n1:Search");
+		decision = input.nextInt();
+		if (decision == 1) {
 			System.out.println("Enter the item title");
 			input.nextLine();
 			String title = input.nextLine();
@@ -149,16 +148,22 @@ public class UserInterface {
 	
 	public void averageUserUI() {
 		
-		System.out.println("Would you like to...\nSearch\nView Fines\nView Waitlist\nCheckout");
-		decision = input.next();
-		if (decision.equalsIgnoreCase("Search")) {
+		System.out.println("Would you like to...\n1:Search\n2:View Fines\n3:View Waitlist\n4:Checkout\n5:Exit");
+		decision = input.nextInt();
+		if (decision == 1) {
 			searchUI();				
 		}
-		else if (decision.equalsIgnoreCase("checkout")) {
+		else if (decision == 2) {
+			
+		}
+		else if (decision == 3) {
+			
+		}
+		else if (decision == 4) {
 			checkoutUI();	
 		}
 		
-		else if (decision.equalsIgnoreCase("Pay Fines")) {
+		else if (decision == 5) {
 			
 		} 
 		else {
@@ -171,7 +176,7 @@ public class UserInterface {
 		
 	public void librarianUI() throws IOException {
 		
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
 		int choice = input.nextInt();
 		if (choice == 1) {
 			searchUI();						
@@ -182,18 +187,27 @@ public class UserInterface {
 		if (choice ==3) {
 			MP.addMediaDatabase();
 		}
+		if (choice == 4) {
+			
+		}
 		if (choice == 5) {
 			
 		}
 		if (choice == 6) {
 			MainAccount.addToDatabase();
 		}
+		if (choice == 7) {
+			
+		}
+		if (choice == 8) {
+			//updateDB();
+		}
 	}
 	
 	public void childUI() {
-		System.out.println("Would you like to...\nSearch\nView Waitlist");
-		decision = input.next();
-		if (decision.equalsIgnoreCase("Search")) {
+		System.out.println("Would you like to...\n1:Search\n2:View Waitlist");
+		decision = input.nextInt();
+		if (decision == 1) {
 			searchUI();					
 		}
 	}
@@ -211,35 +225,32 @@ public class UserInterface {
 		String title = input.nextLine();
 		MainAccount.checkoutItem(title);
 		
+		System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
+		int ans = input.nextInt();
+		if (ans == 1) {
+			checkoutUI();
+		} else { 
+			if (MainAccount.getType().equals("Librarian")){
+				try {
+					librarianUI();
+				} catch (IOException e) {
+				
+					e.printStackTrace();
+				}
+		}
+			
+			else if (MainAccount.getType().equals("AverageUser")) {
+				averageUserUI();
+			}
+			else if (MainAccount.getType().equals("Teacher")) {
+				averageUserUI();
+			} 
+		}
+		
 	}
-//	@SuppressWarnings("unchecked")
-//	public void updateDB() throws IOException {
-//		JSONArray arr = new JSONArray();
-//		JSONObject obj = new JSONObject();
-//		ArrayList<Media> media = MP.parserMedia();
-//		for (int i = 0; i < media.size(); i++) {
-//			JSONObject Media = new JSONObject();
-//			Media.put("title",media.get(i).getName());
-//			Media.put("year",media.get(i).getYear());
-//			Media.put("genre", media.get(i).getGenre());
-//			Media.put("ISBN", media.get(i).getISBN());
-//			Media.put("publisher",media.get(i).getPublisher());
-//			Media.put("author",media.get(i).getAuthor());
-//			Media.put("numCopies",media.get(i).getNumberOfCopy());
-//			Media.put("newArrival",media.get(i).isNewArrive());
-//			Media.put("Maxrent",media.get(i).getMaxrent());
-//			arr.add(Media);
-//			obj.put("books",arr);
-//		  }
-//		
-//		try (FileWriter file = new FileWriter("books.json")) {
-//			
-//			  file.write(obj.toString());
-//			
-//			System.out.println("Successfully Copied JSON Object to File...");
-//			
-//		}
-//	}
+
+	
+	
 
 }
 
