@@ -246,7 +246,7 @@ public class Librarian extends Account{
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
-				break;
+				break; 
 				
 			case "4":
 				System.out.println("Enter 1 to add, 2 to remove:");
