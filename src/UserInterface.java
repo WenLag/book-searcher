@@ -97,35 +97,40 @@ public class UserInterface {
 		JSONObject obj = new JSONObject();
 		ArrayList<Account> accounts = AP.parseAccount();
 		
-		JSONArray arr = new JSONArray();
-		JSONObject item1 = new JSONObject();
 		AverageUser newAccount = new AverageUser(ID,email,password,age);
 		newAccount = (AverageUser) newAccount.ungradeAccount();
-		item1.put("age", newAccount.getAge());
-		item1.put("Balance", 0.0);
-	    item1.put("email", newAccount.getEmail());
-	    item1.put("id", newAccount.getId());
-	    item1.put("isFlagged", false);
-	    item1.put("maxCheckout", newAccount.getMaxCheckout());
-	    item1.put("name", newAccount.getName());
-	    item1.put("password", newAccount.getPasswordString());
-	    item1.put("type", newAccount.getType());
-	    arr.add(item1);
+		if(newAccount.checkInput())
+			addAccountToDB(newAccount, accounts);
 		
-		for (int i = 0; i < accounts.size(); i++) {
-			JSONObject item0 = new JSONObject();
-			item0.put("age",accounts.get(i).getAge());
-			item0.put("Balance",accounts.get(i).getBalance());
-			item0.put("email", accounts.get(i).getEmail());
-			item0.put("id", accounts.get(i).getId());
-			item0.put("isFlagged",accounts.get(i).isFlagged());
-			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
-			item0.put("name", accounts.get(i).getName());
-			item0.put("type", accounts.get(i).getType());
-			item0.put("password", accounts.get(i).getPasswordString());
-			arr.add(item0);
-			obj.put("account",arr);
-		}
+//		JSONArray arr = new JSONArray();
+//		JSONObject item1 = new JSONObject();
+//		AverageUser newAccount = new AverageUser(ID,email,password,age);
+//		newAccount = (AverageUser) newAccount.ungradeAccount();
+//		item1.put("age", newAccount.getAge());
+//		item1.put("Balance", 0.0);
+//	    item1.put("email", newAccount.getEmail());
+//	    item1.put("id", newAccount.getId());
+//	    item1.put("isFlagged", false);
+//	    item1.put("maxCheckout", newAccount.getMaxCheckout());
+//	    item1.put("name", newAccount.getName());
+//	    item1.put("password", newAccount.getPasswordString());
+//	    item1.put("type", newAccount.getType());
+//	    arr.add(item1);
+//		
+//		for (int i = 0; i < accounts.size(); i++) {
+//			JSONObject item0 = new JSONObject();
+//			item0.put("age",accounts.get(i).getAge());
+//			item0.put("Balance",accounts.get(i).getBalance());
+//			item0.put("email", accounts.get(i).getEmail());
+//			item0.put("id", accounts.get(i).getId());
+//			item0.put("isFlagged",accounts.get(i).isFlagged());
+//			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+//			item0.put("name", accounts.get(i).getName());
+//			item0.put("type", accounts.get(i).getType());
+//			item0.put("password", accounts.get(i).getPasswordString());
+//			arr.add(item0);
+//			obj.put("account",arr);
+//		}
 		 
 		
 	 
@@ -356,6 +361,38 @@ public class UserInterface {
 			
 		}
 
+	}
+	
+	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) {
+		JSONArray arr = new JSONArray();
+		JSONObject item1 = new JSONObject();
+		//AverageUser newAccount = new AverageUser(ID,email,password,age);
+		//newAccount = (AverageUser) newAccount.ungradeAccount();
+		item1.put("age", newAccount.getAge());
+		item1.put("Balance", 0.0);
+	    item1.put("email", newAccount.getEmail());
+	    item1.put("id", newAccount.getId());
+	    item1.put("isFlagged", false);
+	    item1.put("maxCheckout", newAccount.getMaxCheckout());
+	    item1.put("name", newAccount.getName());
+	    item1.put("password", newAccount.getPasswordString());
+	    item1.put("type", newAccount.getType());
+	    arr.add(item1);
+		
+		for (int i = 0; i < accounts.size(); i++) {
+			JSONObject item0 = new JSONObject();
+			item0.put("age",accounts.get(i).getAge());
+			item0.put("Balance",accounts.get(i).getBalance());
+			item0.put("email", accounts.get(i).getEmail());
+			item0.put("id", accounts.get(i).getId());
+			item0.put("isFlagged",accounts.get(i).isFlagged());
+			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+			item0.put("name", accounts.get(i).getName());
+			item0.put("type", accounts.get(i).getType());
+			item0.put("password", accounts.get(i).getPasswordString());
+			arr.add(item0);
+			obj.put("account",arr);
+		}
 	}
 	
 
