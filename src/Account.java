@@ -75,7 +75,7 @@ public abstract class Account {
 		//TODO id format
 		if(id.length() != 7) {
 			System.out.println("Error!! ID has to be 7 chars");
-			this.id = "";
+			this.id = "null";
 			return;
 		}
 		this.id = id;
