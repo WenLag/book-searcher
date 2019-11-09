@@ -4,7 +4,7 @@ public class AverageUser extends Account{
 	private final String TEACHER = "AABBCC";
 	private final String LIBRARAN = "AABBDD";
 	
-	public AverageUser(String id, String email, String password, int age) {
+	public AverageUser(String id, String email, String password, long age) {
 		super(id, email, password, age);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
@@ -28,7 +28,7 @@ public class AverageUser extends Account{
 		this.maxCheckout = 25;
 	}
 	
-	public Account ungreadAccount() {
+	public Account ungradeAccount() {
 		if(this.getAge() < 18) {
 			System.out.println("Account type ungread to Child!");
 			Child child = new Child(this);

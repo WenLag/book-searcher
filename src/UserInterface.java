@@ -99,15 +99,17 @@ public class UserInterface {
 		
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
-		item1.put("age", age);
+		AverageUser newAccount = new AverageUser(ID,email,password,age);
+		newAccount = (AverageUser) newAccount.ungradeAccount();
+		item1.put("age", newAccount.getAge());
 		item1.put("Balance", 0.0);
-	    item1.put("email", email);
-	    item1.put("id", ID);
+	    item1.put("email", newAccount.getEmail());
+	    item1.put("id", newAccount.getId());
 	    item1.put("isFlagged", false);
-	    item1.put("maxCheckout", 15);
-	    item1.put("name", name);
-	    item1.put("password", password);
-	    item1.put("type", "AverageUser");
+	    item1.put("maxCheckout", newAccount.getMaxCheckout());
+	    item1.put("name", newAccount.getName());
+	    item1.put("password", newAccount.getPasswordString());
+	    item1.put("type", newAccount.getType());
 	    arr.add(item1);
 		
 		for (int i = 0; i < accounts.size(); i++) {
@@ -135,6 +137,8 @@ public class UserInterface {
 			System.out.println("Successfully Added onto Database File...");
 			
 		}
+		
+		Login();
 	}
 	
 	public void GuestLogin() {
