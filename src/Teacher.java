@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Teacher extends Account{
 
@@ -16,9 +17,9 @@ public class Teacher extends Account{
 	 * Load data from database
 	 */
 	public Teacher(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, long age) {
+			double balance, String passwordString, long age,ArrayList<String> aWaitList, ArrayList<String> checList) {
 		super(id, email, name, type, isFlagged, maxCheckout,
-				balance, passwordString, age);
+				balance, passwordString, age, aWaitList, checList);
 	}
 	
 	protected void setMaxCheckout() {

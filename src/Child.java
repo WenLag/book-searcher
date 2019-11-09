@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Child extends AverageUser{
 
@@ -16,9 +17,9 @@ public class Child extends AverageUser{
 	 * Load data from database
 	 */
 	public Child(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, long age) {
-		super(id, email, name, type, isFlagged, maxCheckout,
-				balance, passwordString, age);
+			double balance, String passwordString, long age,ArrayList<String> aWaitList, ArrayList<String> checList) {
+		super(id, email, name, type, isFlagged, maxCheckout, balance, 
+				passwordString, age, aWaitList,checList);
 	}
 
 	protected void setMaxCheckout() {

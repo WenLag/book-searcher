@@ -26,7 +26,7 @@ public abstract class Account {
 	protected String passwordString;
 	protected long age;
 	protected int checkouted;
-	protected ArrayList<Media> waitList = new ArrayList<Media>();  
+	protected ArrayList<String> waitList = new ArrayList<String>();  
 	protected ArrayList<String> checkoutList = new ArrayList<String>();
 
 
@@ -39,7 +39,7 @@ public abstract class Account {
 		this.setAge(age);
 		this.setType();
 		this.checkouted = 0;
-		waitList = new ArrayList<Media>();
+		waitList = new ArrayList<String>();
 		// check account info and add account to database if input is valid
 		checkInput();
 	}
@@ -48,7 +48,7 @@ public abstract class Account {
 	 * Load data from database
 	 */
 	public Account(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
-			double balance, String passwordString, long age) {
+			double balance, String passwordString, long age, ArrayList<String> aWaitList, ArrayList<String> checList) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -59,6 +59,8 @@ public abstract class Account {
 		this.balance = balance;
 		this.passwordString = passwordString;
 		this.age = age;
+		this.waitList = aWaitList;
+		this.checkoutList = checList;
 	}
 	
 	public Account(Account account) {
@@ -165,11 +167,11 @@ public abstract class Account {
 	}
 	
 
-	public ArrayList<Media> getWaitList() {
+	public ArrayList<String> getWaitList() {
 		return waitList;
 	}
 
-	public void setWaitList(ArrayList<Media> waitList) {
+	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
 	}
 
@@ -337,7 +339,7 @@ public abstract class Account {
 			return;
 		if(waitList.size() <= this.getMaxCheckout()) {
 		media.addHoldList(this.getId());
-		waitList.add(media);
+		waitList.add(media.getName());
 		}else {
 			System.out.println("You can not hold any more items");
 		}
@@ -346,10 +348,21 @@ public abstract class Account {
 	/**
 	 * The method print out the wait list
 	 */
-	public void x() {
+	public void printWaitList() {
 		//TODO
 		for(int i = 0; i < waitList.size(); i++) {
-			System.out.println(waitList);
+			System.out.printf("Title: %s\n",waitList.get(i));
+		}
+	}
+	
+	/**
+	 * The method print out the wait list
+	 */
+	public void printCheckoutList() {
+		//TODO
+		for(int i = 0; i < checkoutList.size(); i+=2) {
+			System.out.printf("Title: %s\tcheckout date: %s\n",checkoutList.get(i)
+					,waitList.get(i+1));
 		}
 	}
 
