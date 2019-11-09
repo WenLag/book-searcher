@@ -13,16 +13,16 @@ import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
-    private static final String MEDIA_FILE_NAME="books.json";
+    private static final String MEDIA_FILE_NAME="media.json";
     ArrayList<Media> medias = parserMedia();
     public ArrayList<Media> parserMedia(){
         ArrayList<Media> media = new ArrayList<Media>();
         try
         {
-        	//System.out.println("working");
+
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
-			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
+			JSONArray mediaJSON = (JSONArray)jsonData.get("media");
 			for(int i = 0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
 				String title = (String)booksJSON.get("title");
@@ -128,14 +128,13 @@ public class MediaParser implements MediaInterface {
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			arr.add(Media);
-			obj.put("books",arr);
+			obj.put("media",arr);
 		  }
 		
-		try (FileWriter file = new FileWriter("books.json")) {
+		try (FileWriter file = new FileWriter("media.json")) {
 			
 			  file.write(obj.toString());
 			  file.close();
-			  System.out.println("Successfully Copied JSON Object to File...");
 			
 		}
 			

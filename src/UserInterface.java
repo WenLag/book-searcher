@@ -35,6 +35,7 @@ public class UserInterface {
 			checkoutUI();
 		} 
 		else if (choice == 4) {
+			updateDB();
 			System.exit(0);
 		} 	
 		else{
@@ -147,7 +148,7 @@ public class UserInterface {
 		}
 	}
 	
-	public void averageUserUI() {
+	public void averageUserUI() throws IOException {
 		
 		System.out.println("Would you like to...\n1:Search\n2:View Fines\n3:View Waitlist\n4:Checkout\n5:Exit");
 		decision = input.nextInt();
@@ -155,17 +156,22 @@ public class UserInterface {
 			searchUI();				
 		}
 		else if (decision == 2) {
-			
+			fineUI();
 		}
 		else if (decision == 3) {
-			
+			MainAccount.getWaitList();
 		}
 		else if (decision == 4) {
 			checkoutUI();	
 		}
 		
 		else if (decision == 5) {
-			
+			try {
+				updateDB();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} 
 		else {
 			System.out.println("invalid input");
@@ -175,6 +181,29 @@ public class UserInterface {
 		
 	}
 		
+	private void fineUI() throws IOException {
+		System.out.println("_____________________________________\n");
+		System.out.println("Your total fine: " + MainAccount.getBalance());
+		if (MainAccount.getBalance() != 0) {
+			System.out.println("_____________________________________");
+			System.out.println("would you like to pay for your fines?\n1:Yes\n2:No");
+			System.out.println("_____________________________________");
+			int ans = input.nextInt();
+			if (ans == 1) {
+				MainAccount.setBalance(0);
+				updateDB();
+				mainUI();
+			} else {
+				mainUI();
+			}
+		} else {
+			System.out.println("_____________________________________");
+			System.out.println("You have no fine holds on your account");
+			System.out.println("_____________________________________");
+			mainUI();
+		}
+		
+	}
 	public void librarianUI() throws IOException {
 		
 		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
@@ -201,7 +230,7 @@ public class UserInterface {
 			
 		}
 		if (choice == 8) {
-			//updateDB();
+			updateDB();
 		}
 	}
 	
@@ -220,40 +249,54 @@ public class UserInterface {
 		MP.search(MP.getList(),title);	
 	}
 	
+	public void mainUI() throws IOException{
+		if(MainAccount.getType().equals("AverageUser")) {
+			averageUserUI();
+		}
+		if(MainAccount.getType().equals("Librarian")) {
+			librarianUI();
+		}
+		if(MainAccount.getType().equals("Teacher")) {
+			averageUserUI();
+		}
+	}
+	
 	public void checkoutUI() {
 		System.out.println("Enter the item title or IBSN that you'd like to checkout");
 		input.nextLine();
 		String title = input.nextLine();
 		Media temp = MP.search(MP.getList(),title);
-		MainAccount.checkoutItem(temp);
-		try {
-			updateDB();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
+		System.out.println(MainAccount.toString());
+		if (!MainAccount.isAbleCheckout()) {
+			System.out.println("_____________________________________________");
+			System.out.println("\nYou have fines that you have to pay before you can checkout!");
+			System.out.println("_____________________________________________");
+			try {
+				mainUI();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else if(MainAccount.isAbleCheckout()){
+			MainAccount.checkoutItem(temp);
+			try {
+				updateDB();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				}
+			}
+		else {
 		System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
 		int ans = input.nextInt();
 		if (ans == 1) {
 			checkoutUI();
 		} else { 
-			if (MainAccount.getType().equals("Librarian")){
-				try {
-					librarianUI();
-				} catch (IOException e) {
-				
-					e.printStackTrace();
-				}
-		}
-			
-			else if (MainAccount.getType().equals("AverageUser")) {
-				averageUserUI();
+			try {
+				mainUI();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			else if (MainAccount.getType().equals("Teacher")) {
-				averageUserUI();
-			} 
 		}
+	}
 		
 	}
 	
@@ -268,7 +311,6 @@ public class UserInterface {
 			Media.put("year",media.get(i).getYear());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());
-			Media.put("publisher",media.get(i).getPublisher());
 			Media.put("author",media.get(i).getAuthor());
 			Media.put("numCopies",media.get(i).getNumberOfCopy());
 			Media.put("newArrival",media.get(i).isNewArrive());
@@ -276,13 +318,40 @@ public class UserInterface {
 			arr.add(Media);
 			obj.put("books",arr);
 		  }
-		
 		try (FileWriter file = new FileWriter("books.json")) {
 			
 			  file.write(obj.toString());
 			  file.close();
-			  System.out.println("Successfully Copied JSON Object to File...");
 		}
+		JSONObject accountObj = new JSONObject();
+		JSONArray accountArr = new JSONArray();
+		ArrayList<Account> accounts = AP.getList();
+		for (int i = 0; i < accounts.size(); i++) {
+			JSONObject item0 = new JSONObject();
+			item0.put("age",accounts.get(i).getAge());
+			item0.put("Balance",accounts.get(i).getBalance());
+			item0.put("email", accounts.get(i).getEmail());
+			item0.put("id", accounts.get(i).getId());
+			item0.put("isFlagged",accounts.get(i).isFlagged());
+			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+			item0.put("name", accounts.get(i).getName());
+			item0.put("type", accounts.get(i).getType());
+			item0.put("password", accounts.get(i).getPasswordString());
+			accountArr.add(item0);
+			accountObj.put("account",accountArr);
+		}
+		 
+		
+	 
+		// try-with-resources statement based on post comment below :)
+		try (FileWriter file = new FileWriter("accountDatabase.json")) {
+			
+			  file.write(accountObj.toString());
+			
+			System.out.println("Successfully Added onto Database File...");
+			
+		}
+
 	}
 	
 

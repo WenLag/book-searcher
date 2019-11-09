@@ -1,6 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
+
 import javax.xml.crypto.Data;
 
 import org.json.simple.JSONObject;
@@ -124,8 +126,8 @@ public abstract class Account {
 	public boolean isFlagged() {
 		return isFlagged;
 	}
-	public void setFlagged(boolean isFaged) {
-		this.isFlagged = isFaged;
+	public void setFlagged(boolean isFlagged) {
+		this.isFlagged = isFlagged;
 	}
 	public long getMaxCheckout() {
 		return maxCheckout;
@@ -218,7 +220,7 @@ public abstract class Account {
 		//TODO make checkout function
 		
 		//Media media = searchItem(aName);
-		
+		Scanner input = new Scanner(System.in);
 		if (media == null) {
 			System.out.println("No books' with that title or IBSN");
 		}
@@ -232,14 +234,22 @@ public abstract class Account {
 			System.out.println(media.getNumberOfCopy());
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
 			System.out.println(media.getNumberOfCopy());
-			
 			checkoutList.add(media.getName());
 			checkoutList.add(date());
 			this.checkouted++;	
 		} else if (media.getNumberOfCopy() == 0){
+			System.out.println("__________________________\n");
 			System.out.println("This item is out of copies!");
+			System.out.println("__________________________");
 			System.out.println("Would you like to be added to the waitlist?\n1:Yes\n2:No");
-			//int ans = input.nextInt();
+			int ans = input.nextInt();
+			if (ans == 1) {
+				putlist(media);
+			} else if (ans == 2){
+				
+			} else {
+				return;
+			}
 		} 
 		return;
 	} 
@@ -302,7 +312,7 @@ public abstract class Account {
 	 * check if account able to checkout if yes return true else return false
 	 * @return boolean type
 	 */
-	private boolean isAbleCheckout() {
+	public boolean isAbleCheckout() {
 		if(this.getBalance() < 0 && this.isFlagged() == true && this.checkouted < this.getMaxCheckout())
 			return false;
 		return true;
@@ -336,7 +346,7 @@ public abstract class Account {
 	/**
 	 * The method print out the wait list
 	 */
-	public void displaywaitlist() {
+	public void x() {
 		//TODO
 		for(int i = 0; i < waitList.size(); i++) {
 			System.out.println(waitList);
