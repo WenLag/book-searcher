@@ -61,6 +61,10 @@ public abstract class Account {
 		this.age = age;
 		this.waitList = aWaitList;
 		this.checkoutList = checList;
+		if(waitList == null)
+			waitList = new ArrayList<String>();
+		if(checkoutList == null)
+			checkoutList = new ArrayList<String>();
 	}
 	
 	public Account(Account account) {

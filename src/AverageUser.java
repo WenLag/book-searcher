@@ -9,8 +9,6 @@ public class AverageUser extends Account{
 		super(id, email, password, age);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
-		this.waitList = new ArrayList<String>((int)getMaxCheckout());
-		this.checkoutList = new ArrayList<String>(2*(int)getMaxCheckout());
 	}
 	
 	public AverageUser(Account account) {
