@@ -296,6 +296,8 @@ public class UserInterface {
 		}
 		JSONObject accountObj = new JSONObject();
 		JSONArray accountArr = new JSONArray();
+		JSONArray waitArr = new JSONArray();
+		JSONArray checkoutArr = new JSONArray();
 		ArrayList<Account> accounts = AP.getList();
 		for (int i = 0; i < accounts.size(); i++) {
 			JSONObject item0 = new JSONObject();
@@ -308,8 +310,14 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			item0.put("password", accounts.get(i).getPasswordString());
+			waitArr.add(accounts.get(i).getWaitList());
+			checkoutArr.add(accounts.get(i).getCheckoutList());
+			item0.put("waitlist",waitArr);
+			item0.put("checkoutlist", checkoutArr);
 			accountArr.add(item0);
 			accountObj.put("account",accountArr);
+			waitArr = new JSONArray();
+			checkoutArr = new JSONArray();
 		}
 
 
@@ -329,6 +337,8 @@ public class UserInterface {
 	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) throws IOException {
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
+		JSONArray waitArr = new JSONArray();
+		JSONArray checkoutArr = new JSONArray();
 		JSONObject obj = new JSONObject();
 		//AverageUser newAccount = new AverageUser(ID,email,password,age);
 		//newAccount = (AverageUser) newAccount.ungradeAccount();
@@ -341,8 +351,10 @@ public class UserInterface {
 	    item1.put("name", newAccount.getName());
 	    item1.put("password", newAccount.getPasswordString());
 	    item1.put("type", newAccount.getType());
-	    item1.put("waitlist", newAccount.getWaitList());
-	    item1.put("checkoutlist", newAccount.getCheckoutList());
+	    waitArr.add(newAccount.getWaitList());
+		checkoutArr.add(newAccount.getCheckoutList());
+		item1.put("waitlist",waitArr);
+		item1.put("checkoutlist", checkoutArr);
 	    arr.add(item1);
 
 		for (int i = 0; i < accounts.size(); i++) {
@@ -356,8 +368,10 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			item0.put("password", accounts.get(i).getPasswordString());
-			item0.put("waitlist",accounts.get(i).getWaitList());
-			item0.put("checkoutlist", accounts.get(i).getCheckoutList());
+			waitArr.add(accounts.get(i).getWaitList());
+			checkoutArr.add(accounts.get(i).getCheckoutList());
+			item0.put("waitlist",waitArr);
+			item0.put("checkoutlist", checkoutArr);
 			arr.add(item0);
 			obj.put("account",arr);
 		}
