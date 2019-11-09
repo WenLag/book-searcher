@@ -348,6 +348,7 @@ public abstract class Account {
 		if(getWaitList().size() <= this.getMaxCheckout()) {
 			media.addHoldList(this.getId());
 			getWaitList().add(media.getName());
+			
 		}else {
 			System.out.println("You can not hold any more items");
 		}

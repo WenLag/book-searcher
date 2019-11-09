@@ -323,7 +323,7 @@ public class Librarian extends Account{
 					inputString = key.nextLine();
 					Media media = mp.search(aMedias,inputString);
 					if(media != null) {
-						account.getWaitList().add(media);
+						account.getWaitList().add(media.getName());
 						media.holdlist.add(account.getId());
 					}
 					else

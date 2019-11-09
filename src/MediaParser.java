@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="media.json";
+   
     ArrayList<Media> media = new ArrayList<Media>();
-
     public ArrayList<Media> parserMedia(){
-        
+    	 
         try
         {
 
             FileReader reader=new FileReader(MEDIA_FILE_NAME);
             JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
-			JSONArray mediaJSON = (JSONArray)jsonData.get("media");
+			JSONArray mediaJSON = (JSONArray)jsonData.get("books");
 			for(int i = 0; i < mediaJSON.size(); i++) {
 				JSONObject booksJSON = (JSONObject)mediaJSON.get(i);
 				String title = (String)booksJSON.get("title");
@@ -52,6 +52,7 @@ public class MediaParser implements MediaInterface {
 		boolean found = false;
 		
 		ArrayList<Media> searchbook = aMedias;
+		System.out.println("size: "+searchbook.size());
 		
 		for(int i=0;i < searchbook.size();i++)
 		{
@@ -64,11 +65,11 @@ public class MediaParser implements MediaInterface {
 			}
 			if (i == searchbook.size()-1 && found == false) {
 				System.out.println("Did not match any media.");
-				
+				System.out.println("not found");
 				return null;
 			}
 		}
-		
+		System.out.println("found"+media);
 		return media;
 		
 	}
