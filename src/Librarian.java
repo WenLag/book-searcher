@@ -51,13 +51,13 @@ public class Librarian extends Account{
 	
 	protected void updateItem(Media media) {
 		//TODO
-		MediaParser mp = new MediaParser();
+		//MediaParser mp = new MediaParser();
 		Scanner key = new Scanner(System. in);
 		boolean quit = false;
 		String inputString;
 		//Media media = mp.search(title);
 		if(media == null) {
-			System.out.println(media.getName() + " is not find!");
+			System.out.println(" is not find!");
 			return;
 		}
 		while (!quit) {
@@ -77,34 +77,41 @@ public class Librarian extends Account{
 					+ "\nEnter 11 to update title"
 					+ "\nEnter 12 to update year"
 					+ "\nExter 0 to quit");
-			inputString = key.next();
+			//inputString = key.next();
 			inputString = key.nextLine();
-			switch (inputString) {
-			case "1":
+			int temp;
+			try {
+				temp = Integer.parseInt(inputString);
+			} catch (NumberFormatException e) {
+				continue;
+				// TODO: handle exception
+			}
+			switch (temp) {
+			case 1:
 				System.out.println("Enter a Author:");
 				inputString = key.nextLine();
 				media.setAuthor(inputString);
 				break;
 
-			case "2":
+			case 2:
 				System.out.println("Enter a Genre:");
 				inputString = key.nextLine();
 				media.setGenre(inputString);
 				break;
 				
-			case "3":
+			case 3:
 				System.out.println("Enter a User add to list:");
 				inputString = key.nextLine();
 				media.holdlist.add(inputString);
 				break;	
 				
-			case "4":
+			case 4:
 				System.out.println("Enter a ISBN:");
 				inputString = key.nextLine();
 				media.setISBN(inputString);
 				break;	
 				
-			case "5":
+			case 5:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
 				if(inputString.equals("1")) {
@@ -116,7 +123,7 @@ public class Librarian extends Account{
 				}
 				break;
 				
-			case "6":
+			case 6:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
 				if(inputString.equals("1")) {
@@ -128,58 +135,58 @@ public class Librarian extends Account{
 				}
 				break;
 				
-			case "7":
+			case 7:
 				System.out.println("Enter a Maxrent:");
 				inputString = key.nextLine();
 				try {
-					int temp = Integer.parseInt(inputString);
-					media.setMaxrent(temp);
+					int temp2 = Integer.parseInt(inputString);
+					media.setMaxrent(temp2);
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
 				break;	
 				
-			case "8":
+			case 8:
 				System.out.println("Enter a number of copies:");
 				inputString = key.nextLine();
 				try {
-					int temp = Integer.parseInt(inputString);
-					media.setNumberOfCopy(temp);
+					int temp2 = Integer.parseInt(inputString);
+					media.setNumberOfCopy(temp2);
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
 				break;	
 				
-			case "9":
+			case 9:
 				System.out.println("Enter a publisher:");
 				inputString = key.nextLine();
 				media.setPublisher(inputString);
 				break;	
 				
-			case "10":
+			case 10:
 				System.out.println("Enter a number of rating:");
 				inputString = key.nextLine();
 				try {
-					int temp = Integer.parseInt(inputString);
-					media.setRating(temp);
+					int temp2 = Integer.parseInt(inputString);
+					media.setRating(temp2);
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
 				break;
 				
-			case "11":
+			case 11:
 				System.out.println("Enter a title:");
 				inputString = key.nextLine();
 				media.setName(inputString);
 				break;
 				
-			case "12":
+			case 12:
 				System.out.println("Enter a year:");
 				inputString = key.nextLine();
 				media.setYear(inputString);
 				break;	
 				
-			case "0":
+			case 0:
 				quit = true;
 				break;
 				
@@ -192,7 +199,7 @@ public class Librarian extends Account{
 	
 	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
 		//TODO
-		AccountParser ap = new AccountParser();
+		//AccountParser ap = new AccountParser();
 		Scanner key = new Scanner(System. in);
 		MediaParser mp = new MediaParser();
 		boolean quit = false;
@@ -212,10 +219,16 @@ public class Librarian extends Account{
 					+ "\\nEnter 11 to update type"
 					+ "\\nEnter 12 to update wait list"
 					+ "\\nEnter 0 to quit");
-			inputString = key.next();
 			inputString = key.nextLine();
-			switch (inputString) {
-			case "1":
+			int temp1;
+			try {
+				temp1 = Integer.parseInt(inputString);
+			} catch (NumberFormatException e) {
+				continue;
+				// TODO: handle exception
+			}
+			switch (temp1) {
+			case 1:
 				System.out.println("Enter a age:");
 				inputString = key.nextLine();
 				try {
@@ -226,7 +239,7 @@ public class Librarian extends Account{
 				}
 				break;
 
-			case "2":
+			case 2:
 				System.out.println("Enter a balance:");
 				inputString = key.nextLine();
 				try {
@@ -237,7 +250,7 @@ public class Librarian extends Account{
 				}
 				break;	
 				
-			case "3":
+			case 3:
 				System.out.println("Enter a checkouted number:");
 				inputString = key.nextLine();
 				try {
@@ -248,7 +261,7 @@ public class Librarian extends Account{
 				}
 				break; 
 				
-			case "4":
+			case 4:
 				System.out.println("Enter 1 to add, 2 to remove:");
 				inputString = key.nextLine();
 				if(inputString.equals("1")) {
@@ -269,19 +282,19 @@ public class Librarian extends Account{
 				}
 				break;
 				
-			case "5":
+			case 5:
 				System.out.println("Enter a email:");
 				inputString = key.nextLine();
 				account.setEmail(inputString);
 				break;	
 				
-			case "6":
+			case 6:
 				System.out.println("Enter a ID:");
 				inputString = key.nextLine();
 				account.setId(inputString);
 				break;
 				
-			case "7":
+			case 7:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
 				if(inputString.equals("1")) {
@@ -293,29 +306,29 @@ public class Librarian extends Account{
 				}
 				break;	
 				
-			case "8":
+			case 8:
 				account.setMaxCheckout();
 				break;	
 				
-			case "9":
+			case 9:
 				System.out.println("Enter a Name:");
 				inputString = key.nextLine();
 				account.setName(inputString);
 				break;
 				
-			case "10":
+			case 10:
 				System.out.println("Enter a password:");
 				inputString = key.nextLine();
 				account.resetPassword(inputString);
 				break;
 				
-			case "11":
+			case 11:
 				System.out.println("Enter a type:");
 				inputString = key.nextLine();
 				account.setType(inputString);
 				break;
 				
-			case "12":
+			case 12:
 				System.out.println("Enter 1 to add, 2 to remove:");
 				inputString = key.nextLine();
 				if(inputString.equals("1")) {
@@ -341,7 +354,7 @@ public class Librarian extends Account{
 				}
 				break;
 				
-			case "0":
+			case 0:
 				quit = true;
 				break;
 				
