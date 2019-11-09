@@ -15,6 +15,7 @@ import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="media.json";
     ArrayList<Media> media = new ArrayList<Media>();
+
     public ArrayList<Media> parserMedia(){
         
         try
@@ -62,6 +63,8 @@ public class MediaParser implements MediaInterface {
 				media = searchbook.get(i);
 			}
 			if (i == searchbook.size()-1 && found == false) {
+				System.out.println("Did not match any media.");
+				
 				return null;
 			}
 		}

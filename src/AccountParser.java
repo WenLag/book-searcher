@@ -19,7 +19,6 @@ public class AccountParser {
 	ArrayList<Account> account = new ArrayList<Account>();
 	public ArrayList<Account> parseAccount() {
 		
-		
 		try {
 			FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
 			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);

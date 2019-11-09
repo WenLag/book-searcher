@@ -100,7 +100,7 @@ public class UserInterface {
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
 		AverageUser newAccount = new AverageUser(ID,email,password,age);
-		newAccount = (AverageUser) newAccount.ungradeAccount();
+		newAccount = (AverageUser) newAccount.ungreadAccount();
 		item1.put("age", newAccount.getAge());
 		item1.put("Balance", 0.0);
 	    item1.put("email", newAccount.getEmail());
