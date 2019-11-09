@@ -340,7 +340,7 @@ public abstract class Account {
 		if(getWaitList() == null) {
 			System.out.println("waitlist is null");
 			return; 
-		}
+		} 
 		if(getWaitList().size() <= this.getMaxCheckout()) {
 			media.addHoldList(this.getId());
 			getWaitList().add(media.getName());
