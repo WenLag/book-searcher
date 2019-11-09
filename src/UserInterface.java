@@ -57,6 +57,7 @@ public class UserInterface {
 			String type = loggedInAccount.get(i).getType();
 			if (passwordMatch.equals(Password) && iD.equals(ID)) {
 				MainAccount = loggedInAccount.get(i);
+				MainAccount.notifyHold();;
 				System.out.println("Your're logged in as " + name + " as an " + type);
 				if (type.equals("AverageUser")) {
 					averageUserUI();

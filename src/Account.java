@@ -328,7 +328,12 @@ public abstract class Account {
 	 * the method send a email to user if the state of item they hold is changed
 	 */
 	public void notifyHold() {
-		System.out.printf("Notified User %s Hold Information by Email: %s\n", getId(),getEmail());
+		for(int i = 0; i < waitList.size(); i++) {
+			Media media = MP.search(MP.parserMedia(), waitList.get(i));
+			if(media.getNumberOfCopy() != 0)
+				System.out.printf("Notified User %s\t%s has %d copies available!\n", 
+						getId(),media.getName(),media.getNumberOfCopy());
+		}
 	}
 
 	/**
