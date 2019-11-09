@@ -94,13 +94,17 @@ public class UserInterface {
 		String password = input.next();
 		System.out.println("Please type in your email\n");
 		String email = input.next();
-		JSONObject obj = new JSONObject();
+		//JSONObject obj = new JSONObject();
 		ArrayList<Account> accounts = AP.parseAccount();
 
 		AverageUser newAccount = new AverageUser(ID,email,password,age);
-		newAccount = (AverageUser) newAccount.ungradeAccount();
-		if(newAccount.checkInput())
+		if(newAccount.checkInput()) {
+			newAccount = (AverageUser) newAccount.ungradeAccount();
 			addAccountToDB(newAccount, accounts);
+		} else {
+			Login();
+		}
+	
 
 //		JSONArray arr = new JSONArray();
 //		JSONObject item1 = new JSONObject();
@@ -135,16 +139,7 @@ public class UserInterface {
 
 
 		// try-with-resources statement based on post comment below :)
-		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-
-			  file.write(obj.toString());
-
-			System.out.println("Successfully Added onto Database File...");
-
-		}
-
-		Login();
-	}
+			}
 
 	public void GuestLogin() {
 		System.out.println("Would you like to...\n1:Search");
@@ -233,7 +228,7 @@ public class UserInterface {
 
 		}
 		if (choice == 6) {
-			MainAccount.addToDatabase();
+			//MainAccount.addToDatabase();
 		}
 		if (choice == 7) {
 
@@ -363,9 +358,11 @@ public class UserInterface {
 
 	}
 
-	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) {
+	@SuppressWarnings("unchecked")
+	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) throws IOException {
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
+		JSONObject obj = new JSONObject();
 		//AverageUser newAccount = new AverageUser(ID,email,password,age);
 		//newAccount = (AverageUser) newAccount.ungradeAccount();
 		item1.put("age", newAccount.getAge());
@@ -393,6 +390,16 @@ public class UserInterface {
 			arr.add(item0);
 			obj.put("account",arr);
 		}
+		try (FileWriter file = new FileWriter("accountDatabase.json")) {
+
+			  file.write(obj.toString());
+
+			System.out.println("Successfully Added onto Database File...");
+
+		}
+
+	
+
 	}
 
 
