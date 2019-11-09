@@ -2,8 +2,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -22,22 +22,22 @@ public class UserInterface {
 		System.out.println("\nPlease type in the following number corresponding to the action");
 		System.out.println("__________________________________");
 		System.out.println("\n1:Login\n2:Register\n3:Guest Login\n4:Exit");
-		System.out.println("__________________________________");				
+		System.out.println("__________________________________");
 		int choice = input.nextInt();
-		
+
 		if (choice == 1) {
-			Login();			
+			Login();
 		}
 		else if (choice == 2) {
 			Register();
 		}
 		else if (choice == 3) {
 			checkoutUI();
-		} 
+		}
 		else if (choice == 4) {
 			updateDB();
 			System.exit(0);
-		} 	
+		}
 		else{
 			System.out.println("invalid input");
 			front();
@@ -49,7 +49,7 @@ public class UserInterface {
 		String ID = input.next();
 		System.out.println("Password");
 		String Password = input.next();
-		
+
 		for (int i = 0; i < loggedInAccount.size(); i++) {
 			String iD = loggedInAccount.get(i).getId();
 			String passwordMatch = loggedInAccount.get(i).getPasswordString();
@@ -60,22 +60,22 @@ public class UserInterface {
 				System.out.println("Your're logged in as " + name + " as an " + type);
 				if (type.equals("AverageUser")) {
 					averageUserUI();
-					
+
 				}
 				if (type.equals("Librarian")) {
-					
+
 					librarianUI();
 				}
 				found = true;
 			}
-				
+
 			if (i == loggedInAccount.size()-1 && found == false){
 				System.out.println("Wrong ID or Password");
 				Login();
 			}
-			
-				
-				
+
+
+
 			}
 		}
 	
@@ -93,54 +93,59 @@ public class UserInterface {
 		System.out.println("Please type your desired password.\n");
 		String password = input.next();
 		System.out.println("Please type in your email\n");
-		String email = input.next();	
+		String email = input.next();
 		JSONObject obj = new JSONObject();
 		ArrayList<Account> accounts = AP.parseAccount();
-		
-		JSONArray arr = new JSONArray();
-		JSONObject item1 = new JSONObject();
+
 		AverageUser newAccount = new AverageUser(ID,email,password,age);
-		newAccount = (AverageUser) newAccount.ungreadAccount();
-		item1.put("age", newAccount.getAge());
-		item1.put("Balance", 0.0);
-	    item1.put("email", newAccount.getEmail());
-	    item1.put("id", newAccount.getId());
-	    item1.put("isFlagged", false);
-	    item1.put("maxCheckout", newAccount.getMaxCheckout());
-	    item1.put("name", newAccount.getName());
-	    item1.put("password", newAccount.getPasswordString());
-	    item1.put("type", newAccount.getType());
-	    arr.add(item1);
-		
-		for (int i = 0; i < accounts.size(); i++) {
-			JSONObject item0 = new JSONObject();
-			item0.put("age",accounts.get(i).getAge());
-			item0.put("Balance",accounts.get(i).getBalance());
-			item0.put("email", accounts.get(i).getEmail());
-			item0.put("id", accounts.get(i).getId());
-			item0.put("isFlagged",accounts.get(i).isFlagged());
-			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
-			item0.put("name", accounts.get(i).getName());
-			item0.put("type", accounts.get(i).getType());
-			item0.put("password", accounts.get(i).getPasswordString());
-			arr.add(item0);
-			obj.put("account",arr);
-		}
-		 
-		
-	 
+		newAccount = (AverageUser) newAccount.ungradeAccount();
+		if(newAccount.checkInput())
+			addAccountToDB(newAccount, accounts);
+
+//		JSONArray arr = new JSONArray();
+//		JSONObject item1 = new JSONObject();
+//		AverageUser newAccount = new AverageUser(ID,email,password,age);
+//		newAccount = (AverageUser) newAccount.ungradeAccount();
+//		item1.put("age", newAccount.getAge());
+//		item1.put("Balance", 0.0);
+//	    item1.put("email", newAccount.getEmail());
+//	    item1.put("id", newAccount.getId());
+//	    item1.put("isFlagged", false);
+//	    item1.put("maxCheckout", newAccount.getMaxCheckout());
+//	    item1.put("name", newAccount.getName());
+//	    item1.put("password", newAccount.getPasswordString());
+//	    item1.put("type", newAccount.getType());
+//	    arr.add(item1);
+//
+//		for (int i = 0; i < accounts.size(); i++) {
+//			JSONObject item0 = new JSONObject();
+//			item0.put("age",accounts.get(i).getAge());
+//			item0.put("Balance",accounts.get(i).getBalance());
+//			item0.put("email", accounts.get(i).getEmail());
+//			item0.put("id", accounts.get(i).getId());
+//			item0.put("isFlagged",accounts.get(i).isFlagged());
+//			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+//			item0.put("name", accounts.get(i).getName());
+//			item0.put("type", accounts.get(i).getType());
+//			item0.put("password", accounts.get(i).getPasswordString());
+//			arr.add(item0);
+//			obj.put("account",arr);
+//		}
+
+
+
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-			
+
 			  file.write(obj.toString());
-			
+
 			System.out.println("Successfully Added onto Database File...");
-			
+
 		}
-		
+
 		Login();
 	}
-	
+
 	public void GuestLogin() {
 		System.out.println("Would you like to...\n1:Search");
 		decision = input.nextInt();
@@ -148,16 +153,16 @@ public class UserInterface {
 			System.out.println("Enter the item title");
 			input.nextLine();
 			String title = input.nextLine();
-			MP.search(MP.getList(),title);		
+			MP.search(MP.getList(),title);
 		}
 	}
-	
+
 	public void averageUserUI() throws IOException {
-		
+
 		System.out.println("Would you like to...\n1:Search\n2:View Fines\n3:View Waitlist\n4:Checkout\n5:Exit");
 		decision = input.nextInt();
 		if (decision == 1) {
-			searchUI();				
+			searchUI();
 		}
 		else if (decision == 2) {
 			fineUI();
@@ -166,9 +171,9 @@ public class UserInterface {
 			MainAccount.getWaitList();
 		}
 		else if (decision == 4) {
-			checkoutUI();	
+			checkoutUI();
 		}
-		
+
 		else if (decision == 5) {
 			try {
 				updateDB();
@@ -176,15 +181,15 @@ public class UserInterface {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
+		}
 		else {
 			System.out.println("invalid input");
 			averageUserUI();
 		}
-		
-		
+
+
 	}
-		
+
 	private void fineUI() throws IOException {
 		System.out.println("_____________________________________\n");
 		System.out.println("Your total fine: " + MainAccount.getBalance());
@@ -206,14 +211,14 @@ public class UserInterface {
 			System.out.println("_____________________________________");
 			mainUI();
 		}
-		
+
 	}
 	public void librarianUI() throws IOException {
-		
+
 		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
 		int choice = input.nextInt();
 		if (choice == 1) {
-			searchUI();						
+			searchUI();
 		}
 		if (choice == 2) {
 			checkoutUI();
@@ -222,37 +227,37 @@ public class UserInterface {
 			MP.addMediaDatabase();
 		}
 		if (choice == 4) {
-			
+
 		}
 		if (choice == 5) {
-			
+
 		}
 		if (choice == 6) {
 			MainAccount.addToDatabase();
 		}
 		if (choice == 7) {
-			
+
 		}
 		if (choice == 8) {
 			updateDB();
 		}
 	}
-	
+
 	public void childUI() {
 		System.out.println("Would you like to...\n1:Search\n2:View Waitlist");
 		decision = input.nextInt();
 		if (decision == 1) {
-			searchUI();					
+			searchUI();
 		}
 	}
-	
+
 	public void searchUI() {
 		System.out.println("Enter the item title or IBSN you'd like to search for");
 		input.nextLine();
 		String title = input.nextLine();
-		MP.search(MP.getList(),title);	
+		MP.search(MP.getList(),title);
 	}
-	
+
 	public void mainUI() throws IOException{
 		if(MainAccount.getType().equals("AverageUser")) {
 			averageUserUI();
@@ -264,7 +269,7 @@ public class UserInterface {
 			averageUserUI();
 		}
 	}
-	
+
 	public void checkoutUI() {
 		System.out.println("Enter the item title or IBSN that you'd like to checkout");
 		input.nextLine();
@@ -293,7 +298,7 @@ public class UserInterface {
 		int ans = input.nextInt();
 		if (ans == 1) {
 			checkoutUI();
-		} else { 
+		} else {
 			try {
 				mainUI();
 			} catch (IOException e) {
@@ -301,9 +306,9 @@ public class UserInterface {
 			}
 		}
 	}
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void updateDB() throws IOException {
 		JSONArray arr = new JSONArray();
@@ -323,7 +328,7 @@ public class UserInterface {
 			obj.put("books",arr);
 		  }
 		try (FileWriter file = new FileWriter("books.json")) {
-			
+
 			  file.write(obj.toString());
 			  file.close();
 		}
@@ -344,22 +349,51 @@ public class UserInterface {
 			accountArr.add(item0);
 			accountObj.put("account",accountArr);
 		}
-		 
-		
-	 
+
+
+
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-			
+
 			  file.write(accountObj.toString());
-			
+
 			System.out.println("Successfully Added onto Database File...");
-			
+
 		}
 
 	}
-	
+
+	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) {
+		JSONArray arr = new JSONArray();
+		JSONObject item1 = new JSONObject();
+		//AverageUser newAccount = new AverageUser(ID,email,password,age);
+		//newAccount = (AverageUser) newAccount.ungradeAccount();
+		item1.put("age", newAccount.getAge());
+		item1.put("Balance", 0.0);
+	    item1.put("email", newAccount.getEmail());
+	    item1.put("id", newAccount.getId());
+	    item1.put("isFlagged", false);
+	    item1.put("maxCheckout", newAccount.getMaxCheckout());
+	    item1.put("name", newAccount.getName());
+	    item1.put("password", newAccount.getPasswordString());
+	    item1.put("type", newAccount.getType());
+	    arr.add(item1);
+
+		for (int i = 0; i < accounts.size(); i++) {
+			JSONObject item0 = new JSONObject();
+			item0.put("age",accounts.get(i).getAge());
+			item0.put("Balance",accounts.get(i).getBalance());
+			item0.put("email", accounts.get(i).getEmail());
+			item0.put("id", accounts.get(i).getId());
+			item0.put("isFlagged",accounts.get(i).isFlagged());
+			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
+			item0.put("name", accounts.get(i).getName());
+			item0.put("type", accounts.get(i).getType());
+			item0.put("password", accounts.get(i).getPasswordString());
+			arr.add(item0);
+			obj.put("account",arr);
+		}
+	}
+
 
 }
-
-	
-

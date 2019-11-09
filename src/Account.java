@@ -391,13 +391,15 @@ public abstract class Account {
 	 * check if input is valid if is valid then add the new account to database
 	 * else do not add account
 	 */
-	protected void checkInput(){
+	public boolean checkInput(){
 		if(getId().equals("null") || getEmail().equals("null") || getType().equals("Unknown") ||
 				getPasswordString().equals("null")) {
 			System.out.println("Account Not created!!");
+			return false;
 		}else {
 			System.out.println("Account created!!");
-			addToDatabase();
+			return true;
+			//addToDatabase();
 		}
 	}
 	
@@ -415,9 +417,9 @@ public abstract class Account {
 	/**
 	 * Add an account to database
 	 */
-	protected void addToDatabase() {
-		//TODO add Account to database
-	}
+//	protected void addToDatabase() {
+//		//TODO add Account to database
+//	}
 	
 	/**
 	 * find how many days 
