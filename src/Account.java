@@ -337,9 +337,13 @@ public abstract class Account {
 		//Media media =// MP.search(media);
 		if(media == null)
 			return;
-		if(waitList.size() <= this.getMaxCheckout()) {
-		media.addHoldList(this.getId());
-		waitList.add(media.getName());
+		if(getWaitList() == null) {
+			System.out.println("waitlist is null");
+			return;
+		}
+		if(getWaitList().size() <= this.getMaxCheckout()) {
+			media.addHoldList(this.getId());
+			getWaitList().add(media.getName());
 		}else {
 			System.out.println("You can not hold any more items");
 		}
