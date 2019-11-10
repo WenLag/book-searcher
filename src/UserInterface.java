@@ -202,7 +202,12 @@ public class UserInterface {
 			checkoutUI();
 		}
 		if (choice ==3) {
-			MP.addMediaDatabase();
+			System.out.println("put in type of item");
+			String type = input.nextLine();
+			librarian.addItem(item, type);
+			updateDB();
+			mainUI();
+			
 		}
 		if (choice == 4) {
 			String aMediaName = input.nextLine();
