@@ -1,1 +1,91 @@
-{"books":[{"ISBN":"10293123","numCopies":1,"year":"1920","author":"dante","newArrival":false,"genre":"fantasy","rating":0,"Maxrent":14,"title":"dante's peak"},{"ISBN":"1234123","numCopies":0,"year":"1959","author":"9","newArrival":false,"genre":"science","rating":0,"Maxrent":14,"title":"marsbars"},{"ISBN":"039480001X","numCopies":0,"year":"1957","author":"Dr. Seuss","newArrival":false,"genre":"Children","rating":0,"Maxrent":14,"title":"The Cat in the Hat"},{"ISBN":"9780761119753","numCopies":2,"year":"2000","author":"Sandra Boynton","newArrival":true,"genre":"Children","rating":0,"Maxrent":14,"title":"Pajama Time"},{"ISBN":"1503290565","numCopies":1,"year":"1813","author":"Jane Austin","newArrival":false,"genre":"Women's Fiction","rating":0,"Maxrent":14,"title":"Pride and Prejudice"},{"ISBN":"1451635621","numCopies":2,"year":"1936","author":"Margaret Mitchell","newArrival":false,"genre":"Historical Fiction","rating":0,"Maxrent":14,"title":"Gone With the Wind"},{"ISBN":"1451635621","numCopies":0,"year":"1960","author":"Margaret Mitchell","newArrival":false,"genre":"Historical Fiction","rating":0,"Maxrent":14,"title":"To Kill A Mockingbird"},{"ISBN":"1451635621","numCopies":1,"year":"1979","author":"Margaret Mitchell","newArrival":false,"genre":"Historical Fiction","rating":0,"Maxrent":14,"title":"Hitchhiker's guide to the galaxy"}]}
+{
+    "books": [{
+        "ISBN": "10293123",
+        "numCopies": 1,
+        "year": "1920",
+        "author": "dante",
+        "newArrival": false,
+        "genre": "fantasy",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "dante's peak",
+        "comment":[]
+    }, {
+        "ISBN": "1234123",
+        "numCopies": 0,
+        "year": "1959",
+        "author": "9",
+        "newArrival": false,
+        "genre": "science",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "marsbars",
+        "comment":[]
+    }, {
+        "ISBN": "039480001X",
+        "numCopies": 0,
+        "year": "1957",
+        "author": "Dr. Seuss",
+        "newArrival": false,
+        "genre": "Children",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "The Cat in the Hat",
+        "comment":[]
+    }, {
+        "ISBN": "9780761119753",
+        "numCopies": 2,
+        "year": "2000",
+        "author": "Sandra Boynton",
+        "newArrival": true,
+        "genre": "Children",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "Pajama Time",
+        "comment":[]
+    }, {
+        "ISBN": "1503290565",
+        "numCopies": 1,
+        "year": "1813",
+        "author": "Jane Austin",
+        "newArrival": false,
+        "genre": "Women's Fiction",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "Pride and Prejudice",
+        "comment":[]
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 2,
+        "year": "1936",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "Gone With the Wind",
+        "comment":[]
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 0,
+        "year": "1960",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "To Kill A Mockingbird",
+        "comment":[]
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 1,
+        "year": "1979",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "Maxrent": 14,
+        "title": "Hitchhiker's guide to the galaxy",
+        "comment":[]
+    }]
+}
