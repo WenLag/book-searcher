@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Child extends AverageUser{
 
-	public Child(String id, String email, String password, int age) {
-		super(id, email, password, age);
+	public Child(String id, String email, String password, int age, String name) {
+		super(id, email, password, age, name);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
 	}
