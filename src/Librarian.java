@@ -35,15 +35,19 @@ public class Librarian extends Account{
 	
 	protected void addItem(ArrayList<Media> aList, String aTpye) {
 		if(aTpye.equalsIgnoreCase("book")) {
-			
-			Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,
-		    		String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
+			BookItem newBookItem = new BookItem();
+			MP.input(newBookItem);
 		}else if (aTpye.equalsIgnoreCase("ebook")) {
-			
+			Ebook newItem = new Ebook();
+			MP.input(newItem);
 		}else if (aTpye.equalsIgnoreCase("magazine")) {
-			
+			Magazine newItem = new Magazine();
+			MP.input(newItem);
 		}else if (aTpye.equalsIgnoreCase("dvd")) {
-			
+			DVD newItem = new DVD();
+			MP.input(newItem);
+		}else {
+			System.out.println("Unknown Type");
 		}
 	}
 	
