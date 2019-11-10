@@ -5,8 +5,8 @@ public class AverageUser extends Account{
 	private final String TEACHER = "AABBCC";
 	private final String LIBRARAN = "AABBDD";
 	
-	public AverageUser(String id, String email, String password, long age) {
-		super(id, email, password, age);
+	public AverageUser(String id, String email, String password, long age, String name) {
+		super(id, email, password, age, name);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
 	}

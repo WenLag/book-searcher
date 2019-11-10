@@ -8,8 +8,8 @@ import org.json.simple.JSONObject;
  
 public class Librarian extends Account{
 
-	private Librarian(String id, String email, String password, int age) {
-		super(id, email, password,age);
+	private Librarian(String id, String email, String password, int age, String name) {
+		super(id, email, password,age, name);
 		this.setMaxCheckout();
 	}
 	
@@ -63,6 +63,11 @@ public class Librarian extends Account{
 		else {
 			System.out.printf("%s not find!\n",aName);
 		}
+	}
+	
+	public Account ungreadAccount(String aCode) {
+		return this;
+		
 	}
 	
 	protected void updateItem(Media media) {

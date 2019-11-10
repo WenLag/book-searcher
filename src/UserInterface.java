@@ -24,23 +24,33 @@ public class UserInterface {
 		System.out.println("__________________________________");
 		System.out.println("\n1:Login\n2:Register\n3:Guest Login\n4:Exit");
 		System.out.println("__________________________________");
-		int choice = input.nextInt();
-		if (choice == 1) {
+		String inputString = input.nextLine();
+		int temp;
+		while(true) {
+		try {
+			temp = Integer.parseInt(inputString);
+		} catch (NumberFormatException e) {
+			continue;
+			// TODO: handle exception
+		}
+		switch (temp) {
+		case 1:
 			Login();
-		}
-		else if (choice == 2) {
+			break;
+		case 2: 
 			Register();
-		}
-		else if (choice == 3) {
+			break;
+		case 3:
 			searchUI();
-		}
-		else if (choice == 4) {
+			break;
+		case 4:
 			System.exit(0);
+		default:
+			System.out.println("Invalid input");
+			break;
 		}
-		else{
-			System.out.println("invalid input");
-			front();
-		}
+		break;
+	}
 	}
 	public void Login() throws IOException {
 		boolean found = false;
@@ -97,7 +107,7 @@ public class UserInterface {
 		System.out.println("Please type in your email: ");
 		String email = input.nextLine();
 		ArrayList<Account> accounts = AP.getList();
-		AverageUser newAccount = new AverageUser(ID,email,password,age);
+		AverageUser newAccount = new AverageUser(ID,email,password,age, name);
 		if(newAccount.checkInput()) {
 			newAccount = (AverageUser) newAccount.ungradeAccount();
 			addAccountToDB(newAccount, accounts);
@@ -112,7 +122,7 @@ public class UserInterface {
 
 	public void averageUserUI() throws IOException {
 		System.out.println("_____________________________________");
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Waitlist\n5:View Fines\n6:Comment\n7:Exit");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Waitlist\n5:View Fines\n6:Comment\n7:Upgrade Account\n8:Exit");
 		System.out.println("_____________________________________");
 		decision = input.nextInt();
 		input.nextLine();
@@ -151,13 +161,21 @@ public class UserInterface {
 			updateDB();
 
 		} else if (decision == 7){
+			int index = loggedInAccount.indexOf(MainAccount);
+			System.out.println("Enter");
+			String code = input.nextLine();
+			MainAccount =  MainAccount.ungreadAccount(code);
+			loggedInAccount.set(index, MainAccount);
+			
+		} else if (decision == 8) {
 			try {
 				updateDB();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
+		}
+		else {
 			System.out.println("invalid input");
 			mainUI();
 		}
@@ -310,6 +328,7 @@ public class UserInterface {
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			Media.put("rating",media.get(i).getRating());
 			Media.put("comment", media.get(i).getCommitlist());
+			Media.put("type", media.get(i).getType());
 			arr.add(Media);
 			obj.put("books",arr);
 		  }

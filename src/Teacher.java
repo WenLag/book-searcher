@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Teacher extends Account{
 
-	public Teacher(String id, String email, String password, int age) {
-		super(id, email, password, age);
+	public Teacher(String id, String email, String password, int age, String name) {
+		super(id, email, password, age, name);
 		// TODO Auto-generated constructor stub
 		this.setMaxCheckout();
 	}
@@ -13,6 +13,9 @@ public class Teacher extends Account{
 		super(account);
 	}
 	
+	public Account ungreadAccount(String aCode) {
+		return this;
+	}
 	/**
 	 * Load data from database
 	 */

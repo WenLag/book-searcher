@@ -30,11 +30,12 @@ public abstract class Account {
 	protected ArrayList<String> checkoutList = new ArrayList<String>();
 
 
-	public Account(String id, String email, String password, long age) {
+	public Account(String id, String email, String password, long age, String name) {
 		this.setId(id);
 		this.setEmail(email);
 		this.setBalance(0);
 		this.setFlagged(false);
+		this.setName(name);
 		this.setPasswordString(password);
 		this.setAge(age);
 		this.setType();
@@ -324,6 +325,7 @@ public abstract class Account {
 		return true;
 	}
 
+	public abstract Account ungreadAccount(String aCode);
 	/**
 	 * the method send a email to user if the state of item they hold is changed
 	 */
