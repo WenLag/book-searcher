@@ -59,7 +59,6 @@ public class MediaParser implements MediaInterface {
 			String title1 = searchbook.get(i).getName();
 			
 			if (aMediaName.equalsIgnoreCase(title1)) {
-				System.out.println("Title: "+ title1 + "\nNumber of copies: " + searchbook.get(i).getNumberOfCopy());
 				found = true;
 				media = searchbook.get(i);
 			}

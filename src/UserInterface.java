@@ -131,7 +131,10 @@ public class UserInterface {
 			fineUI();
 		}
 		else if (decision == 3) {
-			MainAccount.getWaitList();
+			System.out.println("__________________________________________\n");
+			System.out.println("You're on the wait list for "+MainAccount.getWaitList());
+			System.out.println("__________________________________________\n");
+			mainUI();
 		}
 		else if (decision == 4) {
 			checkoutUI();
@@ -296,10 +299,11 @@ public class UserInterface {
 		}
 		JSONObject accountObj = new JSONObject();
 		JSONArray accountArr = new JSONArray();
-		JSONArray waitArr = new JSONArray();
-		JSONArray checkoutArr = new JSONArray();
+		
 		ArrayList<Account> accounts = AP.getList();
 		for (int i = 0; i < accounts.size(); i++) {
+			JSONArray waitArr = new JSONArray();
+			JSONArray checkoutArr = new JSONArray();
 			JSONObject item0 = new JSONObject();
 			item0.put("age",accounts.get(i).getAge());
 			item0.put("Balance",accounts.get(i).getBalance());
@@ -310,16 +314,17 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			item0.put("password", accounts.get(i).getPasswordString());
+			if(accounts.get(i).getWaitList().size() != 0)
 			waitArr.add(accounts.get(i).getWaitList());
 			checkoutArr.add(accounts.get(i).getCheckoutList());
+			
 			item0.put("waitlist",waitArr);
 			item0.put("checkoutlist", checkoutArr);
 			accountArr.add(item0);
 			accountObj.put("account",accountArr);
-			waitArr = new JSONArray();
-			checkoutArr = new JSONArray();
+			
 		}
-
+		
 
 
 		// try-with-resources statement based on post comment below :)
@@ -351,9 +356,9 @@ public class UserInterface {
 	    item1.put("name", newAccount.getName());
 	    item1.put("password", newAccount.getPasswordString());
 	    item1.put("type", newAccount.getType());
-	    waitArr.add(newAccount.getWaitList());
+	    waitArr.add(newAccount.getWaitList().get(0));
 		checkoutArr.add(newAccount.getCheckoutList());
-		item1.put("waitlist",waitArr);
+		//item1.put("waitlist",waitArr);
 		item1.put("checkoutlist", checkoutArr);
 	    arr.add(item1);
 
@@ -368,9 +373,16 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			item0.put("password", accounts.get(i).getPasswordString());
-			waitArr.add(accounts.get(i).getWaitList());
-			checkoutArr.add(accounts.get(i).getCheckoutList());
-			item0.put("waitlist",waitArr);
+			//String[] temp = (String[]) accounts.get(i).getWaitList().toArray();
+			//for(int j = 0; j <accounts.get(i).getWaitList().size(); j++) {
+			waitArr.add(accounts.get(i).getWaitList().get(0));
+			//}
+			checkoutArr.add(accounts.get(i).getCheckoutList().get(0));
+			for (int k = 0; k < accounts.get(i).getWaitList().size(); k++ ) {
+				System.out.println("************************************"+accounts.get(i).getWaitList().get(k));
+			}
+			
+			item0.put("waitlist",accounts.get(i).getWaitList().get(0));
 			item0.put("checkoutlist", checkoutArr);
 			arr.add(item0);
 			obj.put("account",arr);
@@ -378,8 +390,6 @@ public class UserInterface {
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
 
 			  file.write(obj.toString());
-
-			System.out.println("Successfully Added onto Database File...");
 
 		}
 

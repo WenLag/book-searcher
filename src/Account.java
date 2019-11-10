@@ -223,12 +223,10 @@ public abstract class Account {
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(Media media) {
-		//TODO make checkout function
-		
-		//Media media = searchItem(aName);
 		Scanner input = new Scanner(System.in);
 		if (media == null) {
 			System.out.println("No books' with that title or IBSN");
+			return;
 		}
 		if(!this.isAbleCheckout()) {
 			System.out.println("This account can not checkout items!");
@@ -251,11 +249,8 @@ public abstract class Account {
 			int ans = input.nextInt();
 			if (ans == 1) {
 				putlist(media);
-			} else if (ans == 2){
-				
 			} else {
-				return;
-			}
+							}
 		} 
 		return;
 	} 
