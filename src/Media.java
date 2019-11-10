@@ -15,7 +15,7 @@ public class Media {
     protected long Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
-    protected long Maxrent;	
+    protected long Maxrent;
     protected Queue<String> holdlist =new LinkedList<String>();
     protected ArrayList<String> commentlist = new ArrayList<String>();
     public ArrayList<String> getCommitlist() {
@@ -39,7 +39,7 @@ public class Media {
         this.setisNewArrive(isNewArrive);
         this.setMaxrent(Maxrent);
         this.setCommitlist(commentlist);
-        
+
     }
 
 	public String getPublisher() {
@@ -56,7 +56,7 @@ public class Media {
 
     public void setNumberOfCopy(long NumberOfCopy) {
         this.numberOfCopy = NumberOfCopy;
-            
+
     }
 
     public String getISBN() {
@@ -131,7 +131,7 @@ public class Media {
     {
         this.isNewArrive=isNewArrive;
     }
-    
+
     public void addHoldList(String aId)
     {
     	Queue<String> Holdlist = new LinkedList<>();
@@ -145,24 +145,23 @@ public class Media {
     {
     	this.Maxrent=Maxrent;
     }
-    public void addComment(Media media, ArrayList<Media> aMedias)
+    public void addComment()
     {
-        MediaParser Mp= new MediaParser();
+        //MediaParser Mp= new MediaParser();
         Scanner input= new Scanner(System.in);
-        System.out.println("enter the book you want to comment");
-        String book=input.nextLine();
-        Mp.search(aMedias, book).getRating();
-        System.out.println("enter some comments");
+       // Mp.search(media, title).getRating();
+        System.out.println("enter some commits");
         String cmt= input.nextLine();
-        media= Mp.search(aMedias,book);
-        if(media!=null)
-        {
-         media.getCommitlist().add(cmt);
-        }
-        else 
-        {
-        	System.out.println("System dosen't have this book");
-        }
-        
+        //media= Mp.search(aMedias,book);
+//        if(media!=null)
+//        {
+//         media.getCommitlist().add(cmt);
+//        }
+//        else
+//        {
+//        	System.out.println("System dosen't have this book");
+//        }
+        this.getRating();
+        this.commentlist.add(cmt);
     }
 }

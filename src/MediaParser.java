@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="media.json";
-   
     ArrayList<Media> media = new ArrayList<Media>();
     public ArrayList<Media> parserMedia(){
     	 
@@ -143,9 +142,7 @@ public class MediaParser implements MediaInterface {
 			  file.write(obj.toString());
 			  file.close();
 			
-		}
-			
-		
+		}	
 	}
 	@Override
 	public void removeMediaDatabase() {
