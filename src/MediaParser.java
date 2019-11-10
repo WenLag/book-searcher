@@ -197,7 +197,7 @@ public class MediaParser implements MediaInterface {
 		newArrival = true;
 		} else {
 			newArrival = false;
-		}
+		} 
 	}
 
 	

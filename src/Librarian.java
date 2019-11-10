@@ -33,13 +33,17 @@ public class Librarian extends Account{
 		this.maxCheckout = 999999;
 	}
 	
-	protected void addItem() {
-		MediaParser MP = new MediaParser();
-		try {
-			MP.addMediaDatabase();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	protected void addItem(ArrayList<Media> aList, String aTpye) {
+		if(aTpye.equalsIgnoreCase("book")) {
+			
+			Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,
+		    		String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
+		}else if (aTpye.equalsIgnoreCase("ebook")) {
+			
+		}else if (aTpye.equalsIgnoreCase("magazine")) {
+			
+		}else if (aTpye.equalsIgnoreCase("dvd")) {
+			
 		}
 	}
 	
