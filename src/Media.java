@@ -48,7 +48,7 @@ public class Media {
     }
     
     public String setType(String type) {
-    	this.Type = type;
+    	return this.Type = type;
     }
 
 	public String getPublisher() {
