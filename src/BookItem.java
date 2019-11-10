@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class BookItem extends Media {
-	public BookItem(String Title,String Year, String Genre,String ISBN,long Rating,String Pulisher,String Author,
+	public BookItem(String Title,String Year, String Genre,
+			String ISBN,long Rating,String Pulisher,String Author,
 			long numberOfCopy,boolean isNewArrive,long Maxrent,ArrayList<String> commentlist, String type) {
-		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
+		super(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
 	public BookItem()

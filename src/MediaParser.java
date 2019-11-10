@@ -15,6 +15,7 @@ import java.util.*;
 public class MediaParser implements MediaInterface {
     private static final String MEDIA_FILE_NAME="media.json";
     ArrayList<Media> media = new ArrayList<Media>();
+    LoadMediaDatabase lmd=new LoadMediaDatabase();
     public ArrayList<Media> parserMedia(){
     	 
         try
@@ -37,7 +38,7 @@ public class MediaParser implements MediaInterface {
 				long Maxrent=(long)booksJSON.get("Maxrent");
 				String type = (String)booksJSON.get("type");
 				ArrayList<String> commentlist = (ArrayList<String>)booksJSON.get("comment");
-				media.add(new Media(title,year,genre,rating,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent,commentlist, type));
+				media.add(lmd.Load(title,year,genre,Isbn,rating,publisher,author,numOfcopies,isNewArrival,Maxrent,commentlist,type));
 				
 			}
         }

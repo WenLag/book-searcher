@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Ebook extends Media {
-	public Ebook(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,
+	public Ebook(String Title,String Year, String Genre,String ISBN,long Rating,String Pulisher,String Author,long numberOfCopy,
 			boolean isNewArrive,long Maxrent,ArrayList<String> commentlist, String type) 
 	{
-		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
+		super(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 			
 	}
 	public Ebook()
