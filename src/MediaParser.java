@@ -30,12 +30,13 @@ public class MediaParser implements MediaInterface {
 				String year= (String)booksJSON.get("year");
 				String genre=(String)booksJSON.get("genre");
 				String Isbn= (String)booksJSON.get("ISBN");
+				long rating=(long)booksJSON.get("Rating");
 				String publisher = (String)booksJSON.get("publisher");
 				String author=(String)booksJSON.get("author");
 				long numOfcopies=(long)booksJSON.get("numCopies");
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
 				long Maxrent=(long)booksJSON.get("Maxrent");
-				media.add(new Media(title,year,genre,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
+				media.add(new Media(title,year,genre,rating,Isbn,publisher,author,numOfcopies,isNewArrival,Maxrent));
 				
 			}
         }
@@ -85,6 +86,8 @@ public class MediaParser implements MediaInterface {
 		String year=input.nextLine();
 		System.out.println("Input the genre ");
 		String genre=input.nextLine();
+		System.out.println("Input Rating of book");
+		long rating=input.nextLong();
 		System.out.println("Input the ISBN ");
 		String ISBN=input.nextLine();
 		System.out.println("Input the Publisher ");
@@ -113,6 +116,7 @@ public class MediaParser implements MediaInterface {
 		Media1.put("year",year);
 		Media1.put("genre",genre);
 		Media1.put("ISBN",ISBN);
+		Media1.put("Rating",rating);
 		Media1.put("publisher",publisher);
 		Media1.put("author", author);
 		Media1.put("numCopies",numCopies);
@@ -125,6 +129,7 @@ public class MediaParser implements MediaInterface {
 			Media.put("year",media.get(i).getYear());
 			Media.put("genre", media.get(i).getGenre());
 			Media.put("ISBN", media.get(i).getISBN());
+			Media.put("Rating",media.get(i).getRating());
 			Media.put("publisher",media.get(i).getPublisher());
 			Media.put("author",media.get(i).getAuthor());
 			Media.put("numCopies",media.get(i).getNumberOfCopy());

@@ -57,6 +57,7 @@ public class UserInterface {
 			String type = loggedInAccount.get(i).getType();
 			if (passwordMatch.equals(Password) && iD.equals(ID)) {
 				MainAccount = loggedInAccount.get(i);
+				MainAccount.notifyHold();;
 				System.out.println("Your're logged in as " + name + " as an " + type);
 				if (type.equals("AverageUser")) {
 					averageUserUI();
@@ -181,8 +182,11 @@ public class UserInterface {
 	}
 	public void librarianUI() throws IOException {
 
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove "
+				+ "Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
 		int choice = input.nextInt();
+		input.nextLine();
+		Librarian librarian = (Librarian) MainAccount;
 		if (choice == 1) {
 			searchUI();
 		}
@@ -193,7 +197,10 @@ public class UserInterface {
 			MP.addMediaDatabase();
 		}
 		if (choice == 4) {
-
+			String aMediaName = input.nextLine();
+			Media media = MP.search(item, aMediaName);
+			librarian.updateItem(media);
+			updateDB();
 		}
 		if (choice == 5) {
 

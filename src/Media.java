@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.*;
 
 public class Media {
 
@@ -14,13 +16,22 @@ public class Media {
     protected boolean isCheckout;
     protected boolean isNewArrive;
     protected long Maxrent;
-    protected Queue<String> holdlist =new LinkedList<String>();
-    public Media(String Title,String Year, String Genre,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
+    public ArrayList<String> getCommitlist() {
+		return commitlist;
+	}
+
+	public void setCommitlist(ArrayList<String> commitlist) {
+		this.commitlist = commitlist;
+	}
+	protected Queue<String> holdlist =new LinkedList<String>();
+    protected ArrayList<String> commitlist = new ArrayList<String>();
+    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
     {
     	this.setPublisher(Pulisher);
         this.setISBN(ISBN);
         this.setName(Title);
         this.setAuthor(Author);
+        this.setRating(Rating);
         this.setNumberOfCopy(numberOfCopy);
         this.setYear(Year);
         this.setGenre(Genre);
@@ -131,5 +142,25 @@ public class Media {
     public void setMaxrent(long Maxrent)
     {
     	this.Maxrent=Maxrent;
+    }
+    public void addCommit(Media media, ArrayList<Media> aMedias)
+    {
+        MediaParser Mp= new MediaParser();
+        Scanner input= new Scanner(System.in);
+        System.out.println("enter the book you want to commit");
+        String book=input.nextLine();
+        Mp.search(aMedias, book).getRating();
+        System.out.println("enter some commits");
+        String cmt= input.nextLine();
+        media= Mp.search(aMedias,book);
+        if(media!=null)
+        {
+         media.getCommitlist().add(cmt);
+        }
+        else 
+        {
+        	System.out.println("System dosen't have this book");
+        }
+        
     }
 }
