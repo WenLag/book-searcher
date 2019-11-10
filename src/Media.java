@@ -15,17 +15,18 @@ public class Media {
     protected long Rating;
     protected boolean isCheckout;
     protected boolean isNewArrive;
-    protected long Maxrent;
+    protected long Maxrent;	
+    protected Queue<String> holdlist =new LinkedList<String>();
+    protected ArrayList<String> commentlist = new ArrayList<String>();
     public ArrayList<String> getCommitlist() {
-		return commitlist;
+		return commentlist;
 	}
 
 	public void setCommitlist(ArrayList<String> commitlist) {
-		this.commitlist = commitlist;
+		this.commentlist = commitlist;
 	}
-	protected Queue<String> holdlist =new LinkedList<String>();
-    protected ArrayList<String> commitlist = new ArrayList<String>();
-    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent)
+
+    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist)
     {
     	this.setPublisher(Pulisher);
         this.setISBN(ISBN);
@@ -37,6 +38,7 @@ public class Media {
         this.setGenre(Genre);
         this.setisNewArrive(isNewArrive);
         this.setMaxrent(Maxrent);
+        this.setCommitlist(commentlist);
         
     }
 
@@ -143,7 +145,7 @@ public class Media {
     {
     	this.Maxrent=Maxrent;
     }
-    public void addCommit(Media media, ArrayList<Media> aMedias)
+    public void addComment(Media media, ArrayList<Media> aMedias)
     {
         MediaParser Mp= new MediaParser();
         Scanner input= new Scanner(System.in);

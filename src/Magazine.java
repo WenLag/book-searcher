@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 
 public class Magazine extends Media {
 	public Magazine(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,
-			String Author,long numberOfCopy,boolean isNewArrive,long Maxrent) {
-		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent);
+			String Author,long numberOfCopy,boolean isNewArrive,long Maxrent,ArrayList<String> commentlist) {
+		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist);
 			
 	}
 	public String toString()
