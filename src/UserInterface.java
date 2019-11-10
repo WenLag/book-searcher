@@ -35,7 +35,6 @@ public class UserInterface {
 			searchUI();
 		}
 		else if (choice == 4) {
-			updateDB();
 			System.exit(0);
 		}
 		else{
@@ -45,9 +44,9 @@ public class UserInterface {
 	}
 	public void Login() throws IOException {
 		boolean found = false;
-		System.out.println("Enter ID");
+		System.out.println("Enter ID: ");
 		String ID = input.nextLine();
-		System.out.println("Password");
+		System.out.println("Password: ");
 		String Password = input.nextLine();
 
 		for (int i = 0; i < loggedInAccount.size(); i++) {
@@ -84,24 +83,25 @@ public class UserInterface {
 	 */
 	@SuppressWarnings("unchecked")
 	public void Register() throws IOException, ParseException {
-		System.out.println("__________\n");
+		System.out.println("_____________________________________");
 		System.out.println("Register an Account");
-		System.out.println("__________\n");
-		System.out.println("1:Please enter your name");
-		String name = input.next();
-		System.out.println("2:Please enter your age");
+		System.out.println("_____________________________________");
+		System.out.println("Please enter your name: ");
+		String name = input.nextLine();
+		System.out.println("Please enter your age: ");
 		long age = input.nextInt();
-		System.out.println("3:Please type in your desired ID");
-		String ID = input.next();
-		System.out.println("4:Please type your desired password.\n");
-		String password = input.next();
-		System.out.println("5:Please type in your email\n");
-		String email = input.next();
+		System.out.println("Please type in your desired ID: ");
+		String ID = input.nextLine();
+		System.out.println("Please type your desired password: ");
+		String password = input.nextLine();
+		System.out.println("Please type in your email: ");
+		String email = input.nextLine();
 		ArrayList<Account> accounts = AP.getList();
 		AverageUser newAccount = new AverageUser(ID,email,password,age);
 		if(newAccount.checkInput()) {
 			newAccount = (AverageUser) newAccount.ungradeAccount();
 			addAccountToDB(newAccount, accounts);
+			System.out.println("You've successfully made an account!");
 		} else {
 			Register();
 		}
@@ -109,17 +109,6 @@ public class UserInterface {
 
 
 			}
-
-	public void GuestLogin() {
-		System.out.println("Would you like to...\n1:Search");
-		decision = input.nextInt();
-		if (decision == 1) {
-			System.out.println("Enter the item title");
-			input.nextLine();
-			String title = input.nextLine();
-			MP.search(MP.getList(),title);
-		}
-	}
 
 	public void averageUserUI() throws IOException {
 		System.out.println("_____________________________________");
@@ -148,7 +137,6 @@ public class UserInterface {
 			for (int i = 0; i < MainAccount.getWaitList().size(); i++) {
 				System.out.println((i+1)+":"+MainAccount.getWaitList().get(i));
 			}
-			System.out.println("_____________________________________");
 			mainUI();
 		}
 
@@ -195,7 +183,6 @@ public class UserInterface {
 		} else {
 			System.out.println("_____________________________________");
 			System.out.println("You have no fine holds on your account");
-			System.out.println("_____________________________________");
 			mainUI();
 		}
 
@@ -247,9 +234,21 @@ public class UserInterface {
 
 	public void searchUI() {
 		System.out.println("Enter the item title or IBSN you'd like to search for");
-		input.nextLine();
+		System.out.println("_____________________________________");
 		String title = input.nextLine();
-		MP.search(MP.getList(),title);
+		Media Searchedbook = MP.search(MP.getList(),title);
+		if (Searchedbook.getName()==null) {
+			System.out.println("No book with this title");
+			
+		} else {
+			Searchedbook.printoutInfo();;
+		}
+		try {
+			mainUI();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void mainUI() throws IOException{
@@ -264,6 +263,8 @@ public class UserInterface {
 		if(MainAccount.getType().equals("Teacher")) {
 			averageUserUI();
 			updateDB();
+		} else {
+			searchUI();
 		}
 	}
 
@@ -283,15 +284,7 @@ public class UserInterface {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			try {
-				updateDB();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-				}
 			}
-		
-		
-	
 
 	}
 

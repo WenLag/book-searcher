@@ -43,6 +43,10 @@ public class Media {
         this.setType(type);
     }
     
+    public void printoutInfo() {
+    	System.out.println("Title: " + this.Title + " | Author: " + this.Author + "| Publisher: " + this.Publisher + " | Rating: " + this.Rating + "| Genre: " + this.Genre);
+    }
+    
     public String getType() {
     	return Type;
     }
