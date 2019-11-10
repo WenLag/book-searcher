@@ -147,21 +147,13 @@ public class Media {
     }
     public void addComment()
     {
-        //MediaParser Mp= new MediaParser();
+    	this.getCommitlist();
         Scanner input= new Scanner(System.in);
-       // Mp.search(media, title).getRating();
+        System.out.println("enter the rating of book you entered");
+        int rat=input.nextInt();
         System.out.println("enter some commits");
         String cmt= input.nextLine();
-        //media= Mp.search(aMedias,book);
-//        if(media!=null)
-//        {
-//         media.getCommitlist().add(cmt);
-//        }
-//        else
-//        {
-//        	System.out.println("System dosen't have this book");
-//        }
-        this.getRating();
-        this.commentlist.add(cmt);
+        this.commentlist.add(rat,cmt);
+
     }
 }
