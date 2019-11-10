@@ -37,15 +37,19 @@ public class Librarian extends Account{
 		if(aTpye.equalsIgnoreCase("book")) {
 			BookItem newBookItem = new BookItem();
 			MP.input(newBookItem);
+			aList.add(newBookItem);
 		}else if (aTpye.equalsIgnoreCase("ebook")) {
 			Ebook newItem = new Ebook();
 			MP.input(newItem);
+			aList.add(newItem);
 		}else if (aTpye.equalsIgnoreCase("magazine")) {
 			Magazine newItem = new Magazine();
 			MP.input(newItem);
+			aList.add(newItem);
 		}else if (aTpye.equalsIgnoreCase("dvd")) {
 			DVD newItem = new DVD();
 			MP.input(newItem);
+			aList.add(newItem);
 		}else {
 			System.out.println("Unknown Type");
 		}
