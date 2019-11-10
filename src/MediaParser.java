@@ -94,8 +94,9 @@ public class MediaParser implements MediaInterface {
 		System.out.println("Input the numCopies ");
 		int numCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
-		
 		String ans =input.nextLine();
+		System.out.println("add comment");
+		String comment=input.nextLine();
 		input.nextLine();
 		if (ans.equalsIgnoreCase("yes")) {
 		newArrival = true;
@@ -103,8 +104,7 @@ public class MediaParser implements MediaInterface {
 			newArrival = false;
 		}
 		System.out.println("maxrent day");
-		long Maxrent=input.nextLong();
-		
+		long Maxrent=input.nextLong();	
 		ArrayList<Media> media = Mp.parserMedia();
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
@@ -119,6 +119,7 @@ public class MediaParser implements MediaInterface {
 		Media1.put("numCopies",numCopies);
 		Media1.put("newArrival", newArrival);
 		Media1.put("Maxrent",Maxrent);
+		Media1.put("comment", new String[] {comment});
 	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
 			JSONObject Media = new JSONObject();
@@ -132,6 +133,7 @@ public class MediaParser implements MediaInterface {
 			Media.put("numCopies",media.get(i).getNumberOfCopy());
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
+			Media.put("comment",media.get(i).getCommitlist());
 			arr.add(Media);
 			obj.put("media",arr);
 		  }
