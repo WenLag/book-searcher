@@ -1,6 +1,6 @@
 {
     "books": [{
-        "type":"",
+        "type":"DVD",
         "ISBN": "10293123",
         "numCopies": 1,
         "year": "1920",
@@ -9,7 +9,7 @@
         "genre": "fantasy",
         "rating": 3,
         "comment": ["5", "first rating", "4", "second rating", "4", "new rating", "3", "third rating", "1", " rating", "3", "newer rating"],
-        "Maxrent": 14,
+        "Maxrent": 7,
         "title": "dante's peak"
     }, {
         "type":"",
@@ -24,7 +24,7 @@
         "Maxrent": 14,
         "title": "marsbars"
     }, {
-        "type":"",
+        "type":"B",
         "ISBN": "039480001X",
         "numCopies": 0,
         "year": "1957",
@@ -95,6 +95,7 @@
         "comment": [],
         "Maxrent": 14,
         "title": "Hitchhiker's guide to the galaxy"
-    }]
+    }
+    ]
 
 }
