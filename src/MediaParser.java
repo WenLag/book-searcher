@@ -165,6 +165,40 @@ public class MediaParser implements MediaInterface {
 	public ArrayList<Media> getList(){
 		return media;
 	}
+	
+	public void input(Media aMedia) {
+		MediaParser Mp=new MediaParser();
+		boolean newArrival;
+		@SuppressWarnings("resource")
+		Scanner input= new Scanner(System.in);
+		System.out.println("Input the tilte ");
+		String title=input.nextLine();
+		aMedia.setName(title);
+		System.out.println("input the year");
+		String year=input.nextLine();
+		System.out.println("Input the genre ");
+		String genre=input.nextLine();
+		System.out.println("Input Rating of book");
+		long rating=input.nextLong();
+		System.out.println("Input the ISBN ");
+		String ISBN=input.nextLine();
+		System.out.println("Input the Publisher ");
+		String publisher=input.nextLine();
+		System.out.println("Input the author ");
+		String author=input.nextLine();
+		System.out.println("Input the numCopies ");
+		int numCopies=input.nextInt();
+		System.out.println("Is that newArrivel?");
+		String ans =input.nextLine();
+		System.out.println("add comment");
+		String comment=input.nextLine();
+		input.nextLine();
+		if (ans.equalsIgnoreCase("yes")) {
+		newArrival = true;
+		} else {
+			newArrival = false;
+		}
+	}
 
 	
 }
