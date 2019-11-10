@@ -46,9 +46,9 @@ public class UserInterface {
 	public void Login() throws IOException {
 		boolean found = false;
 		System.out.println("Enter ID");
-		String ID = input.next();
+		String ID = input.nextLine();
 		System.out.println("Password");
-		String Password = input.next();
+		String Password = input.nextLine();
 
 		for (int i = 0; i < loggedInAccount.size(); i++) {
 			String iD = loggedInAccount.get(i).getId();
@@ -122,9 +122,11 @@ public class UserInterface {
 	}
 
 	public void averageUserUI() throws IOException {
-
+		System.out.println("_____________________________________");
 		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Waitlist\n5:View Fines\n6:Comment\n7:Exit");
+		System.out.println("_____________________________________");
 		decision = input.nextInt();
+		input.nextLine();
 		if (decision == 1) {
 			searchUI();
 		}
@@ -133,6 +135,7 @@ public class UserInterface {
 		}
 		else if (decision == 3) {
 			System.out.println("Enter the book you want to return");
+			System.out.println("_____________________________________");
 			input.nextLine();
 			String title = input.nextLine();
 			Media temp = MP.search(item, title);
@@ -140,12 +143,12 @@ public class UserInterface {
 			mainUI();
 		}
 		else if (decision == 4) {
-			System.out.println("__________________________________________\n");
+			System.out.println("_____________________________________");
 			System.out.println("You're on the wait list for");
 			for (int i = 0; i < MainAccount.getWaitList().size(); i++) {
 				System.out.println((i+1)+":"+MainAccount.getWaitList().get(i));
 			}
-			System.out.println("__________________________________________\n");
+			System.out.println("_____________________________________");
 			mainUI();
 		}
 
@@ -155,7 +158,9 @@ public class UserInterface {
 		else if (decision == 6){
 			System.out.println("Enter the title you want to comment on");
 			String title = input.nextLine();
-			Media temp = MP.search(item, title);
+			Media media = MP.search(item, title);
+			media.addComment();
+			updateDB();
 
 		} else if (decision == 7){
 			try {
@@ -173,7 +178,6 @@ public class UserInterface {
 	}
 
 	private void fineUI() throws IOException {
-		System.out.println("_____________________________________\n");
 		System.out.println("Your total fine: " + MainAccount.getBalance());
 		if (MainAccount.getBalance() != 0) {
 			System.out.println("_____________________________________");
@@ -184,7 +188,6 @@ public class UserInterface {
 				System.out.println("Enter the amount you'd like to add to your account.");
 				long amount = input.nextInt();
 				MainAccount.setBalance(MainAccount.getBalance() + amount);
-				updateDB();
 				mainUI();
 			} else {
 				mainUI();
@@ -198,9 +201,10 @@ public class UserInterface {
 
 	}
 	public void librarianUI() throws IOException {
-
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:Remove "
+		System.out.println("_____________________________________");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:update "
 				+ "Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
+		System.out.println("_____________________________________");
 		int choice = input.nextInt();
 		input.nextLine();
 		Librarian librarian = (Librarian) MainAccount;
@@ -217,7 +221,7 @@ public class UserInterface {
 			String aMediaName = input.nextLine();
 			Media media = MP.search(item, aMediaName);
 			librarian.updateItem(media);
-			updateDB();
+			mainUI();
 		}
 		if (choice == 5) {
 
@@ -251,18 +255,21 @@ public class UserInterface {
 	public void mainUI() throws IOException{
 		if(MainAccount.getType().equals("AverageUser")) {
 			averageUserUI();
+			updateDB();
 		}
 		if(MainAccount.getType().equals("Librarian")) {
 			librarianUI();
+			updateDB();
 		}
 		if(MainAccount.getType().equals("Teacher")) {
 			averageUserUI();
+			updateDB();
 		}
 	}
 
 	public void checkoutUI() {
 		System.out.println("Enter the item title or IBSN that you'd like to checkout");
-		input.nextLine();
+		System.out.println("_____________________________________");
 		String title = input.nextLine();
 		Media temp = MP.search(item,title);
 			MainAccount.checkoutItem(temp);
@@ -346,7 +353,6 @@ public class UserInterface {
 	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) throws IOException {
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
-		
 		JSONObject obj = new JSONObject();
 		item1.put("age", newAccount.getAge());
 		item1.put("Balance", 0.0);

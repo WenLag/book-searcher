@@ -65,7 +65,6 @@ public class MediaParser implements MediaInterface {
 				return null;
 			}
 		}
-		System.out.println("found"+media);
 		return media;
 		
 	}

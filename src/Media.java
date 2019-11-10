@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Media {
 
+	protected String Type;
     protected String Title;
     protected String Author;
     protected String Year;
@@ -26,7 +27,7 @@ public class Media {
 		this.commentlist = commitlist;
 	}
 
-    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist)
+    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
     {
     	this.setPublisher(Pulisher);
         this.setISBN(ISBN);
@@ -39,7 +40,15 @@ public class Media {
         this.setisNewArrive(isNewArrive);
         this.setMaxrent(Maxrent);
         this.setCommitlist(commentlist);
-
+        this.setType(type);
+    }
+    
+    public String getType() {
+    	return Type;
+    }
+    
+    public String setType(String type) {
+    	this.Type = type;
     }
 
 	public String getPublisher() {
@@ -147,13 +156,54 @@ public class Media {
     }
     public void addComment()
     {
-    	this.getCommitlist();
+    	this.sort(this.commentlist);
+	    for(int i = 0, j = 0; i < this.commentlist.size() && j < 3;i+=2, j++)
+	    {
+	    System.out.printf("Rating: %s\tComment: %s\n",this.commentlist.get(i),this.commentlist.get(i+1));
+	    }
         Scanner input= new Scanner(System.in);
-        System.out.println("enter the rating of book you entered");
-        int rat=input.nextInt();
-        System.out.println("enter some commits");
+        System.out.println("enter some comments");
         String cmt= input.nextLine();
-        this.commentlist.add(rat,cmt);
-
+        System.out.println("What would you rate this book?");
+        String rating = input.nextLine();
+        this.getRating();
+        this.commentlist.add(rating);
+        this.commentlist.add(cmt);
+        this.setRating(this.averageRating());
+        
     }
+    
+    public long averageRating() {
+	    int temp = 0;
+		for(int i = 0; i < this.commentlist.size(); i+=2) {
+			try {
+			temp += Integer.parseInt(this.commentlist.get(i));
+			}catch(NumberFormatException e){}
+		}
+			if(this.commentlist.size() == 0)
+				return 0;
+			return (long)(temp/(this.commentlist.size()/2));
+		}
+		    
+		private void sort(ArrayList<String> aList) {
+		String[] temp = new String[2];
+		for(int i = 0; i < aList.size(); i+=2) {
+			for(int j = i; j < aList.size(); j+=2) {
+				try {
+				if(Integer.parseInt(aList.get(i)) < Integer.parseInt(aList.get(j)))
+				{
+					temp[0] = aList.get(i);
+					temp[1] = aList.get(i+1);
+					
+					aList.set(i, aList.get(j));
+					aList.set(i+1, aList.get(j+1));
+					
+					aList.set(j, temp[0]);
+					aList.set(j+1, temp[1]);
+				}
+				}catch (NumberFormatException e) {}
+		}
+	
+		}
+	}
 }

@@ -229,9 +229,8 @@ public abstract class Account {
 			return;
 		}
 		if(!this.isAbleCheckout()) {
-			System.out.println("_____________________________________________");
 			System.out.println("\nYou have fines that you have to pay before you can checkout!");
-			System.out.println("_____________________________________________");
+			System.out.println("_____________________________________");
 			return;
 		}
 		
@@ -244,10 +243,10 @@ public abstract class Account {
 			checkoutList.add(date());
 			this.checkouted++;	
 		} else if (media.getNumberOfCopy() == 0){
-			System.out.println("__________________________\n");
 			System.out.println("This item is out of copies!");
-			System.out.println("__________________________");
+			System.out.println("_____________________________________\n");
 			System.out.println("Would you like to be added to the waitlist?\n1:Yes\n2:No");
+			System.out.println("_____________________________________");
 			int ans = input.nextInt();
 			if (ans == 1) {
 				putlist(media);
