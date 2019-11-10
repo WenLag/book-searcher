@@ -4,53 +4,63 @@
       "password": "pool",
       "maxCheckout": 15,
       "name": "deadpool",
+      "waitlist": [
+        "marsbars",
+        "The Cat in the Hat"
+      ],
       "id": "dead",
       "type": "AverageUser",
       "Balance": 0.0,
+      "checkoutlist": [
+      ],
       "age": 32,
       "email": "dp@email.sc.edu",
-      "isFlagged": false,
-      "waitlist": [ ],
-      "checkoutlist": []
+      "isFlagged": false
     },
     {
       "password": "man",
       "maxCheckout": 999,
       "name": "Zeliang zhuo",
+      "waitlist": [
+      ],
       "id": "ice",
       "type": "Librarian",
       "Balance": 0.0,
+      "checkoutlist": [
+      ],
       "age": 30,
       "email": "Zeliang@email.com",
-      "isFlagged": false,
-      "waitlist": [ ],
-      "checkoutlist": [  ]
+      "isFlagged": false
     },
     {
       "password": "xavier",
       "maxCheckout": 15,
       "name": "Nguyen",
+      "waitlist": [
+      ],
       "id": "dead",
       "type": "AverageUser",
       "Balance": 0.0,
+      "checkoutlist": [
+      ],
       "age": 25,
       "email": "Nguyen@gmail.com",
-      "isFlagged": false,
-      "waitlist": [],
-      "checkoutlist": []
+      "isFlagged": false
     },
     {
       "password": "xavier",
       "maxCheckout": 25,
       "name": "Jiabei He",
+      "waitlist": [
+      ],
       "id": "xavier",
       "type": "Teacher",
       "Balance": 0.0,
+      "checkoutlist": [
+      ],
       "age": 40,
       "email": "Jiabei@gmail.com",
-      "isFlagged": false,
-      "waitlist": [],
-      "checkoutlist": []
+      "isFlagged": false
     }
   ]
 }

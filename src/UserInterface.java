@@ -123,22 +123,25 @@ public class UserInterface {
 
 	public void averageUserUI() throws IOException {
 
-		System.out.println("Would you like to...\n1:Search\n2:View Fines\n3:View Waitlist\n4:Checkout\n5:Exit");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:View Waitlist\n4:View Fines\n5:Exit");
 		decision = input.nextInt();
 		if (decision == 1) {
 			searchUI();
 		}
 		else if (decision == 2) {
-			fineUI();
+			checkoutUI();
 		}
 		else if (decision == 3) {
 			System.out.println("__________________________________________\n");
-			System.out.println("You're on the wait list for "+MainAccount.getWaitList());
+			System.out.println("You're on the wait list for");
+			for (int i = 0; i < MainAccount.getWaitList().size(); i++) {
+				System.out.println((i+1)+":"+MainAccount.getWaitList().get(i));
+			}
 			System.out.println("__________________________________________\n");
 			mainUI();
 		}
 		else if (decision == 4) {
-			checkoutUI();
+			fineUI();
 		}
 
 		else if (decision == 5) {
@@ -248,36 +251,26 @@ public class UserInterface {
 		input.nextLine();
 		String title = input.nextLine();
 		Media temp = MP.search(item,title);
-		if (!MainAccount.isAbleCheckout()) {
-			System.out.println("_____________________________________________");
-			System.out.println("\nYou have fines that you have to pay before you can checkout!");
-			System.out.println("_____________________________________________");
-			try {
-				mainUI();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else if(MainAccount.isAbleCheckout()){
 			MainAccount.checkoutItem(temp);
+			System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
+			int ans = input.nextInt();
+			if (ans == 1) {
+				checkoutUI();
+			}else {
+				try {
+					mainUI();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			try {
 				updateDB();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 				}
 			}
-		else {
-		System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
-		int ans = input.nextInt();
-		if (ans == 1) {
-			checkoutUI();
-		} else {
-			try {
-				mainUI();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+		
+		
+	
 
 	}
 
@@ -296,6 +289,7 @@ public class UserInterface {
 			Media.put("numCopies",media.get(i).getNumberOfCopy());
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
+			Media.put("rating",media.get(i).getRating());
 			arr.add(Media);
 			obj.put("books",arr);
 		  }
@@ -309,8 +303,6 @@ public class UserInterface {
 		
 		ArrayList<Account> accounts = AP.getList();
 		for (int i = 0; i < accounts.size(); i++) {
-			JSONArray waitArr = new JSONArray();
-			JSONArray checkoutArr = new JSONArray();
 			JSONObject item0 = new JSONObject();
 			item0.put("age",accounts.get(i).getAge());
 			item0.put("Balance",accounts.get(i).getBalance());
@@ -320,27 +312,17 @@ public class UserInterface {
 			item0.put("maxCheckout",accounts.get(i).getMaxCheckout());
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
-			item0.put("password", accounts.get(i).getPasswordString());
-			if(accounts.get(i).getWaitList().size() != 0)
-			waitArr.add(accounts.get(i).getWaitList());
-			checkoutArr.add(accounts.get(i).getCheckoutList());
-			
-			item0.put("waitlist",waitArr);
-			item0.put("checkoutlist", checkoutArr);
+			item0.put("password", accounts.get(i).getPasswordString());			
+			item0.put("waitlist",accounts.get(i).getWaitList());
+			item0.put("checkoutlist", accounts.get(i).getCheckoutList());
 			accountArr.add(item0);
 			accountObj.put("account",accountArr);
 			
 		}
 		
-
-
-		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-
 			  file.write(accountObj.toString());
-
-			System.out.println("Successfully Added onto Database File...");
-
+			  file.close();
 		}
 
 	}
@@ -349,11 +331,8 @@ public class UserInterface {
 	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) throws IOException {
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
-		JSONArray waitArr = new JSONArray();
-		JSONArray checkoutArr = new JSONArray();
+		
 		JSONObject obj = new JSONObject();
-		//AverageUser newAccount = new AverageUser(ID,email,password,age);
-		//newAccount = (AverageUser) newAccount.ungradeAccount();
 		item1.put("age", newAccount.getAge());
 		item1.put("Balance", 0.0);
 	    item1.put("email", newAccount.getEmail());
@@ -363,10 +342,9 @@ public class UserInterface {
 	    item1.put("name", newAccount.getName());
 	    item1.put("password", newAccount.getPasswordString());
 	    item1.put("type", newAccount.getType());
-	    waitArr.add(newAccount.getWaitList().get(0));
-		checkoutArr.add(newAccount.getCheckoutList());
-		//item1.put("waitlist",waitArr);
-		item1.put("checkoutlist", checkoutArr);
+	   
+		item1.put("waitlist",newAccount.getCheckoutList());
+		item1.put("checkoutlist", newAccount.getCheckoutList());
 	    arr.add(item1);
 
 		for (int i = 0; i < accounts.size(); i++) {
@@ -380,24 +358,15 @@ public class UserInterface {
 			item0.put("name", accounts.get(i).getName());
 			item0.put("type", accounts.get(i).getType());
 			item0.put("password", accounts.get(i).getPasswordString());
-			//String[] temp = (String[]) accounts.get(i).getWaitList().toArray();
-			//for(int j = 0; j <accounts.get(i).getWaitList().size(); j++) {
-			waitArr.add(accounts.get(i).getWaitList().get(0));
-			//}
-			checkoutArr.add(accounts.get(i).getCheckoutList().get(0));
-			for (int k = 0; k < accounts.get(i).getWaitList().size(); k++ ) {
-				System.out.println("************************************"+accounts.get(i).getWaitList().get(k));
-			}
-			
-			item0.put("waitlist",accounts.get(i).getWaitList().get(0));
-			item0.put("checkoutlist", checkoutArr);
+			item0.put("waitlist",accounts.get(i).getCheckoutList());
+			item0.put("checkoutlist", accounts.get(i).getCheckoutList());
 			arr.add(item0);
 			obj.put("account",arr);
 		}
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
 
 			  file.write(obj.toString());
-
+			  file.close();
 		}
 
 	

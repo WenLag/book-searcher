@@ -229,7 +229,9 @@ public abstract class Account {
 			return;
 		}
 		if(!this.isAbleCheckout()) {
-			System.out.println("This account can not checkout items!");
+			System.out.println("_____________________________________________");
+			System.out.println("\nYou have fines that you have to pay before you can checkout!");
+			System.out.println("_____________________________________________");
 			return;
 		}
 		
@@ -250,7 +252,8 @@ public abstract class Account {
 			if (ans == 1) {
 				putlist(media);
 			} else {
-							}
+				
+			}
 		} 
 		return;
 	} 
@@ -314,7 +317,7 @@ public abstract class Account {
 	 * @return boolean type
 	 */
 	public boolean isAbleCheckout() {
-		if(this.getBalance() < 0 && this.isFlagged() == true && this.checkouted < this.getMaxCheckout())
+		if(this.getBalance() < 0 || this.isFlagged() == true) //getcheckout not working
 			return false;
 		return true;
 	}
@@ -323,7 +326,6 @@ public abstract class Account {
 	 * the method send a email to user if the state of item they hold is changed
 	 */
 	public void notifyHold() {
-		System.out.println("size" + waitList.size());
 		Media media;
 		ArrayList<Media> medias = MP.parserMedia();
 		for(int i = 0; i < waitList.size(); i++) {
@@ -345,7 +347,7 @@ public abstract class Account {
 		if(media == null)
 			return;
 		if(getWaitList() == null) {
-			System.out.println("waitlist is null");
+			System.out.println("waitlist is empty");
 			return; 
 		} 
 		if(getWaitList().size() <= this.getMaxCheckout()) {

@@ -30,7 +30,7 @@ public class MediaParser implements MediaInterface {
 				String year= (String)booksJSON.get("year");
 				String genre=(String)booksJSON.get("genre");
 				String Isbn= (String)booksJSON.get("ISBN");
-				long rating=(long)booksJSON.get("Rating");
+				long rating=(long)booksJSON.get("rating");
 				String publisher = (String)booksJSON.get("publisher");
 				String author=(String)booksJSON.get("author");
 				long numOfcopies=(long)booksJSON.get("numCopies");
@@ -53,8 +53,6 @@ public class MediaParser implements MediaInterface {
 		boolean found = false;
 		
 		ArrayList<Media> searchbook = aMedias;
-		System.out.println("size: "+searchbook.size());
-		
 		for(int i=0;i < searchbook.size();i++)
 		{
 			String title1 = searchbook.get(i).getName();
@@ -64,8 +62,6 @@ public class MediaParser implements MediaInterface {
 				media = searchbook.get(i);
 			}
 			if (i == searchbook.size()-1 && found == false) {
-				System.out.println("Did not match any media.");
-				System.out.println("not found");
 				return null;
 			}
 		}
