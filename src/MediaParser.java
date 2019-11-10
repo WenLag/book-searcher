@@ -167,6 +167,7 @@ public class MediaParser implements MediaInterface {
 		return media;
 	}
 	
+	
 	public void input(Media aMedia) {
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;
