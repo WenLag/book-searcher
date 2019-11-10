@@ -161,6 +161,7 @@ public class Media {
 //        {
 //        	System.out.println("System dosen't have this book");
 //        }
+        this.getRating();
         this.commentlist.add(cmt);
     }
 }
