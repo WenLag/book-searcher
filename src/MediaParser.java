@@ -85,8 +85,10 @@ public class MediaParser implements MediaInterface {
 		String genre=input.nextLine();
 		System.out.println("Input Rating of book");
 		long rating=input.nextLong();
+		input.nextLine();
 		System.out.println("Input the ISBN ");
 		String ISBN=input.nextLine();
+		input.nextLine();
 		System.out.println("Input the Publisher ");
 		String publisher=input.nextLine();
 		System.out.println("Input the author ");
@@ -186,6 +188,7 @@ public class MediaParser implements MediaInterface {
 		System.out.println("Input Rating of book");
 		long rating=input.nextLong();
 		aMedia.setRating(rating);
+		input.nextLine();
 		System.out.println("Input the ISBN ");
 		String ISBN=input.nextLine();
 		aMedia.setISBN(ISBN);
@@ -201,10 +204,6 @@ public class MediaParser implements MediaInterface {
 		System.out.println("Is that newArrivel?");
 		boolean ans =input.nextBoolean();
 		aMedia.setisNewArrive(ans);
-		System.out.println("add comment");
-		ArrayList<String> comment=new ArrayList<String>();
-		input.nextLine();
-		aMedia.setCommitlist(comment);
 		
 	}
 

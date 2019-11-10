@@ -236,9 +236,9 @@ public abstract class Account {
 		
 		else if(media.getNumberOfCopy() > 0)
 		{
-			System.out.println(media.getNumberOfCopy());
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
-			System.out.println(media.getNumberOfCopy());
+			System.out.printf("You have checked out %s max checkout day is %d",
+					media.getName(),media.getMaxrent());
 			checkoutList.add(media.getName());
 			checkoutList.add(date());
 			this.checkouted++;	

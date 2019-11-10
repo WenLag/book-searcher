@@ -1,6 +1,7 @@
+
 {
     "books": [{
-        "type":"DVD",
+        
         "ISBN": "10293123",
         "numCopies": 1,
         "year": "1920",
@@ -9,22 +10,20 @@
         "genre": "fantasy",
         "rating": 3,
         "comment": ["5", "first rating", "4", "second rating", "4", "new rating", "3", "third rating", "1", " rating", "3", "newer rating"],
-        "Maxrent": 7,
+        "Maxrent": 14,
         "title": "dante's peak"
     }, {
-        "type":"",
         "ISBN": "1234123",
         "numCopies": 0,
         "year": "1959",
         "author": "9",
         "newArrival": false,
         "genre": "science",
-        "rating": 0,
-        "comment": [],
+        "rating": 1,
+        "comment": ["1", "this book is terrible!"],
         "Maxrent": 14,
         "title": "marsbars"
     }, {
-        "type":"B",
         "ISBN": "039480001X",
         "numCopies": 0,
         "year": "1957",
@@ -36,7 +35,6 @@
         "Maxrent": 14,
         "title": "The Cat in the Hat"
     }, {
-        "type":"",
         "ISBN": "9780761119753",
         "numCopies": 2,
         "year": "2000",
@@ -48,7 +46,6 @@
         "Maxrent": 14,
         "title": "Pajama Time"
     }, {
-        "type":"",
         "ISBN": "1503290565",
         "numCopies": 1,
         "year": "1813",
@@ -60,7 +57,6 @@
         "Maxrent": 14,
         "title": "Pride and Prejudice"
     }, {
-        "type":"",
         "ISBN": "1451635621",
         "numCopies": 2,
         "year": "1936",
@@ -72,7 +68,6 @@
         "Maxrent": 14,
         "title": "Gone With the Wind"
     }, {
-        "type":"",
         "ISBN": "1451635621",
         "numCopies": 0,
         "year": "1960",
@@ -84,7 +79,6 @@
         "Maxrent": 14,
         "title": "To Kill A Mockingbird"
     }, {
-        "type":"",
         "ISBN": "1451635621",
         "numCopies": 1,
         "year": "1979",
@@ -95,7 +89,16 @@
         "comment": [],
         "Maxrent": 14,
         "title": "Hitchhiker's guide to the galaxy"
-    }
-    ]
-
+    }, {
+        "ISBN": "k",
+        "numCopies": 2,
+        "year": "k",
+        "author": "k",
+        "newArrival": true,
+        "genre": "k",
+        "rating": 3,
+        "comment": [],
+        "Maxrent": 0,
+        "title": "k"
+    }]
 }
