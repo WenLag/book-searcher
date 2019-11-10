@@ -28,6 +28,7 @@ public abstract class Media {
 	}
 	public Media() {
 		
+		
 	}
 
     public Media(String Title,String Year, String Genre,String ISBN,long Rating,String Pulisher,
