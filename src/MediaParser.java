@@ -166,6 +166,46 @@ public class MediaParser implements MediaInterface {
 	public ArrayList<Media> getList(){
 		return media;
 	}
+	
+	
+	public void input(Media aMedia) {
+		MediaParser Mp=new MediaParser();
+		boolean newArrival;
+		@SuppressWarnings("resource")
+		Scanner input= new Scanner(System.in);
+		System.out.println("Input the tilte ");
+		String title=input.nextLine();
+		aMedia.setName(title);
+		System.out.println("input the year");
+		String year=input.nextLine();
+		aMedia.setYear(year);
+		System.out.println("Input the genre ");
+		String genre=input.nextLine();
+		aMedia.setGenre(genre);
+		System.out.println("Input Rating of book");
+		long rating=input.nextLong();
+		aMedia.setRating(rating);
+		System.out.println("Input the ISBN ");
+		String ISBN=input.nextLine();
+		aMedia.setISBN(ISBN);
+		System.out.println("Input the Publisher ");
+		String publisher=input.nextLine();
+		aMedia.setPublisher(publisher);
+		System.out.println("Input the author ");
+		String author=input.nextLine();
+		aMedia.setAuthor(author);
+		System.out.println("Input the numCopies ");
+		int numCopies=input.nextInt();
+		aMedia.setNumberOfCopy(numCopies);
+		System.out.println("Is that newArrivel?");
+		boolean ans =input.nextBoolean();
+		aMedia.setisNewArrive(ans);
+		System.out.println("add comment");
+		ArrayList<String> comment=new ArrayList<String>();
+		input.nextLine();
+		aMedia.setCommitlist(comment);
+		
+	}
 
 	
 }

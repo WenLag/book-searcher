@@ -33,20 +33,36 @@ public class Librarian extends Account{
 		this.maxCheckout = 999999;
 	}
 	
-	protected void addItem() {
-		MediaParser MP = new MediaParser();
-		try {
-			MP.addMediaDatabase();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	protected void addItem(ArrayList<Media> aList, String aTpye) {
+		if(aTpye.equalsIgnoreCase("book")) {
+			BookItem newBookItem = new BookItem();
+			MP.input(newBookItem);
+			aList.add(newBookItem);
+		}else if (aTpye.equalsIgnoreCase("ebook")) {
+			Ebook newItem = new Ebook();
+			MP.input(newItem);
+			aList.add(newItem);
+		}else if (aTpye.equalsIgnoreCase("magazine")) {
+			Magazine newItem = new Magazine();
+			MP.input(newItem);
+			aList.add(newItem);
+		}else if (aTpye.equalsIgnoreCase("dvd")) {
+			DVD newItem = new DVD();
+			MP.input(newItem);
+			aList.add(newItem);
+		}else {
+			System.out.println("Unknown Type");
 		}
 	}
 	
-	protected void removeItem() {
+	protected void removeItem(ArrayList<Media> aList, String aName) {
 		//TODO
-		MediaParser mp = new MediaParser();
-		mp.removeMediaDatabase();
+		Media aMedia = MP.search(aList, aName);
+		if(aMedia != null)
+			aList.remove(aMedia);
+		else {
+			System.out.printf("%s not find!\n",aName);
+		}
 	}
 	
 	protected void updateItem(Media media) {

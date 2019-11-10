@@ -6,6 +6,10 @@ public class DVD extends Media{
 		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
+	public DVD()
+	{
+		super();
+	}
 
 	public String toString()
 	{

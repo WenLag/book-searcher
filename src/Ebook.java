@@ -7,6 +7,10 @@ public class Ebook extends Media {
 		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
+	public Ebook()
+	{
+		super();
+	}
 	public String toString()
 	{
 		
