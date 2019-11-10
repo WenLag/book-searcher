@@ -6,6 +6,10 @@ public class BookItem extends Media {
 		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
+	public BookItem()
+	{
+		super();
+	}
 	public String toString()
 	{
 		
