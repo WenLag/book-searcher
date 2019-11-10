@@ -269,8 +269,11 @@ public abstract class Account {
 			return;
 		int index = this.checkoutList.indexOf(media.getName());
 		int temp = comparDate(this.date(),this.checkoutList.get(index+1));
-		if(temp > 0)
-			this.setBalance(this.getBalance() + temp * 0.5);
+		temp = (int) (temp - media.getMaxrent());
+		if(temp > 0) {
+			this.setBalance(this.getBalance() - temp * 0.5);
+			System.out.printf("Your are %d days late! Fines have been added to your balance\nBalance: %f\n", temp, this.getBalance());
+		}
 		media.setNumberOfCopy(media.getNumberOfCopy()+1);
 		checkoutList.remove(checkoutList.indexOf(media.getName())+1);
 		checkoutList.remove(media.getName());

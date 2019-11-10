@@ -149,10 +149,10 @@ public class Media {
     {
         MediaParser Mp= new MediaParser();
         Scanner input= new Scanner(System.in);
-        System.out.println("enter the book you want to commit");
+        System.out.println("enter the book you want to comment");
         String book=input.nextLine();
         Mp.search(aMedias, book).getRating();
-        System.out.println("enter some commits");
+        System.out.println("enter some comments");
         String cmt= input.nextLine();
         media= Mp.search(aMedias,book);
         if(media!=null)

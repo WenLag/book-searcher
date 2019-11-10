@@ -35,7 +35,6 @@ public class AccountParser {
 				boolean isFlagged = ((Boolean)personJSON.get("isFlagged"));
 				double balance = (double)personJSON.get("Balance");
 				long age = (long)personJSON.get("age");	
-				JSONArray array = (JSONArray) personJSON.get("waitlist");
 				ArrayList<String> waitList = (ArrayList<String>)personJSON.get("waitlist");
 				ArrayList<String> checkoutList = (ArrayList<String>)personJSON.get("checkoutlist");
 				account.add(Lad.Load(id, email, name, type, isFlagged, maxCheckout, balance,

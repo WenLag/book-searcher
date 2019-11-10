@@ -123,7 +123,7 @@ public class UserInterface {
 
 	public void averageUserUI() throws IOException {
 
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:View Waitlist\n4:View Fines\n5:Exit");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Waitlist\n5:View Fines\n6:Comment\n7:Exit");
 		decision = input.nextInt();
 		if (decision == 1) {
 			searchUI();
@@ -132,6 +132,14 @@ public class UserInterface {
 			checkoutUI();
 		}
 		else if (decision == 3) {
+			System.out.println("Enter the book you want to return");
+			input.nextLine();
+			String title = input.nextLine();
+			Media temp = MP.search(item, title);
+			MainAccount.returnItem(temp);
+			mainUI();
+		}
+		else if (decision == 4) {
 			System.out.println("__________________________________________\n");
 			System.out.println("You're on the wait list for");
 			for (int i = 0; i < MainAccount.getWaitList().size(); i++) {
@@ -140,21 +148,25 @@ public class UserInterface {
 			System.out.println("__________________________________________\n");
 			mainUI();
 		}
-		else if (decision == 4) {
-			fineUI();
-		}
 
 		else if (decision == 5) {
+			fineUI();
+		}
+		else if (decision == 6){
+			System.out.println("Enter the title you want to comment on");
+			String title = input.nextLine();
+			Media temp = MP.search(item, title);
+
+		} else if (decision == 7){
 			try {
 				updateDB();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		else {
+		}else {
 			System.out.println("invalid input");
-			averageUserUI();
+			mainUI();
 		}
 
 
@@ -169,7 +181,9 @@ public class UserInterface {
 			System.out.println("_____________________________________");
 			int ans = input.nextInt();
 			if (ans == 1) {
-				MainAccount.setBalance(0);
+				System.out.println("Enter the amount you'd like to add to your account.");
+				long amount = input.nextInt();
+				MainAccount.setBalance(MainAccount.getBalance() + amount);
 				updateDB();
 				mainUI();
 			} else {
@@ -290,6 +304,7 @@ public class UserInterface {
 			Media.put("newArrival",media.get(i).isNewArrive());
 			Media.put("Maxrent",media.get(i).getMaxrent());
 			Media.put("rating",media.get(i).getRating());
+			Media.put("comment", media.get(i).getCommitlist());
 			arr.add(Media);
 			obj.put("books",arr);
 		  }
@@ -342,7 +357,6 @@ public class UserInterface {
 	    item1.put("name", newAccount.getName());
 	    item1.put("password", newAccount.getPasswordString());
 	    item1.put("type", newAccount.getType());
-	   
 		item1.put("waitlist",newAccount.getCheckoutList());
 		item1.put("checkoutlist", newAccount.getCheckoutList());
 	    arr.add(item1);
