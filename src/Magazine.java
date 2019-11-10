@@ -6,6 +6,10 @@ public class Magazine extends Media {
 		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
+	public Magazine()
+	{
+		super();
+	}
 	public String toString()
 	{
 		
