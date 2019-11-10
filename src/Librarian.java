@@ -55,10 +55,14 @@ public class Librarian extends Account{
 		}
 	}
 	
-	protected void removeItem() {
+	protected void removeItem(ArrayList<Media> aList, String aName) {
 		//TODO
-		MediaParser mp = new MediaParser();
-		mp.removeMediaDatabase();
+		Media aMedia = MP.search(aList, aName);
+		if(aMedia != null)
+			aList.remove(aMedia);
+		else {
+			System.out.printf("%s not find!\n",aName);
+		}
 	}
 	
 	protected void updateItem(Media media) {
