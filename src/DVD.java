@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class DVD extends Media{
 	public DVD(String Title,String Year, String Genre,long Rating,String ISBN,
-			String Pulisher,String Author,long numberOfCopy,boolean isNewArrive,long Maxrent,ArrayList<String> commentlist) {
-		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist);
+			String Pulisher,String Author,long numberOfCopy,boolean isNewArrive,long Maxrent,ArrayList<String> commentlist, String type) {
+		super(Title,Year,Genre,Rating,ISBN,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist, type);
 			
 	}
 
