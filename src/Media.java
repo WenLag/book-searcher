@@ -145,24 +145,22 @@ public class Media {
     {
     	this.Maxrent=Maxrent;
     }
-    public void addComment(Media media, ArrayList<Media> aMedias)
+    public void addComment()
     {
-        MediaParser Mp= new MediaParser();
+        //MediaParser Mp= new MediaParser();
         Scanner input= new Scanner(System.in);
-        System.out.println("enter the book you want to commit");
-        String book=input.nextLine();
-        Mp.search(aMedias, book).getRating();
+       // Mp.search(media, title).getRating();
         System.out.println("enter some commits");
         String cmt= input.nextLine();
-        media= Mp.search(aMedias,book);
-        if(media!=null)
-        {
-         media.getCommitlist().add(cmt);
-        }
-        else 
-        {
-        	System.out.println("System dosen't have this book");
-        }
-        
+        //media= Mp.search(aMedias,book);
+//        if(media!=null)
+//        {
+//         media.getCommitlist().add(cmt);
+//        }
+//        else 
+//        {
+//        	System.out.println("System dosen't have this book");
+//        }
+        this.commentlist.add(cmt);
     }
 }
