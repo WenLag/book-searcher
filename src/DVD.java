@@ -13,7 +13,6 @@ public class DVD extends Media{
 		super();
 	}
 
-
 	/**printing out*/
 	public String toString()
 	{
