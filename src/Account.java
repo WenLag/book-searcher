@@ -80,8 +80,8 @@ public abstract class Account {
 	}
 	public void setId(String id) {
 		//TODO id format
-		if(id.length() != 7) {
-			System.out.println("Error!! ID has to be 7 chars");
+		if(id.length() == 0) {
+			System.out.println("Error!! ID");
 			this.id = "null";
 			return;
 		}
@@ -164,8 +164,8 @@ public abstract class Account {
 	}
 
 	public void setPasswordString(String passwordString) {
-		if(passwordString.length() < 6 || passwordString.length() > 12) {
-			System.out.print("Error! Password has to be 6 to 12 charters!");
+		if(passwordString.length() == 0) {
+			System.out.print("Error! Password");
 			this.passwordString = "null";
 		}
 		this.passwordString = passwordString;

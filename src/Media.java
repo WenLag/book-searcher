@@ -30,7 +30,7 @@ public class Media {
 		
 	}
 
-    public Media(String Title,String Year, String Genre,long Rating,String ISBN,String Pulisher,
+    public Media(String Title,String Year, String Genre,String ISBN, long Rating, String Pulisher,
     		String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
     {
     	this.setPublisher(Pulisher);
