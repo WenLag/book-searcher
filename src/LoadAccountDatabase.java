@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+* To load data to ststem memory
+*@author Zeliang Zhuo
+*/
 public class LoadAccountDatabase {
 	
 	/**
