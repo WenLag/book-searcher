@@ -37,18 +37,23 @@ public class Librarian extends Account{
 		if(aTpye.equalsIgnoreCase("book")) {
 			BookItem newBookItem = new BookItem();
 			MP.input(newBookItem);
+			newBookItem.setType(aTpye);
 			aList.add(newBookItem);
 		}else if (aTpye.equalsIgnoreCase("ebook")) {
 			Ebook newItem = new Ebook();
+			
 			MP.input(newItem);
+			newItem.setType(aTpye);
 			aList.add(newItem);
 		}else if (aTpye.equalsIgnoreCase("magazine")) {
 			Magazine newItem = new Magazine();
 			MP.input(newItem);
+			newItem.setType(aTpye);
 			aList.add(newItem);
 		}else if (aTpye.equalsIgnoreCase("dvd")) {
 			DVD newItem = new DVD();
 			MP.input(newItem);
+			newItem.setType(aTpye);
 			aList.add(newItem);
 		}else {
 			System.out.println("Unknown Type");
@@ -219,8 +224,6 @@ public class Librarian extends Account{
 	}
 	
 	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
-		//TODO
-		//AccountParser ap = new AccountParser();
 		Scanner key = new Scanner(System. in);
 		MediaParser mp = new MediaParser();
 		boolean quit = false;
@@ -229,17 +232,17 @@ public class Librarian extends Account{
 			System.out.println(account.toString());
 			System.out.println("Enter 1 to update age"
 					+ "\nEnter 2 to update belance"
-					+ "\\nEnter 3 to update checkouted"
-					+ "\\nEnter 4 to update checkouted list"
-					+ "\\nEnter 5 to update email"
-					+ "\\nEnter 6 to update id"
-					+ "\\nEnter 7 to update is flagged"
-					+ "\\nEnter 8 to update max checkout"
-					+ "\\nEnter 9 to update name"
-					+ "\\nEnter 10 to update password string"
-					+ "\\nEnter 11 to update type"
-					+ "\\nEnter 12 to update wait list"
-					+ "\\nEnter 0 to quit");
+					+ "\nEnter 3 to update checkouted"
+					+ "\nEnter 4 to update checkouted list"
+					+ "\nEnter 5 to update email"
+					+ "\nEnter 6 to update id"
+					+ "\nEnter 7 to update is flagged"
+					+ "\nEnter 8 to update max checkout"
+					+ "\nEnter 9 to update name"
+					+ "\nEnter 10 to update password string"
+					+ "\nEnter 11 to update type"
+					+ "\nEnter 12 to update wait list"
+					+ "\nEnter 0 to quit");
 			inputString = key.nextLine();
 			int temp1;
 			try {

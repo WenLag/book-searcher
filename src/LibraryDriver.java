@@ -7,7 +7,6 @@ public class LibraryDriver {
 	
  
 	public static void main(String[] args) throws IOException, ParseException {
-		//System.out.println("*********************");
 		UserInterface UI = new UserInterface();
 		UI.front();
 

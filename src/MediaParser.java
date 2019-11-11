@@ -37,6 +37,7 @@ public class MediaParser implements MediaInterface {
 				boolean isNewArrival = (boolean)booksJSON.get("newArrival");
 				long Maxrent=(long)booksJSON.get("Maxrent");
 				String type = (String)booksJSON.get("type");
+				@SuppressWarnings("unchecked")
 				ArrayList<String> commentlist = (ArrayList<String>)booksJSON.get("comment");
 				media.add(lmd.Load(title,year,genre,Isbn,rating,publisher,author,numOfcopies,isNewArrival,Maxrent,commentlist,type));
 
@@ -97,8 +98,7 @@ public class MediaParser implements MediaInterface {
 		int numCopies=input.nextInt();
 		System.out.println("Is that newArrivel?");
 		String ans =input.nextLine();
-		System.out.println("add comment");
-		String comment=input.nextLine();
+		String comments = "";
 		input.nextLine();
 		if (ans.equalsIgnoreCase("yes")) {
 		newArrival = true;
@@ -121,7 +121,7 @@ public class MediaParser implements MediaInterface {
 		Media1.put("numCopies",numCopies);
 		Media1.put("newArrival", newArrival);
 		Media1.put("Maxrent",Maxrent);
-		Media1.put("comment", new String[] {comment});
+		Media1.put("comment", new String[] {comments});
 	    arr.add(Media1);
 		for (int i = 0; i < media.size(); i++) {
 			JSONObject Media = new JSONObject();

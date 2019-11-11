@@ -7,51 +7,62 @@ import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
-
+/*
+ * Front-end class that implements all back-end method
+ */
 public class UserInterface {
 	AccountParser AP = new AccountParser();
 	MediaParser MP = new MediaParser();
 	
 	ArrayList<Media> item = MP.parserMedia();
-	//ArrayList<Media> medias = MP.getList();
 	int decision;
 	ArrayList<Account> loggedInAccount = AP.parseAccount();
 	Account MainAccount;
 	Scanner input = new Scanner(System. in);
+	
+	/**
+	 * method that allows user to Login/Register/ Login as a guest/ or exit.
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void front() throws IOException, ParseException {
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System. in);
 		System.out.println("\nPlease type in the following number corresponding to the action");
 		System.out.println("__________________________________");
-		System.out.println("\n1:Login\n2:Register\n3:Guest Login\n4:Exit");
+		System.out.println("\n1:Login\n2:Register\n3:Login as a Guest\n4:Exit");
 		System.out.println("__________________________________");
 		String inputString = input.nextLine();
 		int temp;
 		while(true) {
-		try {
-			temp = Integer.parseInt(inputString);
-		} catch (NumberFormatException e) {
-			continue;
-			// TODO: handle exception
+			try {
+				temp = Integer.parseInt(inputString);
+			} catch (NumberFormatException e) {
+				continue;
+				// TODO: handle exception
+			}
+			switch (temp) {
+			case 1:
+				Login();
+				break;
+			case 2: 
+				Register();
+				break;
+			case 3:
+				searchUI();
+				break;
+			case 4:
+				System.exit(0);
+			default:
+				System.out.println("Invalid input");
+				front();
+			}
 		}
-		switch (temp) {
-		case 1:
-			Login();
-			break;
-		case 2: 
-			Register();
-			break;
-		case 3:
-			searchUI();
-			break;
-		case 4:
-			System.exit(0);
-		default:
-			System.out.println("Invalid input");
-			break;
-		}
-		break;
 	}
-	}
+	/**
+	 * Login function checks for a match in the database and notify everything if successful
+	 * @throws IOException
+	 */
 	public void Login() throws IOException {
 		boolean found = false;
 		System.out.println("Enter ID: ");
@@ -66,16 +77,9 @@ public class UserInterface {
 			String type = loggedInAccount.get(i).getType();
 			if (passwordMatch.equals(Password) && iD.equals(ID)) {
 				MainAccount = loggedInAccount.get(i);
-				MainAccount.notifyHold();;
-				System.out.println("Your're logged in as " + name + " as an " + type);
-				if (type.equals("AverageUser")) {
-					averageUserUI();
-
-				}
-				if (type.equals("Librarian")) {
-
-					librarianUI();
-				}
+				MainAccount.notifyHold();
+				System.out.println("Successful login");
+				mainUI();
 				found = true;
 			}
 
@@ -89,7 +93,7 @@ public class UserInterface {
 			}
 		}
 	/**
-	 * Register Methods
+	 * Register Method that check the input if it exist and upon successful comparison, an account is created.
 	 */
 	@SuppressWarnings("unchecked")
 	public void Register() throws IOException, ParseException {
@@ -100,6 +104,7 @@ public class UserInterface {
 		String name = input.nextLine();
 		System.out.println("Please enter your age: ");
 		long age = input.nextInt();
+		input.nextLine();
 		System.out.println("Please type in your desired ID: ");
 		String ID = input.nextLine();
 		System.out.println("Please type your desired password: ");
@@ -112,17 +117,22 @@ public class UserInterface {
 			newAccount = (AverageUser) newAccount.ungradeAccount();
 			addAccountToDB(newAccount, accounts);
 			System.out.println("You've successfully made an account!");
+			mainUI();
 		} else {
 			Register();
 		}
 	
 
 
-			}
+	}
 
+	/**
+	 * Average user interface
+	 * @throws IOException
+	 */
 	public void averageUserUI() throws IOException {
 		System.out.println("_____________________________________");
-		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Waitlist\n5:View Fines\n6:Comment\n7:Upgrade Account\n8:Exit");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Return\n4:View Hold list\n5:View Waitlist\n6:View Fines\n7:Comment\n8:Upgrade Account\n9:Exit");
 		System.out.println("_____________________________________");
 		decision = input.nextInt();
 		input.nextLine();
@@ -140,8 +150,16 @@ public class UserInterface {
 			Media temp = MP.search(item, title);
 			MainAccount.returnItem(temp);
 			mainUI();
-		}
+		} 
 		else if (decision == 4) {
+			System.out.println("_____________________________________");
+			System.out.println("You're holding these books");
+			for (int i = 0; i < MainAccount.getCheckoutList().size(); i++) {
+				System.out.println(MainAccount.getCheckoutList().get(i));
+			}
+			mainUI();
+		}
+		else if (decision == 5) {
 			System.out.println("_____________________________________");
 			System.out.println("You're on the wait list for");
 			for (int i = 0; i < MainAccount.getWaitList().size(); i++) {
@@ -150,26 +168,27 @@ public class UserInterface {
 			mainUI();
 		}
 
-		else if (decision == 5) {
+		else if (decision == 6) {
 			fineUI();
 		}
-		else if (decision == 6){
+		else if (decision == 7){
 			System.out.println("Enter the title you want to comment on");
 			String title = input.nextLine();
 			Media media = MP.search(item, title);
 			media.addComment();
-			updateDB();
+			mainUI();
 
-		} else if (decision == 7){
+		} else if (decision == 8){
 			int index = loggedInAccount.indexOf(MainAccount);
 			System.out.println("Enter");
 			String code = input.nextLine();
 			MainAccount =  MainAccount.ungreadAccount(code);
 			loggedInAccount.set(index, MainAccount);
 			
-		} else if (decision == 8) {
+		} else if (decision == 9) {
 			try {
 				updateDB();
+				System.exit(0);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -179,10 +198,13 @@ public class UserInterface {
 			System.out.println("invalid input");
 			mainUI();
 		}
-
-
 	}
-
+	
+	
+	/**
+	 * calls FineUI when there is a fine on a account
+	 * @throws IOException
+	 */
 	private void fineUI() throws IOException {
 		System.out.println("Your total fine: " + MainAccount.getBalance());
 		if (MainAccount.getBalance() != 0) {
@@ -190,9 +212,11 @@ public class UserInterface {
 			System.out.println("would you like to pay for your fines?\n1:Yes\n2:No");
 			System.out.println("_____________________________________");
 			int ans = input.nextInt();
+			input.nextLine();
 			if (ans == 1) {
 				System.out.println("Enter the amount you'd like to add to your account.");
 				long amount = input.nextInt();
+				input.nextLine();
 				MainAccount.setBalance(MainAccount.getBalance() + amount);
 				mainUI();
 			} else {
@@ -205,6 +229,11 @@ public class UserInterface {
 		}
 
 	}
+	
+	/**
+	 * Librarian user interface that allows for more access compared to the average user
+	 * @throws IOException
+	 */
 	public void librarianUI() throws IOException {
 		System.out.println("_____________________________________");
 		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:update "
@@ -223,18 +252,31 @@ public class UserInterface {
 			System.out.println("put in type of item");
 			String type = input.nextLine();
 			librarian.addItem(item, type);
-			updateDB();
 			mainUI();
 			
 		}
 		if (choice == 4) {
+			System.out.println("Enter a title: ");
 			String aMediaName = input.nextLine();
 			Media media = MP.search(item, aMediaName);
 			librarian.updateItem(media);
 			mainUI();
 		}
 		if (choice == 5) {
-
+			System.out.println("enter the account you want to access");
+			System.out.println("ID: " );
+			String id = input.nextLine();
+			Account temp = null;
+			for (int i = 0; i < loggedInAccount.size(); i++) {
+				if (id.equals(loggedInAccount.get(i).getId())) {
+					temp = loggedInAccount.get(i);
+					break;
+				}
+			}
+			if(temp != null)
+				librarian.accessAcount(temp, item);
+			updateDB();
+			mainUI();
 		}
 		if (choice == 6) {
 			
@@ -244,16 +286,34 @@ public class UserInterface {
 		}
 		if (choice == 8) {
 			updateDB();
+			System.exit(0);
+		}
+		else {
+			
 		}
 	}
 
+	/**
+	 * calls when a child login
+	 */
 	public void childUI() {
-		System.out.println("Would you like to...\n1:Search\n2:View Waitlist");
+		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:View Waitlist");
 		decision = input.nextInt();
+		input.nextLine();
 		if (decision == 1) {
 			searchUI();
 		}
+		if (decision == 2) {
+			checkoutUI();
+		}
+		if (decision == 3) {
+			MainAccount.getWaitList();
+		}
 	}
+	
+	/**
+	 * calls searchUI when user wants to search
+	 */
 
 	public void searchUI() {
 		System.out.println("Enter the item title or IBSN you'd like to search for");
@@ -274,31 +334,47 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * calls MainUI everytime to go back to main interface depending on the type
+	 * @throws IOException
+	 */
 	public void mainUI() throws IOException{
 		if(MainAccount.getType().equals("AverageUser")) {
-			averageUserUI();
 			updateDB();
+			averageUserUI();
+			
 		}
 		if(MainAccount.getType().equals("Librarian")) {
-			librarianUI();
 			updateDB();
+			librarianUI();
+			
 		}
 		if(MainAccount.getType().equals("Teacher")) {
-			averageUserUI();
 			updateDB();
-		} else {
-			searchUI();
+			averageUserUI();
+		
+		} 
+		if (MainAccount.getType().equals("Child")) {
+			updateDB();
+			childUI();
+		}
+		else {
+			updateDB();
 		}
 	}
 
+	/**
+	 * checkoutUI is called everytime a user wants to checkout
+	 */
 	public void checkoutUI() {
 		System.out.println("Enter the item title or IBSN that you'd like to checkout");
 		System.out.println("_____________________________________");
 		String title = input.nextLine();
 		Media temp = MP.search(item,title);
 			MainAccount.checkoutItem(temp);
-			System.out.println("Would you like to checkout more?\n1:Yes\n2:No");
+			System.out.println("\nWould you like to checkout more?\n1:Yes\n2:No");
 			int ans = input.nextInt();
+			input.nextLine();
 			if (ans == 1) {
 				checkoutUI();
 			}else {
@@ -311,6 +387,10 @@ public class UserInterface {
 
 	}
 
+	/**
+	 * UpdateDB is called every time the console goes backinto the main user interface of their class type
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	public void updateDB() throws IOException {
 		JSONArray arr = new JSONArray();
@@ -366,6 +446,12 @@ public class UserInterface {
 
 	}
 
+	/**
+	 * AddAccounttoDB is called when the librarian wishes to add an account to the Database
+	 * @param newAccount
+	 * @param accounts
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	private void addAccountToDB(Account newAccount, ArrayList<Account> accounts) throws IOException {
 		JSONArray arr = new JSONArray();

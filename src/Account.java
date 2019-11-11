@@ -228,6 +228,7 @@ public abstract class Account {
 		if (media == null) {
 			System.out.println("No books' with that title or IBSN");
 			return;
+			
 		}
 		if(!this.isAbleCheckout()) {
 			System.out.println("\nYou have fines that you have to pay before you can checkout!");
@@ -335,7 +336,7 @@ public abstract class Account {
 		for(int i = 0; i < waitList.size(); i++) {
 			media = MP.search(medias, waitList.get(i));
 			if(media.getNumberOfCopy() != 0)
-				System.out.printf("Notified User %s\t%s has %d copies available!\n", 
+				System.out.printf("Notification: %s %s has %d copies available!\n", 
 						getId(),media.getName(),media.getNumberOfCopy());
 		}
 	}
@@ -415,7 +416,7 @@ public abstract class Account {
 	public String toString() {
 		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
 				"\nIs Account flagged: " + this.isFlagged + "\nMax Checkout: " + this.maxCheckout +
-				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString;
+				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString + "\nAge: " + this.getAge();
 	}
 	
 	/**

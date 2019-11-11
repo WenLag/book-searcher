@@ -7,16 +7,16 @@ public class LoadMediaDatabase {
 			) {
 		Media media = new BookItem(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 		switch (type) {
-		case "Magazine":
+		case "magazine":
 			media = new Magazine(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 			break;
-		case "Ebook":
+		case "ebook":
 			media = new Ebook(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 			break;
-		case "BookItem":
+		case "book":
 			media = new BookItem(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 			break;
-		case "DVD":
+		case "dvd":
 			media =new DVD(Title,Year,Genre,ISBN,Rating,Pulisher,Author,numberOfCopy,isNewArrive,Maxrent,commentlist,type);
 			break;
 		default:
