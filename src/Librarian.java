@@ -6,6 +6,10 @@ import java.util.Scanner;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
  
+/**
+ * Librarian Class
+ * @author Zeliang Zhuo
+ */
 public class Librarian extends Account{
 
 	private Librarian(String id, String email, String password, int age, String name) {
@@ -33,11 +37,16 @@ public class Librarian extends Account{
 		this.maxCheckout = 999999;
 	}
 	
+	/**
+	 * Add a Media to database
+	 * @param aList hold data in memory
+	 * @param aTpye Media type
+	 */
 	protected void addItem(ArrayList<Media> aList, String aTpye) {
 		if(aTpye.equalsIgnoreCase("book")) {
 			BookItem newBookItem = new BookItem();
-			MP.input(newBookItem);
-			aList.add(newBookItem);
+			MP.input(newBookItem); // set info
+			aList.add(newBookItem); // add to database
 		}else if (aTpye.equalsIgnoreCase("ebook")) {
 			Ebook newItem = new Ebook();
 			MP.input(newItem);
@@ -55,6 +64,11 @@ public class Librarian extends Account{
 		}
 	}
 	
+	/**
+	 * Remove a Media from database
+	 * @param aList hold data in memory
+	 * @param aTpye Media type
+	 */
 	protected void removeItem(ArrayList<Media> aList, String aName) {
 		//TODO
 		Media aMedia = MP.search(aList, aName);
@@ -65,19 +79,22 @@ public class Librarian extends Account{
 		}
 	}
 	
+	/**
+	 * Do nothing
+	 */
 	public Account ungreadAccount(String aCode) {
 		return this;
-		
 	}
 	
+	/**
+	 * up date infor in a Media
+	 * @param media 
+	 */
 	protected void updateItem(Media media) {
-		//TODO
-		//MediaParser mp = new MediaParser();
 		Scanner key = new Scanner(System. in);
 		boolean quit = false;
 		String inputString;
-		//Media media = mp.search(title);
-		if(media == null) {
+		if(media == null) { // check null
 			System.out.println(" is not find!");
 			return;
 		}
@@ -98,14 +115,14 @@ public class Librarian extends Account{
 					+ "\nEnter 11 to update title"
 					+ "\nEnter 12 to update year"
 					+ "\nExter 0 to quit");
-			//inputString = key.next();
+
 			inputString = key.nextLine();
 			int temp;
 			try {
 				temp = Integer.parseInt(inputString);
-			} catch (NumberFormatException e) {
+			} catch (NumberFormatException e) { //check input
 				continue;
-				// TODO: handle exception
+
 			}
 			switch (temp) {
 			case 1:
@@ -218,9 +235,13 @@ public class Librarian extends Account{
 		}
 	}
 	
+	/**
+	 * update info for an account
+	 * @param account the account need update 
+	 * @param aMedias media database
+	 */
 	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
-		//TODO
-		//AccountParser ap = new AccountParser();
+
 		Scanner key = new Scanner(System. in);
 		MediaParser mp = new MediaParser();
 		boolean quit = false;
@@ -242,11 +263,10 @@ public class Librarian extends Account{
 					+ "\\nEnter 0 to quit");
 			inputString = key.nextLine();
 			int temp1;
-			try {
+			try { // check input
 				temp1 = Integer.parseInt(inputString);
 			} catch (NumberFormatException e) {
 				continue;
-				// TODO: handle exception
 			}
 			switch (temp1) {
 			case 1:
@@ -385,6 +405,9 @@ public class Librarian extends Account{
 		}
 	}
 	
+	/**
+	 * Add an account to database
+	 */
 	@SuppressWarnings("unchecked")
 	protected void addAccount() {
 		AccountParser AP = new AccountParser();
@@ -429,8 +452,6 @@ public class Librarian extends Account{
 			arr.add(item0);
 			obj.put("account",arr);
 		}
-		 
-		
 	 
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
@@ -444,9 +465,4 @@ public class Librarian extends Account{
 			e.printStackTrace();
 		}
 	}
-	
-	protected void romeAccount() {
-		//TODO
-	}
-	
 }

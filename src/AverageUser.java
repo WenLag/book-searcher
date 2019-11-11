@@ -1,9 +1,12 @@
 import java.util.ArrayList;
-
+/**
+ * AverageUser Class
+ * @author Zeliang Zhuo
+ */
 public class AverageUser extends Account{
 
-	private final String TEACHER = "AABBCC";
-	private final String LIBRARAN = "AABBDD";
+	private final String TEACHER = "AABBCC"; //upgrade Account code
+	private final String LIBRARAN = "AABBDD"; // upgrade Account code
 	
 	public AverageUser(String id, String email, String password, long age, String name) {
 		super(id, email, password, age, name);
@@ -29,6 +32,10 @@ public class AverageUser extends Account{
 		this.maxCheckout = 25;
 	}
 	
+	/**
+	 * if age is under 18 change type to child
+	 * @return Child Account or this
+	 */
 	public Account ungradeAccount() {
 		if(this.getAge() < 18) {
 			System.out.println("Account type ungread to Child!");
@@ -39,6 +46,10 @@ public class AverageUser extends Account{
 		return this;
 	}
 	
+	/**
+	 * upgread Account
+	 * @return Account type
+	 */
 	public Account ungreadAccount(String aCode) {
 		if(aCode.equals(TEACHER)) {
 			System.out.println("Account type ungread to teacher!");

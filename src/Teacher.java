@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * Teacher Class
+ * @author Zeliang Zhuo
+ */
 public class Teacher extends Account{
 
 	public Teacher(String id, String email, String password, int age, String name) {
@@ -16,6 +20,7 @@ public class Teacher extends Account{
 	public Account ungreadAccount(String aCode) {
 		return this;
 	}
+	
 	/**
 	 * Load data from database
 	 */

@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+/**
+ * Child Class
+ * @author Zeliang Zhuo
+ */
 public class Child extends AverageUser{
 
 	public Child(String id, String email, String password, int age, String name) {
@@ -26,6 +29,10 @@ public class Child extends AverageUser{
 		this.maxCheckout = 15;
 	}
 	
+	/**
+	 * if age is not under 18 change type to averageUser
+	 * @return Account type
+	 */
 	public Account ungreadAccount() {
 		if(this.getAge() >= 18) {
 			System.out.println("Account type ungread to averageUser!");
