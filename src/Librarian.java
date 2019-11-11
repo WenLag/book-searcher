@@ -5,34 +5,43 @@ import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
- 
+
+/**
+ * Librarian Class
+ * @author Zeliang Zhuo
+ */
 public class Librarian extends Account{
 
 	private Librarian(String id, String email, String password, int age, String name) {
 		super(id, email, password,age, name);
 		this.setMaxCheckout();
 	}
-	
+
 	public Librarian(Account account) {
 		// TODO Auto-generated constructor stub
-		super(account); 
+		super(account);
 	}
-	
+
 	/**
 	 * Load data from database
 	 */
 	public Librarian(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
 			double balance, String passwordString, long age,ArrayList<String> aWaitList, ArrayList<String> checList) {
-		
+
 		super(id, email, name, type, isFlagged, maxCheckout,
 				balance, passwordString, age, aWaitList, checList);
-		
+
 	}
-	
+
 	protected void setMaxCheckout() {
 		this.maxCheckout = 999999;
 	}
-	
+
+	/**
+	 * Add a Media to database
+	 * @param aList hold data in memory
+	 * @param aTpye Media type
+	 */
 	protected void addItem(ArrayList<Media> aList, String aTpye) {
 		if(aTpye.equalsIgnoreCase("book")) {
 			BookItem newBookItem = new BookItem();
@@ -41,7 +50,7 @@ public class Librarian extends Account{
 			aList.add(newBookItem);
 		}else if (aTpye.equalsIgnoreCase("ebook")) {
 			Ebook newItem = new Ebook();
-			
+
 			MP.input(newItem);
 			newItem.setType(aTpye);
 			aList.add(newItem);
@@ -59,7 +68,12 @@ public class Librarian extends Account{
 			System.out.println("Unknown Type");
 		}
 	}
-	
+
+	/**
+	 * Remove a Media from database
+	 * @param aList hold data in memory
+	 * @param aTpye Media type
+	 */
 	protected void removeItem(ArrayList<Media> aList, String aName) {
 		//TODO
 		Media aMedia = MP.search(aList, aName);
@@ -69,20 +83,23 @@ public class Librarian extends Account{
 			System.out.printf("%s not find!\n",aName);
 		}
 	}
-	
+
+	/**
+	 * Do nothing
+	 */
 	public Account ungreadAccount(String aCode) {
 		return this;
-		
 	}
-	
+
+	/**
+	 * up date infor in a Media
+	 * @param media
+	 */
 	protected void updateItem(Media media) {
-		//TODO
-		//MediaParser mp = new MediaParser();
 		Scanner key = new Scanner(System. in);
 		boolean quit = false;
 		String inputString;
-		//Media media = mp.search(title);
-		if(media == null) {
+		if(media == null) { // check null
 			System.out.println(" is not find!");
 			return;
 		}
@@ -103,14 +120,14 @@ public class Librarian extends Account{
 					+ "\nEnter 11 to update title"
 					+ "\nEnter 12 to update year"
 					+ "\nExter 0 to quit");
-			//inputString = key.next();
+
 			inputString = key.nextLine();
 			int temp;
 			try {
 				temp = Integer.parseInt(inputString);
-			} catch (NumberFormatException e) {
+			} catch (NumberFormatException e) { //check input
 				continue;
-				// TODO: handle exception
+
 			}
 			switch (temp) {
 			case 1:
@@ -124,19 +141,19 @@ public class Librarian extends Account{
 				inputString = key.nextLine();
 				media.setGenre(inputString);
 				break;
-				
+
 			case 3:
 				System.out.println("Enter a User add to list:");
 				inputString = key.nextLine();
 				media.holdlist.add(inputString);
-				break;	
-				
+				break;
+
 			case 4:
 				System.out.println("Enter a ISBN:");
 				inputString = key.nextLine();
 				media.setISBN(inputString);
-				break;	
-				
+				break;
+
 			case 5:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
@@ -148,7 +165,7 @@ public class Librarian extends Account{
 					System.out.println("Invalid input");
 				}
 				break;
-				
+
 			case 6:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
@@ -160,7 +177,7 @@ public class Librarian extends Account{
 					System.out.println("Invalid input");
 				}
 				break;
-				
+
 			case 7:
 				System.out.println("Enter a Maxrent:");
 				inputString = key.nextLine();
@@ -170,8 +187,8 @@ public class Librarian extends Account{
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
-				break;	
-				
+				break;
+
 			case 8:
 				System.out.println("Enter a number of copies:");
 				inputString = key.nextLine();
@@ -181,14 +198,14 @@ public class Librarian extends Account{
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
-				break;	
-				
+				break;
+
 			case 9:
 				System.out.println("Enter a publisher:");
 				inputString = key.nextLine();
 				media.setPublisher(inputString);
-				break;	
-				
+				break;
+
 			case 10:
 				System.out.println("Enter a number of rating:");
 				inputString = key.nextLine();
@@ -199,30 +216,35 @@ public class Librarian extends Account{
 					System.out.println("Invalid input");
 				}
 				break;
-				
+
 			case 11:
 				System.out.println("Enter a title:");
 				inputString = key.nextLine();
 				media.setName(inputString);
 				break;
-				
+
 			case 12:
 				System.out.println("Enter a year:");
 				inputString = key.nextLine();
 				media.setYear(inputString);
-				break;	
-				
+				break;
+
 			case 0:
 				quit = true;
 				break;
-				
+
 			default:
 				System.out.println("Invalid input");
 				break;
 			}
 		}
 	}
-	
+
+	/**
+	 * update info for an account
+	 * @param account the account need update
+	 * @param aMedias media database
+	 */
 	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
 		Scanner key = new Scanner(System. in);
 		MediaParser mp = new MediaParser();
@@ -245,11 +267,10 @@ public class Librarian extends Account{
 					+ "\nEnter 0 to quit");
 			inputString = key.nextLine();
 			int temp1;
-			try {
+			try { // check input
 				temp1 = Integer.parseInt(inputString);
 			} catch (NumberFormatException e) {
 				continue;
-				// TODO: handle exception
 			}
 			switch (temp1) {
 			case 1:
@@ -272,8 +293,8 @@ public class Librarian extends Account{
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
-				break;	
-				
+				break;
+
 			case 3:
 				System.out.println("Enter a checkouted number:");
 				inputString = key.nextLine();
@@ -283,8 +304,8 @@ public class Librarian extends Account{
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
-				break; 
-				
+				break;
+
 			case 4:
 				System.out.println("Enter 1 to add, 2 to remove:");
 				inputString = key.nextLine();
@@ -305,19 +326,19 @@ public class Librarian extends Account{
 						System.out.println("Item not find!");
 				}
 				break;
-				
+
 			case 5:
 				System.out.println("Enter a email:");
 				inputString = key.nextLine();
 				account.setEmail(inputString);
-				break;	
-				
+				break;
+
 			case 6:
 				System.out.println("Enter a ID:");
 				inputString = key.nextLine();
 				account.setId(inputString);
 				break;
-				
+
 			case 7:
 				System.out.println("Enter 1 set to true 0 to false:");
 				inputString = key.nextLine();
@@ -328,30 +349,30 @@ public class Librarian extends Account{
 				}else {
 					System.out.println("Invalid input");
 				}
-				break;	
-				
+				break;
+
 			case 8:
 				account.setMaxCheckout();
-				break;	
-				
+				break;
+
 			case 9:
 				System.out.println("Enter a Name:");
 				inputString = key.nextLine();
 				account.setName(inputString);
 				break;
-				
+
 			case 10:
 				System.out.println("Enter a password:");
 				inputString = key.nextLine();
 				account.resetPassword(inputString);
 				break;
-				
+
 			case 11:
 				System.out.println("Enter a type:");
 				inputString = key.nextLine();
 				account.setType(inputString);
 				break;
-				
+
 			case 12:
 				System.out.println("Enter 1 to add, 2 to remove:");
 				inputString = key.nextLine();
@@ -377,17 +398,20 @@ public class Librarian extends Account{
 						System.out.println("Item not find!");
 				}
 				break;
-				
+
 			case 0:
 				quit = true;
 				break;
-				
+
 			default:
 				break;
 			}
 		}
 	}
-	
+
+	/**
+	 * Add an account to database
+	 */
 	@SuppressWarnings("unchecked")
 	protected void addAccount() {
 		AccountParser AP = new AccountParser();
@@ -401,10 +425,10 @@ public class Librarian extends Account{
 		System.out.println("Please type your desired password.\n");
 		String password = input.next();
 		System.out.println("Please type in your email\n");
-		String email = input.next();	
+		String email = input.next();
 		JSONObject obj = new JSONObject();
 		ArrayList<Account> accounts = AP.parseAccount();
-		
+
 		JSONArray arr = new JSONArray();
 		JSONObject item1 = new JSONObject();
 		item1.put("age", age);
@@ -417,7 +441,7 @@ public class Librarian extends Account{
 	    item1.put("password", password);
 	    item1.put("type", "AverageUser");
 	    arr.add(item1);
-		
+
 		for (int i = 0; i < accounts.size(); i++) {
 			JSONObject item0 = new JSONObject();
 			item0.put("age",accounts.get(i).getAge());
@@ -432,24 +456,17 @@ public class Librarian extends Account{
 			arr.add(item0);
 			obj.put("account",arr);
 		}
-		 
-		
-	 
+
 		// try-with-resources statement based on post comment below :)
 		try (FileWriter file = new FileWriter("accountDatabase.json")) {
-			
+
 			  file.write(obj.toString());
-			
+
 			System.out.println("Successfully Added onto Database File...");
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	protected void romeAccount() {
-		//TODO
-	}
-	
 }

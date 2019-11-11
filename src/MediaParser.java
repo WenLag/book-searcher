@@ -50,16 +50,20 @@ public class MediaParser implements MediaInterface {
 
         return media;
     }
-	@Override
+	/**
+	 * this method is override
+	 */
 	public Media search(ArrayList<Media> aMedias, String aMediaName) {
 		Media media = null;
 		boolean found = false;
 
 		ArrayList<Media> searchbook = aMedias;
-		for(int i=0;i < searchbook.size();i++)
+		for(int i=0;i < searchbook.size();i++)  /**using loop to traverse Arraylist*/
 		{
 			String title1 = searchbook.get(i).getName();
-
+			/**check if the searched name match the title that user's input
+			 * if so, return it, else return null.
+			 */
 			if (aMediaName.equalsIgnoreCase(title1)) {
 				found = true;
 				media = searchbook.get(i);
@@ -71,8 +75,10 @@ public class MediaParser implements MediaInterface {
 		return media;
 
 	}
-	@SuppressWarnings("unchecked")
 	@Override
+	/**
+	 * This method allows librarian to write information of books into database.
+	 */
 	public void addMediaDatabase() throws IOException {
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;
@@ -148,6 +154,9 @@ public class MediaParser implements MediaInterface {
 		}
 	}
 	@Override
+	/**
+	 * this method allows librarian to remove Media.
+	 */
 	public void removeMediaDatabase() {
 		Media media = null;
 		MediaParser Mp= new MediaParser();
@@ -170,7 +179,9 @@ public class MediaParser implements MediaInterface {
 		return media;
 	}
 
-
+	/**
+	 *input book information 
+	 */
 	public void input(Media aMedia) {
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;

@@ -27,7 +27,7 @@ public abstract class Account {
 	protected long age;
 	protected int checkouted;
 	protected ArrayList<String> waitList = new ArrayList<String>();  
-	protected ArrayList<String> checkoutList = new ArrayList<String>();
+	protected ArrayList<String> checkoutList = new ArrayList<String>(); // "Media_Name" "YYYY-MM-DD"
 
 
 	public Account(String id, String email, String password, long age, String name) {
@@ -68,6 +68,10 @@ public abstract class Account {
 			checkoutList = new ArrayList<String>();
 	}
 	
+	/**
+	 * To make a new account with copy
+	 * @param account
+	 */
 	public Account(Account account) {
 		// TODO Auto-generated constructor stub
 		this.copy(account);
@@ -79,7 +83,7 @@ public abstract class Account {
 		return id;
 	}
 	public void setId(String id) {
-		//TODO id format
+		//ID can not be ""
 		if(id.length() == 0) {
 			System.out.println("Error!! ID");
 			this.id = "null";
@@ -93,6 +97,7 @@ public abstract class Account {
 	}
 	
 	public void setEmail(String email) {
+		//check if input is null
 		if(email == null || email == "") {
 			System.out.println("No email entered!");
 			this.email = "null";
@@ -106,6 +111,7 @@ public abstract class Account {
 	}
 	
 	public void setType() {
+		//if account holder's age is under 18 set account to child
 		if(this.getAge() < 18)
 			this.setType("Child");
 		else {
@@ -164,6 +170,7 @@ public abstract class Account {
 	}
 
 	public void setPasswordString(String passwordString) {
+		//check input
 		if(passwordString.length() == 0) {
 			System.out.print("Error! Password");
 			this.passwordString = "null";
@@ -204,19 +211,6 @@ public abstract class Account {
 		this.name = name;
 	}
 
-	/**
-	 * the method take one input String as parameters and use the String to
-	 * search if the item exist in database
-	 * if exist return the item if not return null
-	 * @param aName is type of String
-	 * @return a Book Object
-	 */
-//	public Media searchItem(String aName) {
-//		//TODO make Book class and add search function
-//		
-//		Media media = MP.search(aName);
-//		return media;
-//	}
 
 	/**
 	 * the method to allowed user checkout items if the user have not meet max checkout,
@@ -225,18 +219,18 @@ public abstract class Account {
 	 */
 	public void checkoutItem(Media media) {
 		Scanner input = new Scanner(System.in);
-		if (media == null) {
+		if (media == null) { // check input
 			System.out.println("No books' with that title or IBSN");
 			return;
 			
 		}
-		if(!this.isAbleCheckout()) {
+		if(!this.isAbleCheckout()) { //check account 
 			System.out.println("\nYou have fines that you have to pay before you can checkout!");
 			System.out.println("_____________________________________");
 			return;
 		}
 		
-		else if(media.getNumberOfCopy() > 0)
+		else if(media.getNumberOfCopy() > 0) // check media
 		{
 			media.setNumberOfCopy(media.getNumberOfCopy()-1);	
 			System.out.printf("You have checked out %s max checkout day is %d",
@@ -249,8 +243,8 @@ public abstract class Account {
 			System.out.println("_____________________________________\n");
 			System.out.println("Would you like to be added to the waitlist?\n1:Yes\n2:No");
 			System.out.println("_____________________________________");
-			int ans = input.nextInt();
-			if (ans == 1) {
+			String ans = input.nextLine();
+			if (ans.equalsIgnoreCase("1")) {
 				putlist(media);
 			} else {
 				
@@ -264,8 +258,6 @@ public abstract class Account {
 	 * @param aName is type of String
 	 */
 	public void returnItem(Media media) {
-		//TODO make returnItem function
-		//Media media = searchItem(aName);
 		if(media == null)
 			return;
 		int index = this.checkoutList.indexOf(media.getName());
@@ -285,8 +277,11 @@ public abstract class Account {
 	 * the method to allowed user renew items if the item is not on hold
 	 * @param aName is type of String
 	 */
-	public void renew(String aName) {
-		//TODO make returnItem function
+	public void renew(Media media) {
+		int temp = this.getCheckoutList().indexOf(media.getName());
+		if(temp < 0)
+			return;
+		this.getCheckoutList().set(temp+1, date());
 	}
 
 	/**
@@ -346,9 +341,7 @@ public abstract class Account {
 	 * @param aName type of String
 	 */
 	public void putlist(Media media) {
-		//TODO
-		//MediaParser mParser = new MediaParser();
-		//Media media =// MP.search(media);
+
 		if(media == null)
 			return;
 		if(getWaitList() == null) {
@@ -446,18 +439,12 @@ public abstract class Account {
 		return dateNowStr;
 	}
 	
-	/**
-	 * Add an account to database
-	 */
-//	protected void addToDatabase() {
-//		//TODO add Account to database
-//	}
 	
 	/**
-	 * find how many days 
+	 * find how many days the item have been checked out
 	 * @param aDate
 	 * @param bDate
-	 * @return
+	 * @return type of int
 	 */
 	protected int comparDate(String aDate, String bDate) {
 		String delimeter = "-";
@@ -484,6 +471,10 @@ public abstract class Account {
 		return counter;
 	}
 
+	/**
+	 * copy account
+	 * @param account
+	 */
 	protected void copy(Account account) {
 		this.setId(account.getId());
 		this.setEmail(account.getEmail());
@@ -497,16 +488,24 @@ public abstract class Account {
 		this.setCheckouted(account.getCheckouted());
 		this.setWaitList(account.getWaitList());
 		this.setCheckoutList(account.getCheckoutList());
-		
-		
 	}
 	
+	/**
+	 * check if password match
+	 * @param input 
+	 * @return boolean type
+	 */
 	public boolean comparPassword(String input) {
 		if(this.getPasswordString().equals(input))
 			return true;
 		return false;
 	}
 
+	/**
+	 * check if ID match
+	 * @param input 
+	 * @return boolean type
+	 */
 	public boolean comparID(String input) {
 		if(this.getId().equals(input))
 			return true;
