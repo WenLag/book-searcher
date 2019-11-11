@@ -12,25 +12,20 @@ public class DVD extends Media{
 		super();
 	}
 
-}
-public DVD()
-{
-super();
-}
 
-public String toString()
-{
 
-return "title:"+this.Title+"year:"+this.Year+"genre:"+this.Genre+"rating:"+this.Rating+this.Genre+"ISBN:"+this.ISBN
-+"publisher:"+this.Publisher+"author:"+this.Author+"number of copy:"+this.numberOfCopy
-+"is new arrvial:"+this.isNewArrive();
-}
-public void setMaxrent(long Maxrent)
-{
-this.Maxrent = 7;
-}
-public long getMaxrent()
-{
-return this.Maxrent;
-}
-}
+	public String toString()
+	{
+		return "title:"+this.Title+"year:"+this.Year+"genre:"+this.Genre+"rating:"+this.Rating+this.Genre+"ISBN:"+this.ISBN
+		+"publisher:"+this.Publisher+"author:"+this.Author+"number of copy:"+this.numberOfCopy
+		+"is new arrvial:"+this.isNewArrive();
+	}
+	public void setMaxrent(long Maxrent)
+	{
+		
+	}
+	public long getMaxrent()
+	{
+	return this.Maxrent;
+	}
+	}
