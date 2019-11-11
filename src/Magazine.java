@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Magazine extends Media {
+	/**Load data from database*/
 	public Magazine(String Title,String Year, String Genre,String ISBN,long Rating,
 			String Pulisher,String Author,long numberOfCopy,boolean isNewArrive,
 			long Maxrent,ArrayList<String> commentlist, String type){

@@ -30,7 +30,7 @@ public abstract class Media {
 
 
 	}
-
+	/**constructor*/
     public Media(String Title,String Year, String Genre,String ISBN,long Rating,String Pulisher,
     		String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
     {
@@ -47,9 +47,10 @@ public abstract class Media {
         this.setCommitlist(commentlist);
         this.setType(type);
     }
-
+    /**Print book information*/
     public void printoutInfo() {
-    	System.out.println("Title: " + this.Title + " | Author: " + this.Author + "| Publisher: " + this.Publisher + " | Rating: " + this.Rating + "| Genre: " + this.Genre);
+    	System.out.println("Title: " + this.Title + " | Author: " + this.Author + "| Publisher: " +
+    this.Publisher + " | Rating: " + this.Rating + "| Genre: " + this.Genre);
     }
 
     public String getType() {
@@ -130,6 +131,7 @@ public abstract class Media {
         }
     }
     public boolean isCheckout(){
+    	/**check if number of copy is zero*/
     	if (this.numberOfCopy == 0) {
         	this.isCheckout = true;
         } else {
@@ -149,7 +151,9 @@ public abstract class Media {
     {
         this.isNewArrive=isNewArrive;
     }
-
+    /**
+     * This method allows Librarian to add name to Holdlist.
+     */
     public void addHoldList(String aId)
     {
     	Queue<String> Holdlist = new LinkedList<>();
@@ -163,6 +167,10 @@ public abstract class Media {
     {
     	this.Maxrent=Maxrent;
     }
+    /**
+     * this method allows users to add Comment when users enter book's title.
+     */
+    
     public void addComment()
     {
     	this.sort(this.commentlist);
@@ -181,7 +189,9 @@ public abstract class Media {
         this.setRating(this.averageRating());
 
     }
-
+    /**
+     * This method can average Rating of book and return the value to json file. 
+     */
     public long averageRating() {
 	    int temp = 0;
 		for(int i = 0; i < this.commentlist.size(); i+=2) {
@@ -193,7 +203,9 @@ public abstract class Media {
 				return 0;
 			return (long)(temp/(this.commentlist.size()/2));
 		}
-
+    /**
+     * this method can sort the rating from large to small.
+     */
 		private void sort(ArrayList<String> aList) {
 		String[] temp = new String[2];
 		for(int i = 0; i < aList.size(); i+=2) {
