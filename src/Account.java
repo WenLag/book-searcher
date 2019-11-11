@@ -257,8 +257,6 @@ public abstract class Account {
 	 * @param aName is type of String
 	 */
 	public void returnItem(Media media) {
-		//TODO make returnItem function
-		//Media media = searchItem(aName);
 		if(media == null)
 			return;
 		int index = this.checkoutList.indexOf(media.getName());
@@ -278,8 +276,11 @@ public abstract class Account {
 	 * the method to allowed user renew items if the item is not on hold
 	 * @param aName is type of String
 	 */
-	public void renew(String aName) {
-		//TODO make returnItem function
+	public void renew(Media media) {
+		int temp = this.getCheckoutList().indexOf(media.getName());
+		if(temp < 0)
+			return;
+		this.getCheckoutList().set(temp+1, date());
 	}
 
 	/**
@@ -339,9 +340,7 @@ public abstract class Account {
 	 * @param aName type of String
 	 */
 	public void putlist(Media media) {
-		//TODO
-		//MediaParser mParser = new MediaParser();
-		//Media media =// MP.search(media);
+
 		if(media == null)
 			return;
 		if(getWaitList() == null) {
@@ -439,18 +438,12 @@ public abstract class Account {
 		return dateNowStr;
 	}
 	
-	/**
-	 * Add an account to database
-	 */
-//	protected void addToDatabase() {
-//		//TODO add Account to database
-//	}
 	
 	/**
-	 * find how many days 
+	 * find how many days the item have been checked out
 	 * @param aDate
 	 * @param bDate
-	 * @return
+	 * @return type of int
 	 */
 	protected int comparDate(String aDate, String bDate) {
 		String delimeter = "-";
@@ -477,6 +470,10 @@ public abstract class Account {
 		return counter;
 	}
 
+	/**
+	 * copy account
+	 * @param account
+	 */
 	protected void copy(Account account) {
 		this.setId(account.getId());
 		this.setEmail(account.getEmail());
@@ -490,16 +487,24 @@ public abstract class Account {
 		this.setCheckouted(account.getCheckouted());
 		this.setWaitList(account.getWaitList());
 		this.setCheckoutList(account.getCheckoutList());
-		
-		
 	}
 	
+	/**
+	 * check if password match
+	 * @param input 
+	 * @return boolean type
+	 */
 	public boolean comparPassword(String input) {
 		if(this.getPasswordString().equals(input))
 			return true;
 		return false;
 	}
 
+	/**
+	 * check if ID match
+	 * @param input 
+	 * @return boolean type
+	 */
 	public boolean comparID(String input) {
 		if(this.getId().equals(input))
 			return true;
