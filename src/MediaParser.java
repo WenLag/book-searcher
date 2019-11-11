@@ -38,28 +38,27 @@ public class MediaParser implements MediaInterface {
 				long Maxrent=(long)booksJSON.get("Maxrent");
 				String type = (String)booksJSON.get("type");
 				ArrayList<String> commentlist = (ArrayList<String>)booksJSON.get("comment");
-				
-				media.add(lmd.Load(title,year,genre,Isbn, rating,publisher,author,numOfcopies,isNewArrival,Maxrent,commentlist, type));
-				
+				media.add(lmd.Load(title,year,genre,Isbn,rating,publisher,author,numOfcopies,isNewArrival,Maxrent,commentlist,type));
+
 			}
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        
+
         return media;
     }
 	@Override
 	public Media search(ArrayList<Media> aMedias, String aMediaName) {
 		Media media = null;
 		boolean found = false;
-		
+
 		ArrayList<Media> searchbook = aMedias;
 		for(int i=0;i < searchbook.size();i++)
 		{
 			String title1 = searchbook.get(i).getName();
-			
+
 			if (aMediaName.equalsIgnoreCase(title1)) {
 				found = true;
 				media = searchbook.get(i);
@@ -69,11 +68,11 @@ public class MediaParser implements MediaInterface {
 			}
 		}
 		return media;
-		
+
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addMediaDatabase() throws IOException { 
+	public void addMediaDatabase() throws IOException {
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;
 		@SuppressWarnings("resource")
@@ -107,7 +106,7 @@ public class MediaParser implements MediaInterface {
 			newArrival = false;
 		}
 		System.out.println("maxrent day");
-		long Maxrent=input.nextLong();	
+		long Maxrent=input.nextLong();
 		ArrayList<Media> media = Mp.parserMedia();
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
@@ -140,13 +139,13 @@ public class MediaParser implements MediaInterface {
 			arr.add(Media);
 			obj.put("media",arr);
 		  }
-		
+
 		try (FileWriter file = new FileWriter("media.json")) {
-			
+
 			  file.write(obj.toString());
 			  file.close();
-			
-		}	
+
+		}
 	}
 	@Override
 	public void removeMediaDatabase() {
@@ -166,12 +165,12 @@ public class MediaParser implements MediaInterface {
 			}
 		}
 	}
-	
+
 	public ArrayList<Media> getList(){
 		return media;
 	}
-	
-	
+
+
 	public void input(Media aMedia) {
 		MediaParser Mp=new MediaParser();
 		boolean newArrival;
@@ -205,8 +204,8 @@ public class MediaParser implements MediaInterface {
 		System.out.println("Is that newArrivel?");
 		boolean ans =input.nextBoolean();
 		aMedia.setisNewArrive(ans);
-		
+
 	}
 
-	
+
 }

@@ -1,3 +1,109 @@
+<<<<<<< HEAD
+
+{
+    "books": [{
+        
+        "ISBN": "10293123",
+        "numCopies": 1,
+        "year": "1920",
+        "author": "dante",
+        "newArrival": false,
+        "genre": "fantasy",
+        "rating": 3,
+        "comment": ["5", "first rating", "4", "second rating", "4", "new rating", "3", "third rating", "1", " rating", "3", "newer rating"],
+        "Maxrent": 14,
+        "title": "dante's peak"
+    }, {
+        "ISBN": "1234123",
+        "numCopies": 0,
+        "year": "1959",
+        "author": "9",
+        "newArrival": false,
+        "genre": "science",
+        "rating": 1,
+        "comment": ["1", "this book is terrible!"],
+        "Maxrent": 14,
+        "title": "marsbars"
+    }, {
+        "ISBN": "039480001X",
+        "numCopies": 0,
+        "year": "1957",
+        "author": "Dr. Seuss",
+        "newArrival": false,
+        "genre": "Children",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "The Cat in the Hat"
+    }, {
+        "ISBN": "9780761119753",
+        "numCopies": 2,
+        "year": "2000",
+        "author": "Sandra Boynton",
+        "newArrival": true,
+        "genre": "Children",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "Pajama Time"
+    }, {
+        "ISBN": "1503290565",
+        "numCopies": 1,
+        "year": "1813",
+        "author": "Jane Austin",
+        "newArrival": false,
+        "genre": "Women's Fiction",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "Pride and Prejudice"
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 2,
+        "year": "1936",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "Gone With the Wind"
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 0,
+        "year": "1960",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "To Kill A Mockingbird"
+    }, {
+        "ISBN": "1451635621",
+        "numCopies": 1,
+        "year": "1979",
+        "author": "Margaret Mitchell",
+        "newArrival": false,
+        "genre": "Historical Fiction",
+        "rating": 0,
+        "comment": [],
+        "Maxrent": 14,
+        "title": "Hitchhiker's guide to the galaxy"
+    }, {
+        "ISBN": "k",
+        "numCopies": 2,
+        "year": "k",
+        "author": "k",
+        "newArrival": true,
+        "genre": "k",
+        "rating": 3,
+        "comment": [],
+        "Maxrent": 0,
+        "title": "k"
+    }]
+}
+=======
 {
   "books": [
     {
@@ -142,3 +248,4 @@
     }
   ]
 }
+>>>>>>> branch 'master' of https://github.com/WenLag/book-searcher

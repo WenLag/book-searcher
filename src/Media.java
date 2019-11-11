@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.*;
 
-public class Media {
+public abstract class Media {
 
 	protected String Type;
     protected String Title;
@@ -27,10 +27,11 @@ public class Media {
 		this.commentlist = commitlist;
 	}
 	public Media() {
-		
+
+
 	}
 
-    public Media(String Title,String Year, String Genre,String ISBN, long Rating, String Pulisher,
+    public Media(String Title,String Year, String Genre,String ISBN,long Rating,String Pulisher,
     		String Author,long numberOfCopy,boolean isNewArrive, long Maxrent,ArrayList<String> commentlist, String type)
     {
     	this.setPublisher(Pulisher);
@@ -46,15 +47,15 @@ public class Media {
         this.setCommitlist(commentlist);
         this.setType(type);
     }
-    
+
     public void printoutInfo() {
     	System.out.println("Title: " + this.Title + " | Author: " + this.Author + "| Publisher: " + this.Publisher + " | Rating: " + this.Rating + "| Genre: " + this.Genre);
     }
-    
+
     public String getType() {
     	return Type;
     }
-    
+
     public String setType(String type) {
     	return this.Type = type;
     }
@@ -178,9 +179,9 @@ public class Media {
         this.commentlist.add(rating);
         this.commentlist.add(cmt);
         this.setRating(this.averageRating());
-        
+
     }
-    
+
     public long averageRating() {
 	    int temp = 0;
 		for(int i = 0; i < this.commentlist.size(); i+=2) {
@@ -192,7 +193,7 @@ public class Media {
 				return 0;
 			return (long)(temp/(this.commentlist.size()/2));
 		}
-		    
+
 		private void sort(ArrayList<String> aList) {
 		String[] temp = new String[2];
 		for(int i = 0; i < aList.size(); i+=2) {
@@ -202,16 +203,16 @@ public class Media {
 				{
 					temp[0] = aList.get(i);
 					temp[1] = aList.get(i+1);
-					
+
 					aList.set(i, aList.get(j));
 					aList.set(i+1, aList.get(j+1));
-					
+
 					aList.set(j, temp[0]);
 					aList.set(j+1, temp[1]);
 				}
 				}catch (NumberFormatException e) {}
 		}
-	
+
 		}
 	}
 }
