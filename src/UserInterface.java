@@ -13,13 +13,11 @@ import org.json.simple.parser.ParseException;
 public class UserInterface {
 	AccountParser AP = new AccountParser();
 	MediaParser MP = new MediaParser();
-	
 	ArrayList<Media> item = MP.parserMedia();
 	int decision;
 	ArrayList<Account> loggedInAccount = AP.parseAccount();
 	Account MainAccount;
 	Scanner input = new Scanner(System. in);
-	
 	/**
 	 * method that allows user to Login/Register/ Login as a guest/ or exit.
 	 * @throws IOException
@@ -49,7 +47,7 @@ public class UserInterface {
 				Register();
 				break;
 			case 3:
-				searchUI();
+				guestSearchUI();
 				break;
 			case 4:
 				System.exit(0);
@@ -63,6 +61,7 @@ public class UserInterface {
 	 * Login function checks for a match in the database and notify everything if successful
 	 * @throws IOException
 	 */
+	
 	public void Login() throws IOException {
 		boolean found = false;
 		System.out.println("Enter ID: ");
@@ -73,8 +72,7 @@ public class UserInterface {
 		for (int i = 0; i < loggedInAccount.size(); i++) {
 			String iD = loggedInAccount.get(i).getId();
 			String passwordMatch = loggedInAccount.get(i).getPasswordString();
-			String name = loggedInAccount.get(i).getName();
-			String type = loggedInAccount.get(i).getType();
+			
 			if (passwordMatch.equals(Password) && iD.equals(ID)) {
 				MainAccount = loggedInAccount.get(i);
 				MainAccount.notifyHold();
@@ -95,7 +93,6 @@ public class UserInterface {
 	/**
 	 * Register Method that check the input if it exist and upon successful comparison, an account is created.
 	 */
-	@SuppressWarnings("unchecked")
 	public void Register() throws IOException, ParseException {
 		System.out.println("_____________________________________");
 		System.out.println("Register an Account");
@@ -215,7 +212,7 @@ public class UserInterface {
 			input.nextLine();
 			if (ans == 1) {
 				System.out.println("Enter the amount you'd like to add to your account.");
-				long amount = input.nextInt();
+				double amount = input.nextDouble();
 				input.nextLine();
 				MainAccount.setBalance(MainAccount.getBalance() + amount);
 				mainUI();
@@ -309,6 +306,26 @@ public class UserInterface {
 		if (decision == 3) {
 			MainAccount.getWaitList();
 		}
+	}
+	
+	public void guestSearchUI() {
+		System.out.println("Enter the item title or IBSN you'd like to search for");
+		System.out.println("_____________________________________");
+		String title = input.nextLine();
+		Media Searchedbook = MP.search(MP.getList(),title);
+		if (Searchedbook.getName()==null) {
+			System.out.println("No book with this title");
+			
+		} else {
+			Searchedbook.printoutInfo();;
+		}
+		System.out.println("continue search?\n1:Yes\n2:No");
+		int ans = input.nextInt();
+		input.nextLine();
+		if (ans == 1)
+			guestSearchUI();
+		if (ans != 1) 
+			System.exit(0);
 	}
 	
 	/**

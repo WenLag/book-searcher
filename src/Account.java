@@ -218,6 +218,7 @@ public abstract class Account {
 	 * @param aName is type of String
 	 */
 	public void checkoutItem(Media media) {
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		if (media == null) { // check input
 			System.out.println("No books' with that title or IBSN");
@@ -331,8 +332,8 @@ public abstract class Account {
 		for(int i = 0; i < waitList.size(); i++) {
 			media = MP.search(medias, waitList.get(i));
 			if(media.getNumberOfCopy() != 0)
-				System.out.printf("Notification: %s %s has %d copies available!\n", 
-						getId(),media.getName(),media.getNumberOfCopy());
+				System.out.printf("Notification: %s has %d copies available!\n"
+						,media.getName(),media.getNumberOfCopy());
 		}
 	}
 

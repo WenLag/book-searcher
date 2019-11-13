@@ -35,7 +35,9 @@ public class AccountParser {
 				boolean isFlagged = ((Boolean)personJSON.get("isFlagged"));
 				double balance = (double)personJSON.get("Balance");
 				long age = (long)personJSON.get("age");	
+				@SuppressWarnings("unchecked")
 				ArrayList<String> waitList = (ArrayList<String>)personJSON.get("waitlist");
+				@SuppressWarnings("unchecked")
 				ArrayList<String> checkoutList = (ArrayList<String>)personJSON.get("checkoutlist");
 				account.add(Lad.Load(id, email, name, type, isFlagged, maxCheckout, balance,
 						password, age, waitList, checkoutList));
@@ -50,27 +52,6 @@ public class AccountParser {
 		
 	} 
 	
-public void parseWaitList() {
-		
-		ArrayList<Account> account = new ArrayList<Account>();
-		try {
-			FileReader reader = new FileReader("waitlist.json");
-			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
-			JSONArray peopleJSON = (JSONArray)jsonData.get("account");
-			for(int i=0; i < peopleJSON.size(); i++) {
-				JSONObject personJSON = (JSONObject)peopleJSON.get(i);
-				String name = (String)personJSON.get("name");
-				String title = (String)personJSON.get("title");
-			}	
-				
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return;
-
-		
-	} 
 
 	
 public ArrayList<Account> getList(){

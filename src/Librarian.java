@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
  * @author Zeliang Zhuo
  */
 public class Librarian extends Account{
-
+	Scanner key = new Scanner(System. in);
 	private Librarian(String id, String email, String password, int age, String name) {
 		super(id, email, password,age, name);
 		this.setMaxCheckout();
@@ -96,7 +96,6 @@ public class Librarian extends Account{
 	 * @param media
 	 */
 	protected void updateItem(Media media) {
-		Scanner key = new Scanner(System. in);
 		boolean quit = false;
 		String inputString;
 		if(media == null) { // check null
@@ -245,8 +244,9 @@ public class Librarian extends Account{
 	 * @param account the account need update
 	 * @param aMedias media database
 	 */
+	@SuppressWarnings({ "unlikely-arg-type" })
 	protected void accessAcount(Account account, ArrayList<Media> aMedias) {
-		Scanner key = new Scanner(System. in);
+		
 		MediaParser mp = new MediaParser();
 		boolean quit = false;
 		String inputString;
@@ -412,7 +412,7 @@ public class Librarian extends Account{
 	/**
 	 * Add an account to database
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "resource" })
 	protected void addAccount() {
 		AccountParser AP = new AccountParser();
 		Scanner input = new Scanner(System. in);
