@@ -36,6 +36,10 @@ class AccountTesting {
 		Test_Pay();
 		Test_Return();
 		Test_PrintCheckout();
+		Test_setAge();
+		Test_ResetPassword_3();
+		Test_ResetPassword_4();
+		Test_SetType();
 	}
 	
 	public void testJSONNotEmpty() {
@@ -160,6 +164,18 @@ class AccountTesting {
 	public void Test_ResetPassword_2() {
 		Account account = new AverageUser("id", "email", "password", 18, "name");
 		account.resetPassword("password2","password1");
+		assertEquals("password",account.getPasswordString());
+	}
+	
+	public void Test_ResetPassword_3() {
+		Account account = new AverageUser("id", "email", "password", 18, "name");
+		account.resetPassword("password2","password1111111111111111111");
+		assertEquals("password",account.getPasswordString());
+	}
+	
+	public void Test_ResetPassword_4() {
+		Account account = new AverageUser("id", "email", "password", 18, "name");
+		account.resetPassword("password1111111111111111111");
 		assertEquals("password",account.getPasswordString());
 	}
 	
@@ -295,6 +311,16 @@ class AccountTesting {
 		account.checkouted = 3;
 		account.printCheckoutList();
 
+	}
+	
+	public void Test_setAge() {
+		Account account = new AverageUser("id", "email", "password", 18, "name");
+		account.setAge(200);
+	}
+	
+	public void Test_SetType() {
+		Account account = new AverageUser("id", "email", "password", 11, "name");
+		account.setType();
 	}
 	
 	
