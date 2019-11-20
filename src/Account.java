@@ -375,7 +375,7 @@ public abstract class Account {
 		//TODO
 		for(int i = 0; i < checkoutList.size(); i+=2) {
 			System.out.printf("Title: %s\tcheckout date: %s\n",checkoutList.get(i)
-					,waitList.get(i+1));
+					,checkoutList.get(i+1));
 		}
 	}
 
