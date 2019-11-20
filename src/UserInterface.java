@@ -37,7 +37,6 @@ public class UserInterface {
 				temp = Integer.parseInt(inputString);
 			} catch (NumberFormatException e) {
 				continue;
-				// TODO: handle exception
 			}
 			switch (temp) {
 			case 1:
