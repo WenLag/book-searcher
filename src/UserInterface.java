@@ -312,7 +312,7 @@ public class UserInterface {
 		System.out.println("_____________________________________");
 		String title = input.nextLine();
 		Media Searchedbook = MP.search(MP.getList(),title);
-		if (Searchedbook.getName()==null) {
+		if (Searchedbook == null) {
 			System.out.println("No book with this title");
 			
 		} else {
