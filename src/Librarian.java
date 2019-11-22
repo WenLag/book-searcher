@@ -289,7 +289,7 @@ public class Librarian extends Account{
 				inputString = key.nextLine();
 				try {
 					int temp = Integer.parseInt(inputString);
-					account.setAge(temp);
+					account.setCheckouted(temp);
 				}  catch(NumberFormatException e){
 					System.out.println("Invalid input");
 				}
