@@ -113,7 +113,7 @@ public class UserInterface {
 			newAccount = (AverageUser) newAccount.ungradeAccount();
 			addAccountToDB(newAccount, accounts);
 			System.out.println("You've successfully made an account!");
-			mainUI();
+			front();
 		} else {
 			Register();
 		}
@@ -141,7 +141,6 @@ public class UserInterface {
 		else if (decision == 3) {
 			System.out.println("Enter the book you want to return");
 			System.out.println("_____________________________________");
-			input.nextLine();
 			String title = input.nextLine();
 			Media temp = MP.search(item, title);
 			MainAccount.returnItem(temp);
@@ -255,7 +254,7 @@ public class UserInterface {
 			System.out.println("Enter a title: ");
 			String aMediaName = input.nextLine();
 			Media media = MP.search(item, aMediaName);
-			librarian.updateItem(media);
+			librarian.updateItem(media,item);
 			mainUI();
 		}
 		if (choice == 5) {
@@ -275,7 +274,9 @@ public class UserInterface {
 			mainUI();
 		}
 		if (choice == 6) {
-			
+			loggedInAccount.add(librarian.addAccount());
+			updateDB();
+			mainUI();
 		}
 		if (choice == 7) {
 

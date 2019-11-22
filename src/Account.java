@@ -262,6 +262,10 @@ public abstract class Account {
 		if(media == null)
 			return;
 		int index = this.checkoutList.indexOf(media.getName());
+		if(index < 0) {
+			System.out.println("This item is not in your checkout list!");
+			return;
+		}
 		int temp = comparDate(this.date(),this.checkoutList.get(index+1));
 		temp = (int) (temp - media.getMaxrent());
 		if(temp > 0) {
@@ -331,6 +335,8 @@ public abstract class Account {
 		ArrayList<Media> medias = MP.parserMedia();
 		for(int i = 0; i < waitList.size(); i++) {
 			media = MP.search(medias, waitList.get(i));
+			if(media == null)
+				continue;
 			if(media.getNumberOfCopy() != 0)
 				System.out.printf("Notification: %s has %d copies available!\n"
 						,media.getName(),media.getNumberOfCopy());
