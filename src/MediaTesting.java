@@ -43,7 +43,6 @@ class MediaTesting {
 		long maxrent = media.getMaxrent();
 		String type= media.getType();
 		long numberofCopy=media.getNumberOfCopy();
-		ArrayList<String> commentlist = media.getCommitlist();		
 		assertEquals("AA", title);
 		assertEquals("1231", year);
 		assertEquals( "science", genre);

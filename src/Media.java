@@ -49,8 +49,8 @@ public abstract class Media {
     }
     /**Print book information*/
     public void printoutInfo() {
-    	System.out.println("Title: " + this.Title + " | Author: " + this.Author + "| Publisher: " +
-    this.Publisher + " | Rating: " + this.Rating + "| Genre: " + this.Genre);
+    	System.out.println("Title: " + this.Title +"\n| Author: " + this.Author + "\n| Publisher: " +
+    this.Publisher + "\n| Rating: " + this.Rating + "\n| Genre: " + this.Genre);
     }
 
     public String getType() {

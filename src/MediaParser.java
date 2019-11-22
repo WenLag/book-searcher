@@ -1,15 +1,9 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
-import java.io.Reader;
-import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.*;
 public class MediaParser implements MediaInterface {
@@ -153,27 +147,7 @@ public class MediaParser implements MediaInterface {
 
 		}
 	}
-	@Override
-	/**
-	 * this method allows librarian to remove Media.
-	 */
-	public void removeMediaDatabase() {
-		Media media = null;
-		MediaParser Mp= new MediaParser();
-		Scanner input = new Scanner(System.in);
-		System.out.println("Input title of book you wann to delete");
-		String title =input.nextLine();
-		ArrayList<Media> searchbook= Mp.parserMedia();
-		for(int i=0;i < searchbook.size();i++)
-		{
-			String title1 = searchbook.get(i).getName();
-			media= searchbook.get(i);
-			if(title1.equalsIgnoreCase(title))
-			{
-				searchbook.remove(title);
-			}
-		}
-	}
+
 
 	public ArrayList<Media> getList(){
 		return media;

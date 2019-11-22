@@ -15,9 +15,9 @@ public class Ebook extends Media {
 	public String toString()
 	{
 
-		return "title:"+this.Title+"year:"+this.Year+"genre:"+this.Genre+"rating:"+this.Rating+this.Genre+"ISBN:"+this.ISBN
-				+"publisher:"+this.Publisher+"author:"+this.Author+"number of copy:"+this.numberOfCopy
-				+"is new arrvial:"+this.isNewArrive();
+		return "title:"+this.Title+"\nyear:"+this.Year+"\ngenre:"+this.Genre+"\nrating:"+this.Rating+this.Genre+"\nISBN:"+this.ISBN
+				+"\npublisher:"+this.Publisher+"\nauthor:"+this.Author+"\nnumber of copy:"+this.numberOfCopy
+				+"\nis new arrvial:"+this.isNewArrive();
 	}
 	public void setMaxrent()
 	{

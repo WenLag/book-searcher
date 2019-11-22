@@ -14,12 +14,6 @@ public interface MediaInterface {
 	
 	public void addMediaDatabase() throws IOException;
 	
-	/**
-	 * If the media exist in Media database remove and return it
-	 * else return null
-	 */
-	
-	public void removeMediaDatabase();
 	
 	
 }
