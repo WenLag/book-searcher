@@ -233,7 +233,7 @@ public class UserInterface {
 	public void librarianUI() throws IOException {
 		System.out.println("_____________________________________");
 		System.out.println("Would you like to...\n1:Search\n2:Checkout\n3:Add Media\n4:update "
-				+ "Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Exit");
+				+ "Media\n5:Access Accounts\n6:Add Account\n7:Remove Account\n8:Return Item\n9:Exit");
 		System.out.println("_____________________________________");
 		int choice = input.nextInt();
 		input.nextLine();
@@ -280,9 +280,36 @@ public class UserInterface {
 			mainUI();
 		}
 		if (choice == 7) {
-			
+			System.out.println("Enter the id of the account you want to remove");
+			System.out.println("_____________________________________");
+			String tempId = input.nextLine();
+			for(int i = 0; i < loggedInAccount.size(); i++) {
+				if(loggedInAccount.get(i).getId().equals(tempId)) {
+					System.out.println("_____________________________________");
+					System.out.println(loggedInAccount.get(i).toString());
+					System.out.println("_____________________________________");
+					System.out.println("Do you want to remove this account?"
+							+ "\nEnter yes to confirm, else to cancel: ");
+					tempId = input.nextLine();
+					if(tempId.equalsIgnoreCase("yes")) {
+						loggedInAccount.remove(i);
+						System.out.println("Account removed!");
+					}
+					break;
+				}
+			}
+			updateDB();
+			mainUI();
 		}
 		if (choice == 8) {
+			System.out.println("Enter the book you want to return");
+			System.out.println("_____________________________________");
+			String title = input.nextLine();
+			Media temp = MP.search(item, title);
+			MainAccount.returnItem(temp);
+			mainUI();
+		}
+		if (choice == 9) {
 			updateDB();
 			System.exit(0);
 		}
