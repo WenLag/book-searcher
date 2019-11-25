@@ -226,7 +226,8 @@ public abstract class Account {
 			
 		}
 		if(!this.isAbleCheckout()) { //check account 
-			System.out.println("\nYou have fines that you have to pay before you can checkout!");
+			System.out.println("\nYou have fines that you have to pay before you can checkout! "
+					+ "\nOr your account is flagged!");
 			System.out.println("_____________________________________");
 			return;
 		}
@@ -311,7 +312,6 @@ public abstract class Account {
 	 * the method allowed use to pay fines
 	 */
 	protected void payFine(double pay) {
-		//TODO
 		double fine = this.getBalance();
 		this.setBalance(fine+pay);
 	}
@@ -321,12 +321,12 @@ public abstract class Account {
 	 * @return boolean type
 	 */
 	public boolean isAbleCheckout() {
-		if(this.getBalance() < 0 || this.isFlagged() == true) //getcheckout not working
+		if(this.getBalance() < 0 || this.isFlagged() == true)
 			return false;
 		return true;
 	}
 
-	public abstract Account ungreadAccount(String aCode);
+	public abstract Account upgradeAccount(String aCode);
 	/**
 	 * the method send a email to user if the state of item they hold is changed
 	 */
@@ -416,7 +416,7 @@ public abstract class Account {
 	public String toString() {
 		return "ID: " + this.id + "\n Email: " +this.email + "\n Accont Type: " + this.type +
 				"\nIs Account flagged: " + this.isFlagged + "\nMax Checkout: " + this.maxCheckout +
-				"Account Balance: " +this.balance + "\nPassword: " +this.passwordString + "\nAge: " + this.getAge();
+				"\nAccount Balance: " +this.balance + "\nPassword: " +this.passwordString + "\nAge: " + this.getAge();
 	}
 	
 	/**

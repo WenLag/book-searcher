@@ -17,7 +17,7 @@ public class Teacher extends Account{
 		super(account);
 	}
 	
-	public Account ungreadAccount(String aCode) {
+	public Account upgradeAccount(String aCode) {
 		return this;
 	}
 	

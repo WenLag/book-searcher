@@ -1,10 +1,10 @@
-import java.io.FileWriter;
-import java.io.IOException;
+//import java.io.FileWriter;
+//import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
 
 /**
  * Librarian Class
@@ -87,12 +87,12 @@ public class Librarian extends Account{
 	/**
 	 * Do nothing
 	 */
-	public Account ungreadAccount(String aCode) {
+	public Account upgradeAccount(String aCode) {
 		return this;
 	}
 
 	/**
-	 * up date infor in a Media
+	 * up date info in a Media
 	 * @param media
 	 */
 	protected void updateItem(Media media, ArrayList<Media> medias) {
@@ -376,6 +376,16 @@ public class Librarian extends Account{
 				System.out.println("Enter a type:");
 				inputString = key.nextLine();
 				account.setType(inputString);
+				LoadAccountDatabase load = new LoadAccountDatabase();
+				Account temp = load.Load(account.id, account.email, account.name, account.type, 
+						account.isFlagged, account.maxCheckout, account.balance, account.passwordString, 
+						account.age, account.waitList, account.checkoutList);
+				if(temp == null) {
+					System.out.println("Error try again!");
+					continue;
+				}
+				account = temp;
+				account.setMaxCheckout();
 				break;
 
 			case 12:
@@ -418,21 +428,19 @@ public class Librarian extends Account{
 	 * Add an account to database
 	 */
 	public Account addAccount() {
-		AccountParser AP = new AccountParser();
-		Scanner input = new Scanner(System. in);
+
 		System.out.println("Please enter your name");
-		String name = input.nextLine();
+		String name = key.nextLine();
 		System.out.println("Please enter your age");
-		long age = input.nextInt();
-		input.nextLine();
+		long age = key.nextInt();
+		key.nextLine();
 		System.out.println("Please type in your desired ID");
-		String ID = input.nextLine();
+		String ID = key.nextLine();
 		System.out.println("Please type your desired password.\n");
-		String password = input.nextLine();
+		String password = key.nextLine();
 		System.out.println("Please type in your email\n");
-		String email = input.nextLine();
-		
-		AverageUser newAccount = new AverageUser(id, email, password, age, name);
-		return newAccount = (AverageUser) newAccount.ungradeAccount();
+		String email = key.nextLine();
+		AverageUser newAccount = new AverageUser(ID, email, password, age, name);
+		return newAccount = (AverageUser) newAccount.upgradeAccount();
 	}
 }

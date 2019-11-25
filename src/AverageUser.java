@@ -36,32 +36,35 @@ public class AverageUser extends Account{
 	 * if age is under 18 change type to child
 	 * @return Child Account or this
 	 */
-	public Account ungradeAccount() {
+	public Account upgradeAccount() {
 		if(this.getAge() < 18) {
-			System.out.println("Account type ungread to Child!");
+			System.out.println("Account type upgradeAccount to Child!");
 			Child child = new Child(this);
+			child.setMaxCheckout();
 			return child;
 		}
-		System.out.println("Account type not ungread!");
+		System.out.println("Account type not upgradeAccount!");
 		return this;
 	}
 	
 	/**
-	 * upgread Account
+	 * Upgrade Account
 	 * @return Account type
 	 */
-	public Account ungreadAccount(String aCode) {
+	public Account upgradeAccount(String aCode) {
 		if(aCode.equals(TEACHER)) {
-			System.out.println("Account type ungread to teacher!");
+			System.out.println("Account type upgradeAccount to teacher!");
 			Teacher teacher = new Teacher(this);
+			teacher.setMaxCheckout();
 			return teacher;
 		}
 		if(aCode.equals(LIBRARAN)) {
-			System.out.println("Account type ungread to librarian!");
+			System.out.println("Account type upgradeAccount to librarian!");
 			Librarian librarian = new Librarian(this);
+			librarian.setMaxCheckout();
 			return librarian;
 		}
-		System.out.println("Account type not ungread!");
+		System.out.println("Account type not upgradeAccount!");
 		return this;
 	}
 

@@ -35,11 +35,11 @@ public class Child extends AverageUser{
 	 */
 	public Account ungreadAccount() {
 		if(this.getAge() >= 18) {
-			System.out.println("Account type ungread to averageUser!");
+			System.out.println("Account type upgradeAccount to averageUser!");
 			AverageUser averageUser = new AverageUser(this);
 			return averageUser;
 		}
-		System.out.println("Account type not ungread!");
+		System.out.println("Account type not upgradeAccount!");
 		return this;
 	}
 }

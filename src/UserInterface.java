@@ -26,13 +26,14 @@ public class UserInterface {
 	public void front() throws IOException, ParseException {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System. in);
-		System.out.println("\nPlease type in the following number corresponding to the action");
-		System.out.println("__________________________________");
-		System.out.println("\n1:Login\n2:Register\n3:Login as a Guest\n4:Exit");
-		System.out.println("__________________________________");
-		String inputString = input.nextLine();
+		String inputString;
 		int temp;
 		while(true) {
+			System.out.println("\nPlease type in the following number corresponding to the action");
+			System.out.println("__________________________________");
+			System.out.println("\n1:Login\n2:Register\n3:Login as a Guest\n4:Exit");
+			System.out.println("__________________________________");
+			inputString = input.nextLine();
 			try {
 				temp = Integer.parseInt(inputString);
 			} catch (NumberFormatException e) {
@@ -110,7 +111,7 @@ public class UserInterface {
 		ArrayList<Account> accounts = AP.getList();
 		AverageUser newAccount = new AverageUser(ID,email,password,age, name);
 		if(newAccount.checkInput()) {
-			newAccount = (AverageUser) newAccount.ungradeAccount();
+			newAccount = (AverageUser) newAccount.upgradeAccount();
 			addAccountToDB(newAccount, accounts);
 			System.out.println("You've successfully made an account!");
 			front();
@@ -177,7 +178,7 @@ public class UserInterface {
 			int index = loggedInAccount.indexOf(MainAccount);
 			System.out.println("Enter");
 			String code = input.nextLine();
-			MainAccount =  MainAccount.ungreadAccount(code);
+			MainAccount =  MainAccount.upgradeAccount(code);
 			loggedInAccount.set(index, MainAccount);
 			
 		} else if (decision == 9) {
@@ -279,7 +280,7 @@ public class UserInterface {
 			mainUI();
 		}
 		if (choice == 7) {
-
+			
 		}
 		if (choice == 8) {
 			updateDB();
@@ -337,7 +338,7 @@ public class UserInterface {
 		System.out.println("_____________________________________");
 		String title = input.nextLine();
 		Media Searchedbook = MP.search(MP.getList(),title);
-		if (Searchedbook.getName()==null) {
+		if (Searchedbook == null) {
 			System.out.println("No book with this title");
 			
 		} else {

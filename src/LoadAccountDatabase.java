@@ -21,8 +21,8 @@ public class LoadAccountDatabase {
 	 */
 	public Account Load(String id, String email, String name, String type, boolean isFlagged, long maxCheckout,
 			double balance, String passwordString, long age,ArrayList<String> aWaitList, ArrayList<String> checList) {
-		Account account = new Librarian(id, email, name, type, isFlagged, maxCheckout, balance, 
-				passwordString, age, aWaitList, checList);
+		Account account = null;//new Librarian(id, email, name, type, isFlagged, maxCheckout, balance, 
+				//passwordString, age, aWaitList, checList);
 		switch (type) {
 		case "Librarian":
 			account = new Librarian(id, email, name, type, isFlagged, maxCheckout, balance, 
@@ -41,6 +41,7 @@ public class LoadAccountDatabase {
 					passwordString, age, aWaitList, checList);
 			break;
 		default:
+			System.out.printf("Account ID: %s load failed!\n",id);
 			break;
 		}
 		return account;
